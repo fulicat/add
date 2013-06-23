@@ -1,0 +1,9 @@
+<?
+		$code = "invest";
+		$name = "投资模块";
+		$description = "投资模块";
+		$version = "1.0";
+		$author = "DWcms";
+		$date = "2010-08-20";
+		$type = "invest";
+		?>

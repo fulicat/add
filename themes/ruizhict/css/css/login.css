@@ -1,0 +1,102 @@
+
+.con_box{ width:980px; margin:0px auto}
+.t10{ margin-top:10px}
+.t5{ margin-top:5px}
+.logo{ background:url(../images/logo.gif) no-repeat; width:220px; height:70px; float:left}
+.city{ float:left; margin-left:15px; display:inline; margin-top:15px}
+.city h1{ font-size:12px; background:url(../images/citybg.gif) no-repeat; width:55px; height:30px; text-align:center; margin-left:8px}
+.friend{ background:url(../images/friend.gif) no-repeat; width:220px; height:43px; float:left; margin:10px 0 0 80px}
+.top_right{ float:right;width:220px;}
+.top_right div{ height:25px; line-height:25px;}
+.weather{  text-align:center;}
+.lo_bor{ text-align:right}
+.lo_bor span a{ color:#2B7C0D}
+
+.banner{ float:left; width:790px; height:160px}
+.btn_list{ background:url(../images/btnbg.gif) no-repeat; width:180px; height:160px; float:right}
+.btn_list li{ text-align:center; margin-top:9px; height:28px; overflow:hidden}
+
+.main_left{ width:265px; float:left}
+.g_320{ padding-left:4px; height:31px; background:url('../images/caption_bg.gif') repeat-x; overflow:hidden}
+.g_320 .b_caption{ overflow:hidden}
+.g_320 .b_caption li{ float:left; background:url('../images/caption_name_leftbg.gif') no-repeat; padding-left:22px}
+.g_320 .b_caption li span{ float:left; display:block; background:url('../images/caption_name_rightbg.gif') no-repeat top right; line-height:14px; font-weight:bold; padding-left:0; padding-right:10px; padding-top:13px; padding-bottom:4px}
+.g_320 .b_caption .tap{ float:left; background:url('../images/caption_tap_leftbg.gif') no-repeat; padding-left:10px; cursor:pointer}
+.g_320 .b_caption .tap span{ float:left; display:block; background:url('../images/caption_tap_rightbg.gif') no-repeat top right; line-height:14px; font-weight:normal; color:#02a; padding-left:0; padding-right:10px; padding-top:13px; padding-bottom:4px}
+.g_320 .b_caption .more{ float:right; background:url('../images/caption_more_rightbg.gif') no-repeat top right;}
+.g_320 .b_caption .more img{vertical-align:middle; }
+.g_320 .b_caption .more span{ float:left; display:block; background:none; padding:10px 10px 7px 0; height:14px; line-height:14px; font:12px "ËÎÌו";}
+.b_content{ border:1px solid #ccc; border-top:0px; padding:10px; clear:both}
+.b_content li{ line-height:25px}
+
+.paihang{ background:url(../images/paihang_2.gif) no-repeat 0px 5px; padding-left:25px;}
+.paihang table{}
+.paihang table td{ height:24px; color:#FF0000}
+.paihang table td a{ color:#333333}
+.finishList{clear:both;overflow:hidden; width:240px}
+.finishList dl{padding:2px 0 1px; margin:0px}
+.finishList dd,.finishList dt{margin:0 0 5px 0;line-height:1.4em;}
+.finishList .stitle{overflow:hidden;}
+.finishList .stitle a{color:#233FBA}
+.finishList dd{color:#f56200;width:30%;float:left;}
+.finishList .borderB{border-top:dashed 1px #CEDDDE;clear:both;margin:0;height:3px;overflow:hidden;float:none;width:100%;}
+
+.main_center{ float:left; width:515px; margin-left:10px;}
+.b_content1{border:1px solid #ccc; border-top:0px; padding:1px; background:#fff; }
+.zhaobiao_now11{ padding:5px 5px 5px; background:#F2F9E3;margin:0px auto;height:744px; overflow:hidden}
+.zhaobiao_now11 li{ height:88px !important; overflow:hidden !important; background:#fff; padding:4px; font-size:0px; line-height:0px; margin-top:10px}
+.zb_n_left{ float:left; text-align:center; width:70px;}
+.zb_n_left img{ border:1px solid #DEDEDE; padding:2px;}
+.zb_n_left a{ color:#414141}
+.zb_n_right{ float:right; width:420px;}
+.zb_n_right span{ color:#FF5500 }
+.zb_n_right b{font-family:Verdana, Arial, Helvetica, sans-serif; font-size:14px;color:#FF5500 }
+span.jindu{   width:82px; background:url(../images/jindubg.gif) no-repeat;height:16px; display:block; padding:0px 2px}
+span.jindu table{background:url(../images/jinduicon.gif) repeat-x left center; height:10px; margin:3px 0px 0}
+
+
+.main_right{ width:180px; float:right}
+.m_r_title{ background:url(../images/r_titbg.gif) no-repeat center 0; height:27px;}
+.m_r_title h1{ float:left; padding-left:30px; line-height:27px; height:27px; color:#749201; font-size:12px; background:url(../images/icon3.gif) no-repeat 15px center}
+.m_r_title span{ float:right; margin-right:10px; display:inline; margin-top:5px}
+.m_r_con{ border-left:#E7E7E7 solid 1px; border-right:#E7E7E7 solid 1px; padding:5px 10px;}
+.m_r_con li{line-height:24px;}
+.m_r_bot{ background:url(../images/r_titbot.gif) no-repeat center 0; height:7px; overflow:hidden}
+.btn_choic{}
+.btn_choic li{ float:left; margin:5px 0 0 10px; display:inline}
+.btn_choic li a{ color:#333333; }
+.btn_choic li a:hover{ text-decoration:none}
+.btn_choic li a.now{ background:url(../images/btnbg1.gif) no-repeat; width:63px; height:18px; font-weight:bold; color:#fff; color:#FFFFFF; display:block; line-height:18px; text-align:center}
+
+.content5{ width:168px; margin:0px auto }
+.content5 li{  margin:5px 0 0 0px; height:70px; border-bottom:1px solid #b9b9b9}
+.content5 li img{border:1px solid #b6b6b6}
+.content5 li h1{ width:50px; height:50px; float:left; }
+.content5 li span{ width:110px; height:70px; float:right;}
+.content5 li div{ line-height:20px}
+.m_r_con1{ background:url(../images/rbg1.gif) repeat-y center 0;padding:0px 5px;  height:220px;overflow:hidden;}
+
+.lin_bor{ border:#CCCCCC solid 1px;}
+.lin_logo{ padding-bottom:10px;}
+.lin_logo li{ float:left; margin:10px 14px 0; display:inline; line-height:0px; font-size:0px;}
+.lin_word li{ float:left; margin:0px 0px 0px 10px; display:inline;white-space:nowrap;}
+.fotter{ border-top:#81AD26 solid 4px; padding-top:20px;}
+.f_menu,.f_menu a{ color:#666666}
+.qq_list{}
+.qq_list li{ float:left}
+
+.in_text{ height:25px; width:170px; border:#D2D1D1 solid 1px; line-height:25px;}
+table.tab_dl{ width:93%; margin:0px auto}
+table.tab_dl td{ font-size:14px; height:40px;}
+.sec10{ text-align:center; font-weight:bold; color:#999999; line-height:28px; border-top:#DBDBDB solid 1px; padding-top:10px; padding-bottom:10px; margin:0px 20px; margin-top:20px}
+.dl_infor{}
+.dl_infor h1{ font-size:14px; color:#0262DB;}
+.dl_infor span{ color:#666666; padding-top:10px; display:block}
+.zhuce_bor{ padding:1px; border:#C8D88B solid 1px;}
+.zhuce_bor h1{ font-size:16px; color:#000000; height:32px; padding-left:20px; background:url(../images/zc_bg.gif) repeat-x; line-height:32px;}
+table.zc_tab{}
+table.zc_tab td{ font-size:14px; height:40px;}
+.yinsi{ padding:5px; background:#F7F6F6; border:#E7E6E6 solid 1px; text-align:left}
+.yinsi b{ color:#FF0000}
+.xieyi{ font-size:12px}
+.xieyi a{ color:#FF0000}

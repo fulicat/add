@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{$_A.list_name|default:"管理中心"}_{$_G.system.con_webname}_后台系统管理</title>
+<link href="{$tpldir}/admin.css" rel="stylesheet" type="text/css" />
+<link href="{$tpldir}/css/tipswindown.css" rel="stylesheet" type="text/css" />
+<script src="{$tpldir}/js/jquery.js" type="text/javascript"></script>
+<script src="{$tpldir}/js/tipswindown.js" type="text/javascript"></script>
+<script src="plugins/timepicker/WdatePicker.js" type="text/javascript"></script>
+<script src="{$tpldir}/js/base.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="main top">
+	<div class="logo "><img src="{$tpldir}/images/admin_top.jpg" /></div>
+	<div class="banner">
+		<div class="banner_top">
+		<a href="{$_A.admin_url}&q=system/clearcache">清空缓存</a>  |  <a href="{$_A.admin_url}&q=system/dbbackup/back">数据备份</a>  |  <a href="{$_A.admin_url}&q=system/makehtml/index">生成网站</a> |  <a href="/" target="_blank">回到首页</a></div>
+		<div class="banner_site">
+			<!--<a href="{$_A.admin_url}&q=control"><img src="{$tpldir}/images/banner_1.gif" /></a> -->
+			
+			<a href="{$_A.admin_url}&q=content"><img src="{$tpldir}/images/banner_5.gif" /></a>
+			{if $_A.pur_header.site_all==1}<a href="{$_A.admin_url}&q=site/loop&a=loop"><img src="{$tpldir}/images/banner_2.gif" /></a>{/if} 
+			{if $_A.pur_header.module_all==1}<a href="{$_A.admin_url}&q=module"><img src="{$tpldir}/images/banner_3.gif" /></a> {/if}
+			{if $_A.pur_header.system_all==1}<a href="{$_A.admin_url}&q=system"><img src="{$tpldir}/images/banner_4.gif" /></a>{/if}
+			{if $_A.pur_header.bbs_all==1}<a href="{$_A.admin_url}&q=bbs"><img src="{$tpldir}/images/banner_6.gif" /></a>{/if}
+			
+		</div>
+		<div class="banner_position">
+		<span>
+			您好，<font color="#FF0000">{$_G.user_result.realname}</font> [{$_G.user_result.typename}] &nbsp; &nbsp;
+			 <a href="{$_A.admin_url}">管理首页</a> | <a href="http://www.80cz.net" target="_blank">帮助</a> ｜ <strong><a href="{$_A.admin_url}&q=logout">退出</a></strong>
+		 </span>
+		 <a href="{$_A.admin_url}"><strong>管理中心</strong></a> -> {if $_A.query_sort=="module"}<a href="{$_A.admin_url}&q=module">模块</a>{elseif $_A.query_sort=="control"}<a href="{$_A.admin_url}&q=control">我的控制台</a>{elseif $_A.query_sort=="site"}<a href="{$_A.admin_url}&q=site">站点管理</a>{elseif $_A.query_sort=="system"}<a href="{$_A.admin_url}&q=system">系统设置</a>{else}管理首页{/if} {if $list_name!=""}  -> {$list_name}{/if}{if $list_title!=""} -> {$list_title}{/if}</div>
+	</div>
+</div><br />
+
+<div class="main">
+	<div class="main_left">
+		{if $magic.request.a=="control"}
+			{include file="admin_control_menu.html"}
+		{elseif $magic.request.a=="loop"}
+			{include file="admin_loop_menu.html"}
+		{elseif $magic.request.a=="bbs" || $_A.query_sort == "bbs"}
+			{include file="dwbbs_menu.tpl" template_dir="modules/dwbbs"}
+		{elseif $magic.request.a == "site" }
+			{include file="admin_site_menu.html"}
+		{elseif $magic.request.a=="system" || $_A.query_sort == "system"}
+			{include file="admin_system_menu.html"}
+		{elseif $magic.request.a == "module" || $_A.query_sort == "module"}
+			{include file="admin_module_menu.html"}
+		{else}
+			{include file="admin_site_menu.html"}
+		
+		{/if}
+	</div>
+	<div class="main_right">
+	
+		<div class="main_site">
+			<ul>
+				
+				<li class="site_sub">{$_A.list_menu}</li>
+				<li class="title">{$_A.list_name} <span>/ {if $_A.site_result.name!=""}{$_A.site_result.name}{else}{$_A.list_title} {/if}</span></li>
+				
+			</ul>
+		</div>
+		<div class="main_content">
+			
+		 

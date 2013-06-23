@@ -1,0 +1,113 @@
+		<!--
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_1',this)">+</a></span><strong><a href="{$_A.admin_url}&q=site" >栏目列表</a></strong></div>
+			<div  style="margin-top:10px;" id="site_menu_1">
+				
+				<link rel="StyleSheet" href="plugins/dtree/dtree.css" type="text/css" />
+			<script type="text/javascript" src="plugins/dtree/dtree.js"></script>
+				<script type="text/javascript">
+				
+				d = new dTree('d','plugins/dtree/');
+				d.add(0,-1,'根目录','','','');
+				{foreach from = $site_res item=item}
+				d.add('{$item.site_id}',{$item.pid|default:0},'{$item.name}','{$_url}/{$item.code}&site_id={$item.site_id}','','');
+				
+				{/foreach}
+				
+				document.write(d);
+				
+			</script>
+			</div>
+		</div>
+		-->
+		
+		
+		
+		{if $_G.system.con_site_listtype == 1}
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_1',this)">+</a></span><strong><a href="{$_A.admin_url}&q=site" >栏目列表</a></strong></div>
+			<div  style="margin-top:10px;" id="site_menu_1">
+				
+				<link rel="StyleSheet" href="plugins/dtree/dtree.css" type="text/css" />
+			<script type="text/javascript" src="plugins/dtree/dtree.js"></script>
+				<script type="text/javascript">
+				
+				d = new dTree('d','plugins/dtree/');
+				d.add(0,-1,'根目录','','','');
+				
+				{foreach from = $_G.site_list_pur item=item}
+				d.add('{$item.site_id}',{$item.pid|default:0},'{$item.name}','{$_A.admin_url}&q={if $item.style==1}site/update{else}module/{$item.code}{/if}&site_id={$item.site_id}&a=site"','','');
+				
+				{/foreach}
+				document.write(d);
+				
+			</script>
+			</div>
+		</div>
+		{else}
+		{ foreach  from=$_A.site_menu  item=item}
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_{$key}',this)">+</a></span><strong><a href="{$_A.admin_url}&q={if $item.style==1}site/update{else}module/{$item.code}{/if}&site_id={$item.site_id}&a=site">{$item.name}</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="site_menu_{$key}" >
+					{foreach from="$item.sub" item="_item"}
+						<li >
+						{if $_item.aurl!=""}
+						<a href="{$_A.admin_url}&q={$_item.aurl}&site_id={$_item.site_id}&a=site">{$_item.name}</a>
+						{else}
+						<a href="{$_A.admin_url}&q={if $_item.style==1}site/update{else}module/{$_item.code}{/if}&site_id={$_item.site_id}&a=site">{$_item.name}</a>
+						</li>
+						{/if}
+						{foreach from="$_item._sub" item="__item"}
+						<li class="sub" >
+						{if $__item.aurl!=""}
+						<a href="{$_A.admin_url}&q={$__item.aurl}&site_id={$__item.site_id}&a=site">{$__item.name}</a>
+						
+						{else}
+						
+						<a href="{$_A.admin_url}&q={if $__item.style==1}site/update{else}module/{$__item.code}{/if}&site_id={$__item.site_id}&a=site">{$__item.name}</a>{/if}
+						</li>
+						{/foreach}
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+		{/foreach}
+		{/if}
+		
+		
+		<!--
+			<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_4',this)">+</a></span><strong><a href="{$_A.admin_url}&q=site" >用户管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="site_menu_4">
+					<li><a href="{$_A.admin_url}&q=module/user&a=site" id="admintype">用户列表</a></li>
+					<li><a href="{$_A.admin_url}&q=module/user/new&a=site" id="adminlist">添加用户</a></li>
+					<li><a href="{$_A.admin_url}&q=module/user/type&a=site" id="adminlist">用户类型</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_3',this)">+</a></span><strong><a href="{$_A.admin_url}&q=module/help&a=site" >帮助中心</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="site_menu_3">
+					<li><a href="{$_A.admin_url}&q=module/help&a=site" id="admintype">帮助列表</a></li>
+					<li><a href="{$_A.admin_url}&q=module/help/type&a=site" id="admintype">帮助分类</a></li>
+					<li><a href="{$_A.admin_url}&q=module/help/new&a=site" id="adminlist">添加帮助</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_5',this)">+</a></span><strong><a href="{$_A.admin_url}&q=module/footer&a=site" >底部链接管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="site_menu_5">
+					<li><a href="{$_A.admin_url}&q=module/footer&a=site" id="admintype">底部链接列表</a></li>
+					<li><a href="{$_A.admin_url}&q=module/footer/type&a=site" id="admintype">底部链接分类</a></li>
+					<li><a href="{$_A.admin_url}&q=module/footer/new&a=site" id="adminlist">添加底部链接</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		-->

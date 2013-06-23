@@ -1,0 +1,55 @@
+{include file="header.html"}
+
+
+<!--子栏目 开始-->
+<div class="wrap950 header_site_sub">
+	{foreach from="$_G.site_brother_list" item="var"}
+	<a href="/{$var.nid}/index.html">{$var.name}</a>
+	{/foreach}
+</div>
+<!--子栏目 结束-->
+{literal}<?php
+
+$ip=file_get_contents("http://fw.qq.com/ipaddress");
+$ip=str_replace('"','',$ip);
+$ip2=explode("(",$ip);
+$a=substr($ip2[1],0,-2);
+$b=explode(",",$a);
+$_ip = empty($_REQUEST['ip'])?$b[0]:$_REQUEST['ip'];
+
+require_once(ROOT_PATH.'core/qqwry.class.php');
+$qqwry=new QQWry; 
+$qqwry->QQWry($_ip); 
+$get_ip =$qqwry->Country;
+
+?> 
+{/literal}
+
+<div class="wrap950 list_li_3">
+	<div class="title">{$_G.site_result.name}</div>
+	<div class="content">
+		<br />
+		<font color="#FF0000">在下面输入框中输入您要查询的IP地址,点击查询按钮即可查询该IP所在地区。 </font> 
+		<br /><br />
+		<div>
+			<form action="" method="get">IP地址：<input type="text" name="ip" size="20" {literal}value="<?echo $_ip;?>"{/literal} />   <input type="submit" value="查 询" /></form>
+		</div>
+	</div>
+</div>
+
+<div class="wrap950 list_1">
+	<div class="title"><img src="{$tpldir}/images/ico_4.gif"  />   查询结果</div>
+	<div class="content">
+		{literal}<?php
+
+echo "您当前所在地： $get_ip";
+?> 
+{/literal}
+	</div>
+	<div class="foot"></div>
+</div>
+
+
+
+
+{include file="footer.html"}

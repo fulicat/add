@@ -1,0 +1,9 @@
+<?
+		$code = "dwbbs";
+		$name = "µÛÍøÂÛÌ³";
+		$description = "µÛÍøÂÛÌ³1.0";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-09-20";
+		$type = "system";
+?>

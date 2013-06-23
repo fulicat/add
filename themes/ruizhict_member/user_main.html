@@ -1,0 +1,193 @@
+{include file="header.html" template_dir="themes/ruizhict"}
+<link href="{$tempdir}/css/user_new.css" rel="stylesheet" type="text/css" />
+<!--用户中心的主栏目 开始-->
+<div class="wrap950 " style="margin-top:0">
+	<!--左边的导航 开始-->
+	<div class="user_left">
+		{include file="user_menu.html"}
+	</div>
+	<!--左边的导航 结束-->
+	
+	<!--右边的内容 开始-->
+	<div class="user_right ">
+		<div class="user_right_l ">
+			{if $_G.user_result.real_status==0}<div class="user_amange" id="user_amange"><span ><a href="#" onclick='$("#user_amange").hide();'><font color="#FF0000">关闭</font></a></span>{if $_G.user_result.real_status==0}{$_G.system.con_webname}提醒你：你还没有进行实名认证。<a href="/index.php?user&q=code/user/realname"><strong>请先进行实名认证</strong></a>{/if}</div>{/if}
+			<div class="user_right_lmain">
+				<div class="user_right_img">
+					<img src="{$_G.user_id|avatar}" height="90" class="picborder" /><br />
+					<a href="index.php?user&q=code/user/avatar"><font color="#FF0000">[更换头像]</font></a>
+				</div>
+				<div class="user_right_txt">
+					<ul>
+						<li><span>信用等级：</span>{$_U.user_cache.credit|credit}<a href="/index.php?user&q=code/user/credit"><font color="#FF0000">积分查看</font></a></li>
+						<li style="overflow:hidden">
+							<div class="floatl"><span> 认&nbsp;&nbsp;&nbsp;   证：</span></div> 
+							<a href="/index.php?user&q=code/user/realname"><div class="credit_pic_card_{$_G.user_result.real_status|default:0}" title="{if $_G.user_result.real_status==1}实名已认证{else}未实名认证{/if}"></div></a>
+							<a href="/index.php?user&q=code/user/phone_status" ><div class="credit_pic_phone_{if $_G.user_result.phone_status>=1}1{else}0{/if}" title="{if $_G.user_result.phone_status==1}手机已认证{else}手机未认证{/if}"></div></a>
+							<a href="/index.php?user&q=code/user/email_status"><div class="credit_pic_email_{$_G.user_result.email_status|default:0}" title="{if $_G.user_result.email_status==1}邮箱已认证{else}邮箱未认证{/if}"></div></a>
+							<a href="/index.php?user&q=code/user/video_status"><div class="credit_pic_video_{$_G.user_result.video_status|default:0}" title="{if $_G.user_result.video_status==1}视频已认证{else}视频未认证{/if}"></div></a>
+							<a href="/vip/index.html"><div class="credit_pic_vip_{if $_G.user_result.vip_status==1}1{else}0{/if}" title="{if $_G.user_result.vip_status==1}VIP{else}普通会员{/if}"></div></a>
+							<a href="/index.php?user&q=code/user/scene_status"><div class="credit_pic_scene_{$_G.user_result.scene_status|default:0}" title="{if $_G.user_result.scene_status==1}已通过现场认证{else}未通过现场认证{/if}"></div></a>
+						</li>
+
+						<li>  <a href="/index.php?user&q=code/account/recharge_new"><font color="#FF0000">账号充值</font></a>  <a href="/index.php?user&q=code/borrow/limitapp&type=credit"><font color="#FF0000">申请信用额度</font></a>  <a href="/index.php?user&q=code/borrow/limitapp&type=vouch"><font color="#FF0000">申请担保额度</font></a> </li>
+						<li><span>VIP 期限： <a href="/vip/index.html">{if $_G.user_result.vip_status==1}{$_G.user_result.vip_verify_time|date_format} 到 {$_G.user_result.vip_verify_time+60*60*24*365|date_format}{elseif $_G.user_result.vip_status==-1}VIP审核中{else}<font color="#999999">不是VIP</font></font>{/if}</a></li>
+						<li><span>系统告知：</span><a href="/index.php?user&q=code/message"><font color="#FF0000">{$_U.user_cache.message}</font> 封未读信息</a>&nbsp; &nbsp; <a href="/index.php?user&q=code/user/request">{$_U.user_cache.friends_apply} 个好友邀请</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="user_right_li">
+				<div class="title"><span style="float:right; font-size:12px; font-weight:normal"> 上次登录IP：{$_G.user_result.upip} - 上次登录时间：{$_G.user_result.uptime|date_format:"Y-m-d H:i"} </span>账号详情 {if $_G.user_result.vip_status==1}{else}(<a href="/vip/index.html"><font color="#FF0000">申请成为VIP会员</font></a></font>){/if}</div>
+				<div class="content">
+				{article module="borrow" function="GetUserLog" user_id=0 var="acc"}
+					<ul>
+						<li><span> 账户总额[?]：<font>￥{$acc.total|default:0}</font>  <a href="index.php?user&q=code/account/log">资金记录查询</a>  | <a href="index.php?user&q=code/account">账户资金详情</a> </span></li>
+						<li><span> 可用余额[?]：<font>￥{$acc.use_money|default:0}</font>   </span>&nbsp;<a href="index.php?user&q=code/account/cash_new"><font style="font-size:12px;" color="#FF0000">[提现]</font></a> <a href="index.php?user&q=code/account/recharge_new"><font style="font-size:12px;" color="#FF0000">[充值]</font>  </a> </li>
+						<li><span> 冻结总额[?]：<font>￥{$acc.no_use_money|default:0}</font>   </span></li>
+						<li><span> 待收总额[?]：<font>￥{$acc.collection|default:0}</font></span></li>
+						<li><span> 待收利息[?]：<font>￥{$acc.collection_interest0|default:0}</font>   </span></li>
+						<li><span> 最近待收金额[?]：<font>￥{$acc.new_collection_account|default:0}</font></span></li>
+						<li><span> 最近待收时间[?]：<font>{$acc.new_collection_time|date_format:"Y-m-d"}</font> <a href="index.php?user&q=code/borrow/gathering&status=0">[待收明细]</a></span></li>
+						<li><span> 已赚利息[?]：<font>￥{$acc.collection_interest1|default:0}</font>    </span></li>
+						<li><span> 已赚奖励[?]：<font>￥{$acc.award_add|default:0}</font>    </span></li>
+						<li><span> 借款总额[?]：<font>￥{$acc.borrow_num|default:0}</font>    </span></li>
+						<li><span> 待还总额[?]：<font>￥{$acc.wait_payment|default:0}</font>    </span></li>
+						<li><span> 最近待还金额[?]：<font>￥{$acc.new_repay_account|default:0}</font></span></li>
+						<li><span> 最近待还时间[?]：<font>{$acc.new_repay_time|date_format:"Y-m-d"|default:"-"}</font> <a href="index.php?user&q=code/borrow/repaymentplan">[还款明细]</a></span></li>
+						<li><span> 待扣会费[?]：<font>￥{if $_U.user_cache.vip_money=="" && $_G.user_result.vip_status==1}{$_G.system.con_vip_money}{else}0{/if}</font>   </span></li>
+						<li><span> 信用额度[?]：<font>￥{$acc.credit|default:0}</font>    </span></li>
+						<li><span> 可用信用额度[?]：<font>￥{$acc.credit_use|default:0}</font>    </span></li>
+						<li><span> 借款担保额度[?]：<font>￥{$acc.borrow_vouch|default:0}</font>    </span></li>
+						<li><span> 可用借款担保额度[?]：<font>￥{$acc.borrow_vouch_use|default:0}</font>    </span></li>
+						<li><span> 投资担保额度[?]：<font>￥{$acc.tender_vouch|default:0}</font>    </span></li>
+						<li><span> 可用投资担保额度[?]：<font>￥{$acc.tender_vouch_use|default:0}</font>    </span></li>
+					</ul>
+				{/article}
+				</div>
+			</div>
+
+
+<div class="t10">
+		  <div class="title">
+		      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td width="12" align="left"><img height="30" width="12" src="{$tempdir}/images/t_left.gif"></td>
+    <td background="{$tempdir}/images/t_bg.gif" align="left"><h1 class="dd">借入流程</h1></td>
+    <td width="12" align="right"><img height="30" width="12" src="{$tempdir}/images/t_right.gif"></td>
+  </tr>
+</tbody></table>
+          </div>
+		  <div class="m_l_bor">
+	  <div class="process">
+            <ul>
+                <li><a target="_blank" href="/?user&amp;q=code/userinfo">填写详细信息</a></li><li class="icon2">
+                </li>
+                <li><a target="_blank" href="/?user&amp;q=code/attestation">上传资料证明</a></li><li class="icon2">
+                </li>
+                <li><a target="_blank" href="/vip/index.html">申请VIP</a></li><li class="icon2">
+                </li>
+
+                <li><a target="_blank" href="/publish/index.html">发布借款信息</a></li><li class="icon2">
+                </li>
+                <li><a target="_blank" href="/?user&amp;q=code/borrow/repayment">借款成功</a></li>
+            </ul>
+        </div></div></div>			
+
+
+
+<div class="t10">
+		  <div class="title">
+		      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+  <tbody><tr>
+    <td width="12" align="left"><img height="30" width="12" src="{$tempdir}/images/t_left.gif"></td>
+    <td background="{$tempdir}/images/t_bg.gif" align="left"><h1 class="dd">投资者上手</h1></td>
+    <td width="12" align="right"><img height="30" width="12" src="{$tempdir}/images/t_right.gif"></td>
+  </tr>
+</tbody></table>
+          </div>
+		  <div class="m_l_bor">
+        <div class="process">
+            <ul>
+                <li><a target="_blank" href="/?user&amp;q=code/userinfo">填写详细信息</a></li><li class="icon2">
+                </li>
+                <li><a target="_blank" href="/?user&amp;q=code/user/realname">实名认证</a></li><li class="icon2">
+                </li>
+                <li><a target="_blank" href="/vip/index.html">申请VIP</a></li><li class="icon2">
+                </li>
+
+                <li><a target="_blank" href="/invest/index.html">投标借出</a></li><li class="icon2"></li>
+                <li><a target="_blank" href="/?user&amp;q=code/borrow/success">等待回收还款</a></li>
+            </ul>
+        </div></div></div>
+			
+			<div class="user_right_li">
+				<div class="title">好友动态</div>
+				<div class="content">
+					<ul>
+						{loop module="user" function="GetUserTrend" limit="15" user_id="0"}
+						<li>{$var.addtime|date_format:"Y-m-d H:i:s"} - <a href="/u/{$var.user_id}" target="_blank"><font color="#FF0000">{$var.username}</font></a> {$var.content}</li>
+						{/loop}
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="user_right_r">
+			<div class="user_right_info">
+				<div class="title"><strong>个人资料完成率</strong></div> 
+				<div>
+				<ul>
+				{article module="userinfo" function="GetOne" user_id="0"}
+					<li><span><a href="/index.php?user&q=code/userinfo/building">{if $var.building_status==1}<font color="#009900">已填写</font>{else}<font color="#FF0000">未填写</font>{/if}</a></span>房产资料</li>
+					<li><span><a href="/index.php?user&q=code/userinfo/company">{if $var.company_status==1}<font color="#009900">已填写</font>{else}<font color="#FF0000">未填写</font>{/if}</a></span>单位资料</li>
+					<li><span><a href="/index.php?user&q=code/userinfo/firm">{if $var.firm_status==1}<font color="#009900">已填写</font>{else}<font color="#FF0000">未填写</font>{/if}</a></span>私营业主</li>
+					<li><span><a href="/index.php?user&q=code/userinfo/finance">{if $var.finance_status==1}<font color="#009900">已填写</font>{else}<font color="#FF0000">未填写</font>{/if}</a></span>财务状况</li>
+					<li><span><a href="/index.php?user&q=code/userinfo/contact">{if $var.contact_status==1}<font color="#009900">已填写</font>{else}<font color="#FF0000">未填写</font>{/if}</a></span>联系方式</li>
+					<li><span><a href="/index.php?user&q=code/userinfo/edu">{if $var.edu_status==1}<font color="#009900">已填写</font>{else}<font color="#FF0000">未填写</font>{/if}</a></span>教育背景</li>
+					<!--<li><span>已填写</span><a href="/index.php?user&q=code/userinfo/building">工作经历</a></li>-->
+				</ul>
+				{/article}
+				</div>
+			</div>
+			
+			<div class="user_right_li">
+				<div class="title">网站公告</div>
+				<div class="content">
+					<ul>
+						{loop module="article" function="GetList" limit="6" site_id="22"}
+						<li><a href="/{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.name}</a></li>
+						{/loop}
+					</ul>
+				</div>
+			</div>
+			
+			<div class="user_right_li">
+				<div class="title">新手入门</div>
+				<div class="content">
+					<ul>
+						{loop module="article" function="GetList" limit="6" site_id="10"}
+						<li><a href="/{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.name}</a></li>
+						{/loop}
+					</ul>
+				</div>
+			</div>
+			
+			<div class="user_right_li">
+				<div class="title">论坛动态</div>
+				<div class="content">
+					<ul>
+						{loop module="dwbbs" function="GetTopicsList" limit="6"}
+						<li><a href="/bbs/index.html?q=view&tid={$var.id}" target="_blank">{$var.name}</a></li>
+						{/loop}
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<!--右边的内容 结束-->
+</div>
+<!--用户中心的主栏目 结束-->
+
+{include file="user_footer.html"}

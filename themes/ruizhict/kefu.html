@@ -1,0 +1,27 @@
+ {include file="header.html"}
+ 
+
+<div class="wrap950 mar10">
+	<div class="kefu_bg">
+		<div>{$_G.system.con_kefutext}</div>
+	</div>
+</div>
+<!--借款帮助 开始-->
+<div class="wrap950 list_1">
+	<div class="title"><img src="{$tpldir}/images/ico_4.gif" /> 借款入门帮助：</div>
+	<div class="content">
+		<ul class="list_li_1">
+		{loop module="article" function="GetList" limit="16" site_id="10"}
+			<li ><a href="/{$var.site_nid}/a{$var.id}.html">{$var.name} </a></li>
+			{/loop}
+		</ul>
+	</div>
+	<div class="foot"></div>
+	<div>
+	</div>
+</div>
+<!--借款帮助 结束-->
+
+<div  class="wrap950"><img src="{$tpldir}/images/banner_company.jpg" /></div>
+
+{include file="footer.html"}

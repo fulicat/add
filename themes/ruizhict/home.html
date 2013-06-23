@@ -1,0 +1,151 @@
+{include file="header.html"}
+
+ <!--子栏目 开始-->
+<div class="wrap950 header_site_sub">
+	{foreach from="$_G.site_brother_list" item="var" }
+	<a href="/{$var.nid}/index.html" {if $var.site_id==$_G.site_result.site_id} class="current"{/if}>{$var.name}</a>
+	{/foreach}
+</div>
+<!--子栏目 结束-->
+{article module="user" function="GetOne" user_id=$magic.request.user_id var="article"}
+ <div class="home">
+ 	<div class="home_left">
+		<div class="home_avatar"><img src="{$magic.request.user_id|avatar:"big"}" /><br />
+			{$article.username}<br />
+			{$article.credit|default:0|credit}
+		</div>
+		<div class="home_banner">
+			<div class="title">
+				<img src="{$tpldir}/images/home_ico1.gif" align="absmiddle" /> 常用操作
+			</div>
+			<div class="content">
+				<ul>
+					<li><a href="/u/{$magic.request.user_id}/borrowlist">借款列表</a></li>
+					<li><a href="/u/{$magic.request.user_id}/borrowinvest">投资记录</a></li>
+					<li><A 
+onclick='tipsWindown("加为好友","url:get?/index.php?user&amp;q=code/user/addfriend&amp;username={$article.username}",400,230,"true","","true","text");' 
+href="javascript:void(0)">加为好友</A> </li>
+					<li><a href="/index.php?user&q=code/message/sent&receive={$article.username}" target="_blank">发送消息</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	{if $magic.request.q=="borrowlist"}
+	<div class="home_lists">
+		<div class="title"><span><a href="/u/{$magic.request.user_id}">返回空间</a></span>	<img src="{$tpldir}/images/home_ico2.gif" align="absmiddle" /> 借款列表</div>
+		<div class="home_inlist">
+				{list module="borrow" function="GetList" var="loop" showpage=3 user_id="$magic.request.user_id"}
+			<ul>
+				{foreach from="$loop.list" item="var"}
+				<li><span>{if $var.status==1}招标中{elseif $var.status==2}借款失败{elseif $var.status==3}借款成功{else}申请中{/if}</span><a href="/invest/a{$var.id}.html" target="_blank">{$var.name}</a></li>
+				{/foreach}
+			</ul>
+			
+			<div class="page">{$loop.showpage}</div>
+			{/list}
+		</div>
+	</div>
+	{elseif $magic.request.q=="borrowinvest"}
+	<div class="home_lists">
+		<div class="title"><span><a href="/u/{$magic.request.user_id}">返回空间</a></span>	<img src="{$tpldir}/images/home_ico2.gif" align="absmiddle" /> 投资列表</div>
+		<div class="home_inlist">
+				{list module="borrow" function="GetTenderList" var="loop" showpage=3 user_id="$magic.request.user_id"}
+			<table>
+				<tr class="tr">
+					<td>标题</td>
+					<td>投标资金</td>
+					<td>有效资金</td>
+					<td>投标时间</td>
+					<td>状态</td>
+				</tr>
+				{foreach from="$loop.list" item="_var"}
+					<td><a href="/invest/a{$_var.borrow_id}.html" title="{$_var.borrow_name}" target="_blank">{$_var.borrow_name|truncate:10}</a></td>
+					<td>{$_var.tender_money }元</td>
+					<td>{$_var.tender_account}元</td>
+					<td>{$_var.addtime|date_format:"Y-m-d"}</td>
+					<td>{if $_var.status==1}成功{else}失败{/if}</td>
+				</tr>
+				{/loop}
+			</table>
+			<div class="page">{$loop.showpage}</div>
+			{/list}
+		</div>
+	</div>
+	{else}
+	<div class="home_center">
+		<div class="title">	<img src="{$tpldir}/images/home_ico2.gif" align="absmiddle" /> 个人资料</div>
+		<div class="home_info">
+			<ul>
+				<li><span>性别：</span>{if $article.sex==1}男{else}女{/if}</li>
+				<li><span>生日：</span>{$article.birthday|date_format:"Y-m-d"}</li>
+				<li><span>行业：</span>{$article.company_industry|linkage}</li>
+				<li><span>职位：</span>{$article.company_office|linkage}</li>
+				<li class="li"><span>个人能力：</span>{$article.ability|default:"用户没有填写此信息"}</li>
+				<li class="li"><span>兴趣爱好：</span>{$article.interest|default:"用户没有填写此信息"}</li>
+			</ul>
+		</div>
+		<div class="title">	<img src="{$tpldir}/images/home_ico2.gif" align="absmiddle" /> 借款列表</div>
+		<div class="home_inlist">
+			<ul>
+				{loop module="borrow" function="GetList" limit=6 user_id="$magic.request.user_id"}
+				<li><span>{if $var.status==1}招标中{elseif $var.status==2}借款失败{elseif $var.status==3}借款成功{else}申请中{/if}</span><a href="/invest/a{$var.id}.html">{$var.name}</a></li>
+				{/loop}
+			</ul>
+		</div>
+		
+		<div class="title">	<img src="{$tpldir}/images/home_ico2.gif" align="absmiddle" /> 投标记录</div>
+		<div class="home_inlist">
+			<table>
+				<tr class="tr">
+					<td>标题</td>
+					<td>投标资金</td>
+					<td>有效资金</td>
+					<td>投标时间</td>
+					<td>状态</td>
+				</tr>
+				<tr >
+				{loop module="borrow" function="GetTenderList" var="_var" limit="6" user_id="$magic.request.user_id"}
+					<td><a href="/invest/a{$_var.borrow_id}.html" title="{$_var.borrow_name}">{$_var.borrow_name|truncate:10}</a></td>
+					<td>{$_var.tender_money }元</td>
+					<td>{$_var.tender_account}元</td>
+					<td>{$_var.addtime|date_format:"Y-m-d"}</td>
+					<td>{if $_var.status==1}成功{else}失败{/if}</td>
+				</tr>
+				{/loop}
+			</table>
+		</div>
+	</div>
+	<div class="home_right">
+		<div class="title">最近来访</div>
+		<div class="box">
+			<div class="top"></div>
+			<div class="center">
+				<ul>
+					{loop module="user" function="GetVisitList" limit="6" user_id="$magic.request.user_id" }
+					<li><img src="{$var.visit_userid|avatar|litpic:"75,75"}" class="picborder" /><br /><a href="/u/{$var.visit_userid}">{$var.visit_username}</a></li>
+					
+					{/loop}
+				</ul>
+			</div>
+			<div class="bottom"></div>
+		</div>
+		
+		<div class="title" style="margin-top:10px;">TA的好友</div>
+		<div class="box">
+			<div class="top"></div>
+			<div class="center">
+				<ul>
+					{loop module="user" function="GetFriendsList" limit="6" user_id="$magic.request.user_id"}
+					<li><img src="{$var.friends_userid|avatar|litpic:"75,75"}" class="picborder" /><br /><a href="/u/{$var.friends_userid}">{$var.friend_username}</a></li>
+					
+					{/loop}
+				</ul>
+			</div>
+			<div class="bottom"></div>
+		</div>
+	</div>
+ 	{/if}
+ </div>
+ {/article}
+{include file="footer.html"}
+

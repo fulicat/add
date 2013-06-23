@@ -1,0 +1,28 @@
+<script>
+		var tpldir = "{$tpldir}";
+		{literal}
+		function upfile(va,id){
+			var imgtype = ["gif", "jpeg", "jpg"];
+			if (!RegExp("\.(" + imgtype.join("|") + ")$", "i").test(va.value.toLowerCase())) {
+				alert("图片类型必须是" + imgtype.join("，") + "中的一种");
+				this.value = "";
+				return false;
+			}
+			$("#fabu_pic").show();
+			aid = id+1;
+			va.style.display = "none";
+			var iload = '<li id=picli'+id+'><div class="pic"><img src="'+va.value+'"  width="64" height="64" /></div><div> <img src="'+tpldir+'/images/dui.gif"/> 上传成功 <a href="javascript:" onclick="del('+id+')"><img src="'+tpldir+'/images/laji.gif" border=0 /></a>&nbsp;</div></li>';
+			var aa = '<input type="file" name="pics['+aid+']" id="pic'+aid+'" class="fabu_input_text" style="width:0px; " onchange="upfile(this,'+aid+')"/>';
+			$("#upfile").after(aa);
+			$("#imagesload").html($("#imagesload").html()+iload);
+		}
+		function del(id){
+			$("#picli"+id).remove();
+			$("#pic"+id).remove();
+			if($("#imagesload li").size()==0){
+			$("#fabu_pic").hide();
+			}
+		}
+		</script>
+		{/literal}
+	

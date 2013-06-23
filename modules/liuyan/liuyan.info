@@ -1,0 +1,9 @@
+<?
+		$code = "liuyan";
+		$name = "留言本";
+		$description = "留言本功能";
+		$version = "1.0";
+		$author = "hycms";
+		$date = "2010-03-23";
+		$type = "liuyan";
+		?>

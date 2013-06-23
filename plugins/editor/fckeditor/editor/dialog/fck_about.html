@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="robots" content="noindex, nofollow">
+		<script src="common/fck_dialog_common.js" type="text/javascript"></script>
+		<script language="javascript">
+
+var oEditor = window.parent.InnerDialogLoaded() ;
+var FCKLang	= oEditor.FCKLang ;
+
+window.onload = function()
+{
+	// Translate the dialog box texts.
+	oEditor.FCKLanguageManager.TranslatePage(document) ;
+
+	window.parent.SetAutoSize( true ) ;
+}
+
+		</script>
+	</head>
+	<body scroll="no" style="OVERFLOW: hidden">
+		<div id="divAbout">
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td height="80" valign="top">
+						<img alt="" src="fck_about/logo_fckeditor.gif" width="236" height="41">
+					</td>
+				</tr>
+				<tr>
+					<td style="line-height: 16px">
+						<span fckLang="DlgAboutInfo">For further information go to</span> <a href="http://www.fckeditor.net/?About" target="_blank">
+							http://www.fckeditor.net/</a>.
+						<br>
+						Copyright &copy; 2003-2006 Frederico Caldeira Knabben
+						<br>
+						Hacked by <a href="http://www.sablog.net/" target="_blank">angel</a>(<a href="http://www.4ngel.net/" target="_blank">S4T</a>)
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

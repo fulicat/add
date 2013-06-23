@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{if $_G.article.name!=""}{$_G.article.name} - {/if}{if $_G.site_result.name} {$_G.site_result.name} -  {/if}{$_G.system.con_webname}</title>
+<meta name="description" content="{$_G.system.con_description}" />
+<meta name="keywords" content="{$_G.system.con_keywords}" />
+<link href="{$tempdir}/css/css.css" rel="stylesheet" type="text/css" />
+
+<link href="{$tempdir}/css/index.css" rel="stylesheet" type="text/css" />
+<link href="{$tempdir}/css/main.css" rel="stylesheet" type="text/css" />
+<link href="{$tempdir}/css/user.css" rel="stylesheet" type="text/css" />
+<link href="{$tempdir}/css/tipswindown.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$tempdir}/js/base.js"></script>
+
+<script type="text/javascript" src="{$tempdir}/js/jquery.js"></script>
+<script type="text/javascript" src="{$tempdir}/js/tipswindown.js"></script>
+<script src="/plugins/timepicker/WdatePicker.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="top_bor">
+     <div class="con_box">
+          <div class="logo"><a href="/"><img src="{$tempdir}/images/logo.gif" alt="信立贷" /></a></div>
+		  <div style="float:left; margin-left:60px; margin-top:10px"></div>
+	      <div class="top_right">
+	           <div style="text-align:right"><a href="/index.php?user&q=action/reg" target="_blank" style="color:#900;">免费注册</a> | 
+	<a href="/lianxi/index.html">联系我们</a> |  
+	<span style="CURSOR: hand" onClick="window.external.addFavorite('http://www.dailixin.com','信立贷-个人信用贷款 小额贷款 投资理财 企业融资 ')" title="信立贷-个人信用贷款 小额贷款 投资理财 企业融资 ">
+	<a >收藏本站</a></span> |  
+<!-- JiaThis Button BEGIN -->
+
+<a href="http://www.jiathis.com/share/" class="jiathis" target="_blank"><img src="{$tempdir}/images/share.gif" border="0" align="absmiddle" />
+	   </a>
+<script type="text/javascript" src="http://v1.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END --></div>
+		 <div style="margin-top:5px; padding-left:100px;"><img src="{$tempdir}/images/phone.gif" /></div>
+	      </div>
+	 </div>
+</div>
+
+<div class="menu_bor">
+     <div class="con_box">
+
+	      <div class="menu1">
+		        <ul>
+				    <li>  <a href="/" title="首页" {if $_G.site_result.nid=="" || $_G.site_presult.nid=="index" } class="now"{/if}>首页</a></li>
+				{site lgnore="1,24,28,46" status=1}
+				<li class="line"></li>
+				<li   ><a href="{$var.siteurl}" {if $var.nid=="bbs"} target="_blank"{/if}  {if $_G.site_result.nid==$var.nid || $_G.site_presult.nid==$var.nid  } class="now"{/if}>{$var.name}</a></li>
+				{/site}
+		     
+				</ul>
+
+				<div style="clear:both"></div>
+		  </div>
+		  <div class="menu2">
+		       
+			   {if  $_G.site_presult.nid=="kefu" || $_G.site_presult.nid=="tools" || $_G.site_presult.nid=="borrow"  || $_G.site_presult.nid=="tender" || $_G.site_presult.nid=="safe" || $_G.site_presult.nid=="vouch" || $_G.site_presult.nid=="help"}
+{foreach from="$_G.site_brother_list" item="var" }
+	{if $var.nid==$_G.site_result.nid}
+	<a href="/{$var.nid}/index.html"><font color="#FF0000">{$var.name}</font></a> | 
+	{else}
+	<a href="/{$var.nid}/index.html">{$var.name}</a> | 
+	{/if}
+	{/foreach}
+	{elseif  $_G.site_result.nid=="kefu" || $_G.site_result.nid=="tools" || $_G.site_result.nid=="borrow"  || $_G.site_result.nid=="tender"   || $_G.site_result.nid=="safe"   || $_G.site_result.nid=="vouch" }
+{foreach from="$_G.site_sub_list" item="var" }
+	{if $var.nid==$_G.site_result.nid}
+	<a href="/{$var.nid}/index.html"><font color="#FF0000">{$var.name}</font></a> | 
+	{else}
+	<a href="/{$var.nid}/index.html">{$var.name}</a> | 
+	{/if}
+	{/foreach}
+	{elseif  $_G.site_result.nid=="" || $_G.site_presult.nid=="index"  }
+	{site  pid=1 status=1}
+	{if $var.nid==$_G.site_result.nid}
+	<a href="/{$var.nid}/index.html"><font color="#FF0000">{$var.name}</font></a> | 
+	{else}
+	<a href="/{$var.nid}/index.html">{$var.name}</a> | 
+	{/if}
+	{/site}
+	{elseif  $_G.site_result.nid=="safe"  }
+	{elseif  $_G.site_result.nid=="user"}
+	{if $_G.user_id>0}<a >欢迎你，{$_G.user_result.username}。</a> <a href="/?user&q=action/logout">[退出]</a>{else}欢迎来到{$_G.system.con_webname}{/if}
+	 {elseif   $_G.site_result.nid=="invest"}
+	 <a href="index.html" {if $magic.request.type=="" } class="strong"{/if}>正在投标中的借款</a> | 
+	 <a href="?type=vouch" {if $magic.request.type=="vouch"} class="strong"{/if}>正在担保的借款 </a>  | 
+	 <a href="?type=reviews" {if $magic.request.type=="reviews"} class="strong"{/if}>等待复审的借款 </a> |  
+	 <a href="?type=success" {if $magic.request.type=="success"} class="strong"{/if}>成功的借款 </a> |  
+	 <a href="?type=late" {if $magic.request.type=="late"} class="strong"{/if}>逾期的借款 </a> 
+	{else}
+	
+	 {/if}
+			   
+			    </div>
+
+	 </div>
+</div>
+
+
+
+{if  $_G.site_result.nid!="" &&  $_G.site_result.nid!="user"  }
+<div class="con_box t10">
+     <div class="view_bor">
+            <div class="left"><strong>您的位置：</strong><a href="/">{$_G.system.con_webname}</a> {if $_G.site_presult.nid!="" &&  $_G.site_presult.nid!="index" && $_G.site_result.site_id != "63"} -> <a href="/{$_G.site_presult.nid}/index.html">{$_G.site_presult.name}</a>{/if} -> <a href="/{$_G.site_result.nid}/index.html">{$_G.site_result.name}</a> </div>
+
+           
+     </div>
+</div>
+
+
+{/if}

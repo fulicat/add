@@ -1,0 +1,9 @@
+<?
+		$code = "arealinks";
+		$name = "地区友情链接";
+		$description = "地区友情链接";
+		$version = "1.0";
+		$author = "hycms";
+		$date = "2010-05-03";
+		$type = "arealinks";
+		?>

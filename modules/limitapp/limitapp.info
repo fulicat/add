@@ -1,0 +1,9 @@
+<?
+		$code = "limitapp";
+		$name = "¶î¶ÈÉêÇë";
+		$description = "¶î¶ÈÉêÇë";
+		$version = "1.0";
+		$author = "DWcms";
+		$date = "2010-08-29";
+		$type = "limitapp";
+		?>

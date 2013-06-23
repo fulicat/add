@@ -1,0 +1,9 @@
+<?
+		$code = "sort";
+		$name = "网址类别管理";
+		$description = "产品、技术园地类别管理";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-08-1";
+		$type = "sort";
+?>

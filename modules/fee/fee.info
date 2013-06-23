@@ -1,0 +1,9 @@
+<?
+		$code = "fee";
+		$name = "借款还款费用管理";
+		$description = "借款还款费用管理";
+		$version = "1.0";
+		$author = "借款还款费用管理";
+		$date = "2010-09-04";
+		$type = "fee";
+?>

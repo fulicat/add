@@ -1,0 +1,9 @@
+<?
+		$code = "article";
+		$name = "文章模块";
+		$description = "文章管理模块";
+		$version = "2.81";
+		$author = "hycms";
+		$date = "2010-04-04";
+		$type = "cms";
+		?>

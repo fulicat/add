@@ -1,0 +1,9 @@
+<?
+		$code = "vipuser";
+		$name = "vip管理";
+		$description = "vip管理";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-06-28";
+		$type = "vipuser";
+?>

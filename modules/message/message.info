@@ -1,0 +1,9 @@
+<?
+		$code = "message";
+		$name = "短消息/好友模块";
+		$description = "短消息/好友模块";
+		$version = "1.0";
+		$author = "DWcms";
+		$date = "2010-08-20";
+		$type = "message";
+		?>

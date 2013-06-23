@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>UBB</title>
+</head>
+<body>
+<div style="height:100px;"></div>
+<form method="post" id="ppppform" action="post.php">
+<textarea id="abc" name="abc" style='display:none;'></textarea>
+<iframe id="feditor" name="feditor" src="" frameBorder="0" marginHeight="0" marginWidth="0" scrolling="No" style="height:300px;width:100%"></iframe>
+<input type="submit" value="   GO   " />
+</form>
+<script>
+window.onload = function(){
+	document.getElementById("feditor").src = "ubb/editor.php?id=abc&frmid=feditor&t="+(new Date()).getTime();
+}
+</script>
+</body>
+</html>

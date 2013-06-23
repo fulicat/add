@@ -1,0 +1,9 @@
+<?
+		$code = "help";
+		$name = "帮助中心";
+		$description = "帮助中心";
+		$version = "2.0";
+		$author = "dwmcs";
+		$date = "2010-08-31";
+		$type = "help";
+		?>

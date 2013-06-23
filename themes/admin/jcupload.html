@@ -1,0 +1,36 @@
+
+
+<div id="jcupload_content" class="aa">
+		<!-- jcUpload dialog output -->
+</div>
+{literal}
+<script type="text/javascript">
+		var jcu;
+		$(document).ready(function() {
+				var conf= {url: "/plugins/jcupload/upload.php",
+				 ask_on_confirm_file: true,
+								ask_on_cancel_file: true,
+								ask_on_confirm_all_files: true,
+								ask_on_cancel_all_files: true,
+								callback: {
+										init: function() {
+										alert(1);
+												/*
+												TO DO:
+												insert JS code to execute on jcUpload init
+												*/
+										},
+										queue_upload_end: function() {
+												/*
+												TO DO:
+												insert JS code to execute when file queue uploaded
+												*/
+										}
+								}
+				};
+
+				jcu= $.jcuploadUI(conf);
+				jcu.append_to("#jcupload_content");
+		});
+</script>
+{/literal}

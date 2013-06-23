@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>无标题文档</title>
+<link href="admin.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="main top">
+	<div class="logo "><img src="images/admin_top.jpg" /></div>
+	<div class="banner">
+		<div class="banner_top">
+		<a href="">清空缓存</a>  |  <a href="">数据备份</a>  |  <a href="">生成网站</a> |  <a href="/">回到首页</a></div>
+		<div class="banner_site"><a href=""><img src="images/banner_1.gif" /></a> <a href=""><img src="images/banner_2.gif" /></a> <a href=""><img src="images/banner_3.gif" /></a> <a href=""><img src="images/banner_4.gif" /></a></div>
+		<div class="banner_position"><span>您好，<font color="#FF0000">阿辉</font> [系统管理员] &nbsp; &nbsp; <a href="">管理首页</a> | <a href="">帮助</a> ｜ <strong><a href="">退出</a></strong></span><a href=""><strong>管理中心</strong></a> -> <a href="">模块</a> -> <a href="">添加模块</a></div>
+	</div>
+</div><br />
+<div class="main">
+	<div class="main_left">
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="">+</a></span><strong><a href="">首页管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="">+</a></span><strong><a href="">首页管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="">+</a></span><strong><a href="">首页管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+					<li><span><a href="">列表</a> <a href="">添加</a> <a href="">搜索</a></span><a href="">网站公告</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="main_right">
+	
+		<div class="main_site">
+			<ul>
+				<li class="site_sub">添加内容 | 内容列表</li>
+				<li class="title">职位管理</li>
+				<li class="sousuo">关键字：<input type="text" /> <img src="images/main_sou.jpg" align="absmiddle" /></li>
+			</ul>
+		</div>
+		
+		<div class="main_content">
+			<table  border="0"  cellspacing="1" bgcolor="#CCCCCC" width="100%">
+	  <form action="?admin&q=module/article/action" method="post">
+	
+		<tr >
+			<td width="" class="main_td"><input type="checkbox" name="allcheck" onclick="checkFormAll(this.form)"/></td>
+			<td width="" class="main_td">ID</td>
+			<td width="*" class="main_td">标题</td>
+			<td width="" class="main_td">栏目类型</td>
+			<td width="" class="main_td">状态</td>
+			<td width="" class="main_td">排序</td>
+			<td width="" class="main_td">属性</td>
+			<td width="" class="main_td">操作</td>
+		</tr>
+		<tr >
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="40"/></td>
+			<td class="main_td1" align="center" width="30">40</td>
+			<td class="main_td1" align="center">气质的培训</td>
+			<td class="main_td1" align="center" width="80">首页</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=40">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="12" size="3" /><input type="hidden" name="id[]" value="40" /><input type="hidden" name="flag[]" value="t" /></td>
+			<td class="main_td1" align="center" width="70"><a href='?admin&q=module/article&id=40&dflag=t' title='点击取消此属性'>推荐</a> </td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=40" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=40">查看</a> <a href="?admin&q=module/article/edit&id=40">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=40'">删除</a></td>
+		</tr>
+		<tr class="tr2">
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="45"/></td>
+			<td class="main_td1" align="center" width="30">45</td>
+			<td class="main_td1" align="center">果粒网体验达人邀您共享乐活人生</td>
+			<td class="main_td1" align="center" width="80">媒体报道</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=45">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="45" /><input type="hidden" name="flag[]" value="" /></td>
+			<td class="main_td1" align="center" width="70">-</td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=45" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=45">查看</a> <a href="?admin&q=module/article/edit&id=45">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=45'">删除</a></td>
+		</tr>
+				<tr >
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="43"/></td>
+			<td class="main_td1" align="center" width="30">43</td>
+			<td class="main_td1" align="center">注册协议</td>
+			<td class="main_td1" align="center" width="80">底部链接文章</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=43">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="43" /><input type="hidden" name="flag[]" value="" /></td>
+			<td class="main_td1" align="center" width="70">-</td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=43" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=43">查看</a> <a href="?admin&q=module/article/edit&id=43">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=43'">删除</a></td>
+		</tr>
+				<tr class="tr2">
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="42"/></td>
+			<td class="main_td1" align="center" width="30">42</td>
+			<td class="main_td1" align="center">关于我们</td>
+			<td class="main_td1" align="center" width="80">底部链接文章</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=42">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="42" /><input type="hidden" name="flag[]" value="" /></td>
+			<td class="main_td1" align="center" width="70">-</td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=42" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=42">查看</a> <a href="?admin&q=module/article/edit&id=42">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=42'">删除</a></td>
+		</tr>
+				<tr >
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="41"/></td>
+			<td class="main_td1" align="center" width="30">41</td>
+			<td class="main_td1" align="center">二十五个安慰，让自己过洒脱的人生！</td>
+			<td class="main_td1" align="center" width="80">-</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=41">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="41" /><input type="hidden" name="flag[]" value="h" /></td>
+			<td class="main_td1" align="center" width="70"><a href='?admin&q=module/article&id=41&dflag=h' title='点击取消此属性'>头条</a> </td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=41" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=41">查看</a> <a href="?admin&q=module/article/edit&id=41">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=41'">删除</a></td>
+		</tr>
+				<tr class="tr2">
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="39"/></td>
+			<td class="main_td1" align="center" width="30">39</td>
+			<td class="main_td1" align="center">毕业后的五年拉开大家差距的原因在哪里？</td>
+			<td class="main_td1" align="center" width="80">-</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=39">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="39" /><input type="hidden" name="flag[]" value="t" /></td>
+			<td class="main_td1" align="center" width="70"><a href='?admin&q=module/article&id=39&dflag=t' title='点击取消此属性'>推荐</a> </td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=39" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=39">查看</a> <a href="?admin&q=module/article/edit&id=39">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=39'">删除</a></td>
+		</tr>
+				<tr >
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="38"/></td>
+			<td class="main_td1" align="center" width="30">38</td>
+			<td class="main_td1" align="center">测试与首页</td>
+			<td class="main_td1" align="center" width="80">首页</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=38">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="38" /><input type="hidden" name="flag[]" value="" /></td>
+			<td class="main_td1" align="center" width="70">-</td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=38" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=38">查看</a> <a href="?admin&q=module/article/edit&id=38">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=38'">删除</a></td>
+		</tr>
+				<tr class="tr2">
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="37"/></td>
+			<td class="main_td1" align="center" width="30">37</td>
+			<td class="main_td1" align="center">通告测试</td>
+			<td class="main_td1" align="center" width="80">兼职通告</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=37">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="37" /><input type="hidden" name="flag[]" value="" /></td>
+			<td class="main_td1" align="center" width="70">-</td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=37" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=37">查看</a> <a href="?admin&q=module/article/edit&id=37">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=37'">删除</a></td>
+		</tr>
+				<tr >
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="36"/></td>
+			<td class="main_td1" align="center" width="30">36</td>
+			<td class="main_td1" align="center">通告测试</td>
+			<td class="main_td1" align="center" width="80">兼职通告</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=36">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="36" /><input type="hidden" name="flag[]" value="" /></td>
+			<td class="main_td1" align="center" width="70">-</td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=36" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=36">查看</a> <a href="?admin&q=module/article/edit&id=36">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=36'">删除</a></td>
+		</tr>
+				<tr class="tr2">
+			<td class="main_td1" align="center" width="40"><input type="checkbox" name="aid[]" id="aid[]" value="35"/></td>
+			<td class="main_td1" align="center" width="30">35</td>
+			<td class="main_td1" align="center">通告测试</td>
+			<td class="main_td1" align="center" width="80">兼职通告</td>
+			<td class="main_td1" align="center" width="50"><a href="?admin&q=module/article&status=0&id=35">显示</a></td>
+			<td class="main_td1" align="center" width="50"><input type="text" name="order[]" value="10" size="3" /><input type="hidden" name="id[]" value="35" /><input type="hidden" name="flag[]" value="" /></td>
+			<td class="main_td1" align="center" width="70">-</td>
+			<td class="main_td1" align="center" width="130"><a href="?admin&q=module/article/preview&id=35" target="_blank">预览</a> <a href="?admin&q=module/article/view&id=35">查看</a> <a href="?admin&q=module/article/edit&id=35">修改</a> <a href="#" onClick="javascript:if(confirm('确定要删除吗?删除后将不可恢复')) location.href='?admin&q=module/article/del&id=35'">删除</a></td>
+		</tr>
+				<tr>
+			<td colspan="8" bgcolor="#ffffff" class="main_tr" align="left" height="40" >
+			&nbsp;&nbsp; <select name="type">
+			<option value="0">排序</option>
+			<option value="1">显示</option>
+			<option value="2">隐藏</option>
+			<option value="3">推荐</option>
+			<option value="4">头条</option>
+			<option value="5">幻灯片</option>
+			<option value="6">删除</option>&nbsp;&nbsp;&nbsp;
+			</select> <input type="submit" value="确认操作" /> 排序不用全选
+			</td>
+		</tr>
+		<tr>
+			<td colspan="8" bgcolor="#ffffff" class="main_tr" align="right" >
+			共30条 <span class="">首页</span> <span class="">上一页</span> <a  href="/?admin&q=module/article&page=2">下一页</a> <a  href="/?admin&q=module/article&page=3">尾页</a> 
+			</td>
+		</tr>
+
+	</form>	
+		
+		
+				<script>
+var con_id = Array();
+function checkFormAll(form) {	
+	if(form.allcheck.checked==true){
+		con_id.length=0;
+	}
+	for (var i=1;i<form.elements.length;i++)    {
+		 if(form.elements[i].type=="checkbox"){ 
+            e=form.elements[i]; 
+            e.checked=(form.allcheck.checked)?true:false; 
+			if(form.allcheck.checked==true){
+				con_id[con_id.length] = e.value;
+			}else{
+				con_id.length=0;
+			}
+        } 
+	}
+}
+</script>
+
+				
+</table>
+		
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

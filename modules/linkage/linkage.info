@@ -1,0 +1,9 @@
+<?
+		$code = "linkage";
+		$name = "联动模块";
+		$description = "表单的联动模块";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-08-01";
+		$type = "linkage";
+		?>

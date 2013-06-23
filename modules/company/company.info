@@ -1,0 +1,9 @@
+<?
+		$code = "company";
+		$name = "公司库";
+		$description = "公司库";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-08-1";
+		$type = "company";
+?>

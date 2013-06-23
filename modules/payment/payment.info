@@ -1,0 +1,9 @@
+<?
+		$code = "payment";
+		$name = "支付方式";
+		$description = "支付方式";
+		$version = "1.0";
+		$author = "hycms";
+		$date = "2010-06-04";
+		$type = "payment";
+?>

@@ -1,0 +1,422 @@
+{include file="header.html" template_dir="themes/ruizhict"}
+<!--用户中心的主栏目 开始-->
+<div class="wrap950 mar10">
+	<!--左边的导航 开始-->
+	<div class="user_left">
+		{include file="user_menu.html"}
+	</div>
+	<!--左边的导航 结束-->
+	
+	<!--右边的内容 开始-->
+	<div class="user_right">
+		<div class="user_right_menu">
+			{if $_U.query_type=="succes" || $_U.query_type=="gathering" || $_U.query_type=="lenddetail" || $_U.query_type=="succesyes"}
+			<ul>
+				<li class="title" ><a href="{$_U.query_url}/succes">已成功投资的借款</a></li>
+				<li {if $_U.query_type=="succes"} class="current"{/if}><a href="{$_U.query_url}/succes">正在收款的借款</a></li>
+				<li {if $_U.query_type=="gathering"} class="current"{/if}><a href="{$_U.query_url}/gathering">收款明细账</a></li>
+				<li {if $_U.query_type=="lenddetail"} class="current"{/if}><a href="{$_U.query_url}/lenddetail">借出明细账</a></li>
+				<li {if $_U.query_type=="succesyes"} class="current"{/if}><a href="{$_U.query_url}/succesyes">已还清的借款</a></li>
+			</ul>
+			{else}
+			<ul>
+				<li class="title" ><a href="{$_U.query_url}">我要投资</a></li>
+				<li {if $_U.query_type=="succes"} class="current"{/if}><a href="{$_U.query_url}/succes">已成功投资的借款</a></li>
+				<li {if $_U.query_type=="bid"} class="current"{/if}><a href="{$_U.query_url}/bid">正在投标的借款</a></li>
+				<li {if $_U.query_type=="appraisal"} class="current"{/if}><a href="{$_U.query_url}/appraisal">我的评价</a></li>
+				<li {if $_U.query_type=="attention"} class="current"{/if}><a href="{$_U.query_url}/attention">我关注的借款</a></li>
+				<li {if $_U.query_type=="reply"} class="current"{/if}><a href="{$_U.query_url}/reply">贷款者回复</a></li>
+			</ul>
+			{/if}
+		</div>
+		
+		<div class="user_right_main">
+		
+	
+		{if $_U.query_type=="succes" || $_U.query_type=="succesyes"}
+		<!--成功投资 开始-->
+		<div class="user_help">结果统计：借出总额￥0.00 应收本息总额￥0.00 已收本金总额￥0.00 收益利息总额￥0.00 </div>
+		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
+		发布时间：<input type="text" name="" value="" size="15" /> 到 <input type="text" name="" value="" size="15" />  关键字：<input type="text" name="" value="" size="15" /> 
+		<input value="搜索" type="submit" />
+		</div>
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  >标题</td>
+					<td  >金额(元)</td>
+					<td  >年利率</td>
+					<td  >期限</td>
+					<td  >发布时间</td>
+					<td  >进度</td>
+					<td  >状态</td>
+					<td  >操作</td>
+				</tr>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td  >{$item.name}</td>
+					<td  >{$item.account}(元)</td>
+					<td  >{$item.apr} %</td>
+					<td  >{$item.time_limit} 个月</td>
+					<td  >{$item.addtime|date_format:"Y-m-d"}</td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+			</form>	
+		</table>
+		<!--成功投资 结束-->
+		
+		
+		{elseif $_U.query_type=="gathering"}
+		<!--收款明细 开始-->
+		<div class="user_help">
+		<table style="width:98%">
+			<tr>
+			<td>收款总额：￥0.00(包含逾期的统计) </td>
+			<td>逾期本金：￥0.00   </td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>收到的还款本金总额：￥0.00</td>
+			<td>收到的还款利息总额：￥0.00 </td>
+			<td>收到的滞纳金收入总额：￥0.00  </td>
+		</tr>
+		<tr>
+			<td>收到的网站垫付总额：￥0.00 </td>
+			<td>10%利息支出总额：￥0.00 </td>
+			<td>收益率：0.00%  </td>
+		</tr>
+	</table>
+		
+    
+ 
+</div>
+		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
+		收款时间：<input type="text" name="" value="" size="15" /> 到 <input type="text" name="" value="" size="15" />  关键字：<input type="text" name="" value="" size="15" /> 
+		<input value="搜索" type="submit" />
+		</div>
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  >标题</td>
+					<td  >金额(元)</td>
+					<td  >年利率</td>
+					<td  >期限</td>
+					<td  >发布时间</td>
+					<td  >进度</td>
+					<td  >状态</td>
+					<td  >操作</td>
+				</tr>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td  >{$item.name}</td>
+					<td  >{$item.account}(元)</td>
+					<td  >{$item.apr} %</td>
+					<td  >{$item.time_limit} 个月</td>
+					<td  >{$item.addtime|date_format:"Y-m-d"}</td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+			</form>	
+		</table>
+		<!--收款明细 结束-->
+		
+		
+		{elseif $_U.query_type=="lenddetail"}
+		<!--借出明细 开始-->
+		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
+		发布时间：<input type="text" name="" value="" size="15" /> 到 <input type="text" name="" value="" size="15" />  关键字：<input type="text" name="" value="" size="15" /> 
+		<input value="搜索" type="submit" />
+		</div>
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  >标题</td>
+					<td  >金额(元)</td>
+					<td  >年利率</td>
+					<td  >期限</td>
+					<td  >发布时间</td>
+					<td  >状态</td>
+					<td  >操作</td>
+				</tr>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td  >{$item.name}</td>
+					<td  >{$item.account}(元)</td>
+					<td  >{$item.apr} %</td>
+					<td  >{$item.time_limit} 个月</td>
+					<td  >{$item.addtime|date_format:"Y-m-d"}</td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+			</form>	
+		</table>
+		<!--借出明细 结束-->
+		
+		{elseif $_U.query_type=="bid"}
+		<!--正在投标的借款 开始-->
+		<div class="user_help">投标冻结总额：￥50.00</div>
+		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
+		发布时间：<input type="text" name="" value="" size="15" /> 到 <input type="text" name="" value="" size="15" />  关键字：<input type="text" name="" value="" size="15" /> 
+		<input value="搜索" type="submit" />
+		</div>
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  width="25%" >标题</td>
+					<td  >借款者</td>
+					<td  width="10%">积分</td>
+					<td  >年利率</td>
+					<td  >期限</td>
+					<td  >投标金额</td>
+					<td  >有效金额</td>
+					<td  >投标时间 </td>
+					<td  >进度</td>
+					<td  >状态 </td>
+				</tr>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td ><strong>短期借款，提前还款</strong> </td>
+					<td  >op6778</td>
+					<td><img src="/pic/rank_4.gif" /></td>
+					<td  >18%</td>
+					<td  >1个月</td>
+					<td  >50</td>
+					<td  >50</td>
+					<td  >2010-09-09</td>
+					<td  >进度</td>
+					<td  ><img src="{$tpldir}/images/ico_yes.gif" /></td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+				
+			</form>	
+		</table>
+		<!--正在投标的借款 结束-->
+		
+		{elseif $_U.query_type=="appraisal"}
+		<!--我的评价 开始-->
+		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
+		发布时间：<input type="text" name="" value="" size="15" /> 到 <input type="text" name="" value="" size="15" />  关键字：<input type="text" name="" value="" size="15" /> 
+		<input value="搜索" type="submit" />
+		</div>
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  >标题      </td>
+					<td  >借款者</td>
+					<td  >投标金额</td>
+					<td  >完成时间</td>
+					<td  >评价结果</td>
+					<td  >操作</td>
+				</tr>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td ><strong>短期借款，提前还款</strong> </td>
+					<td  >op6778</td>
+					<td><img src="/pic/rank_4.gif" /></td>
+					<td  >18%</td>
+					<td  >1个月</td>
+					<td  >50</td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+			</form>	
+		</table>
+		<!--我的评价 结束-->
+		
+		
+		{elseif $_U.query_type=="attention"}
+		<!--我关注的借款 开始-->
+		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
+		<select><option>进行中的借款</option><option>已结束的借款</option></select> 发布时间：<input type="text" name="dotime1" id="dotime1" value="{$magic.request.dotime1}" size="15" onclick="change_picktime()"/> 到 <input type="text"  name="dotime2" value="{$magic.request.dotime2}" id="dotime2" size="15" onclick="change_picktime()"/>  关键字：<input type="text" name="keywords" id="keywords" size="15" value="{$magic.request.keywords}" /> 
+		<input value="搜索" type="submit" onclick="sousuo('{$_U.query_url}/publish')" />
+		</div>
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  >图片                  </td>
+					<td  >标题</td>
+					<td  >金额(元)</td>
+					<td  >进度</td>
+					<td  >期限</td>
+					<td  >信用等级</td>
+					<td  >操作</td>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td ><strong>短期借款，提前还款</strong> </td>
+					<td  >op6778</td>
+					<td><img src="/pic/rank_4.gif" /></td>
+					<td  >18%</td>
+					<td  >1个月</td>
+					<td  >50</td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+			</form>	
+		</table>
+		<!--我关注的借款 结束-->
+		
+		
+		{elseif $_U.query_type=="reply"}
+		<!--投资者留言 开始-->
+		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
+		您现在查看的是:<select name="status"> <option value="">所有回复</option> <option value="0">等我回复</option> <option value="1">已回复</option></select>
+		<input value="搜索" type="submit" />
+		</div>
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  >标的标题</td>
+					<td  >留言者</td>
+					<td  >留言内容</td>
+					<td  >留言时间</td>
+					<td  >留言状态</td>
+					<td  >操作</td>
+				</tr>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td ><strong>短期借款，提前还款</strong> </td>
+					<td  >op6778</td>
+					<td><img src="/pic/rank_4.gif" /></td>
+					<td  >18%</td>
+					<td  >1个月</td>
+					<td  >50</td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+			</form>	
+		</table>
+		<!--投资者留言 结束-->
+		
+		
+		{elseif $_U.query_type=="limitapp"}
+		<!--额度申请 开始-->
+		<div class="user_main_title"> 
+		额度申请原则上每次最多申请1万
+		</div>
+		<div class="user_right_border">
+			<div class="e">申请者：</div>
+			<div class="c">
+				{$_U.user_result.username}
+			</div>
+		</div>
+		<div class="user_right_border">
+			<div class="e"> 申请金额：</div>
+			<div class="c">
+				<input type="text" name="allow_1" value="1" /> 
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="e">推荐人：</div>
+			<div class="c">
+				<input type="text" name="allow_1" value="1" /> 
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="e">详细说明：</div>
+			<div class="c">
+				<textarea rows="5" cols="40"></textarea>
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="e">其它地方借款详细说明：</div>
+			<div class="c">
+			<textarea rows="5" cols="40"></textarea>
+			</div>
+		</div>
+		
+		
+		<div class="user_right_border">
+			<div class="e"></div>
+			<div class="c">
+				<input type="submit" name="name"  value="确认提交" size="30" /> 
+			</div>
+		</div>
+		</form>
+		
+		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+			  <form action="" method="post">
+				<tr class="head" >
+					<td  >申请时间</td>
+					<td  >申请金额(元)</td>
+					<td  >推荐人</td>
+					<td  >备注说明</td>
+					<td  >审核时间</td>
+					<td  >操作</td>
+					<td  >操作</td>
+				</tr>
+				{list module="borrow" var="loop" function ="GetList" showpage="3" user_id="0" keywords="request" dotime1="request" dotime2="request" }
+				{foreach from="$loop.list" item="item"}
+				<tr >
+					<td ><strong>短期借款，提前还款</strong> </td>
+					<td  >op6778</td>
+					<td><img src="/pic/rank_4.gif" /></td>
+					<td  >18%</td>
+					<td  >1个月</td>
+					<td  >50</td>
+				</tr>
+				{/foreach}
+				<tr >
+					<td colspan="8" class="page">
+						{$loop.showpage}
+					</td>
+				</tr>
+				{/list}
+			</form>	
+		</table>
+		<div class="user_right_foot">
+		* 温馨提示：额度申请后 无论申请是否批准 必须隔一个月后才能再次申请，每个月只能申请一次如有问题,请与我们联系
+		</div>
+		
+		
+		<!--额度申请 结束-->
+		{/if}
+</div>
+<!--用户中心的主栏目 结束-->
+{include file="user_footer.html"}

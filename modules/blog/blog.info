@@ -1,0 +1,9 @@
+<?
+		$code = "blog";
+		$name = "µÛÍø²©¿Í";
+		$description = "µÛÍø²©¿Í";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-12-16";
+		$type = "blog";
+?>

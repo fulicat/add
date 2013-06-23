@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS `{article}` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `site_id` int(11) NOT NULL DEFAULT '0',
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `littitle` varchar(200) NOT NULL,
+  `status` int(2) NOT NULL DEFAULT '0',
+  `litpic` varchar(255) NOT NULL DEFAULT '',
+  `flag` varchar(50) NOT NULL,
+  `source` varchar(50) NOT NULL,
+  `publish` varchar(50) NOT NULL,
+  `is_jump` int(1) NOT NULL,
+  `author` varchar(50) NOT NULL,
+  `jumpurl` varchar(255) NOT NULL DEFAULT '',
+  `summary` varchar(255) NOT NULL DEFAULT '',
+  `province` varchar(20) default NULL COMMENT '省份',
+  `city` varchar(20) default NULL COMMENT '城市',
+  `area` varchar(20) default NULL COMMENT '区',
+  `content` text NOT NULL,
+  `order` int(11) NOT NULL DEFAULT '0',
+  `hits` int(11) NOT NULL DEFAULT '0',
+  `comment` int(11) NOT NULL DEFAULT '0',
+  `is_comment` int(1) NOT NULL,
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `addtime` varchar(50) NOT NULL DEFAULT '',
+  `addip` varchar(50) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+

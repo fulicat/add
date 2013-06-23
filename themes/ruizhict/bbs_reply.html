@@ -1,0 +1,63 @@
+{include file="header.html"}
+
+			
+<table class="container_0">
+	<tr>
+		<td class="topleft"></td>
+		<td class="topcenter"></td>
+		<td class="topright"></td>
+	</tr>
+	<tr>
+		<td class="middleleft"></td>
+		<td class="middlecenter">
+		<div class="div_out_inner_nobg">
+			<table width="100%">
+				<tr>
+					<td class="bbs_position" style="width:400px;">
+						<span>当前位置:</span> <a href="/bbs/index.html">{$_G.bbs_setting.webname}</a> -> <a href="/bbs/index.html?q=fourms&fid={$_G.bbs_forum_result.id}">{$_G.bbs_forum_result.name}</a> -> 回复帖子
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="div_out ">
+			<div class="inner">
+				<form action="/bbs/index.html?{if $magic.request.postid!=""}q=reply&postid={$magic.request.postid}{else}q=view&tid={$magic.request.tid}{/if}" method="POST" onsubmit="return check_form()">
+				<div class="bbs_post_title">{if $magic.request.postid!=""}编辑回复<input type="hidden" name="pid" value="{$magic.request.postid}" />{else}主题回复{/if}</div>
+				<table>
+					<tr><td><input type="text" style="width:400px;" name="name" id="title" value="{if $magic.request.postid!=""}{$_G.bbs_posts_result.name}{else}RE:{$_G.bbs_topics_result.name}{/if}" class="text_css" /></td></tr>
+					<tr><td>
+				<textarea style="display:none;" name="content" id="content">{if $magic.request.postid!=""}{$_G.bbs_posts_result.content}{else}{$_G.reply_content}{/if}</textarea>
+				<iframe ID="Editor" name="Editor" src="/plugins/editor/ubbeditor/ubb/editor.htm?ubb=1&id=content&frmid=Editor" frameBorder="0" marginHeight="0" marginWidth="0" scrolling="No" style="height:300px;width:930px"></iframe>
+			</td></tr>
+			<tr><td><input type="submit" class="button_css" value="  提  交  "  />
+			<input type="hidden" value="0" name="type" /> 
+			{if $magic.request.q=="edit"}<input type="hidden" name="tid" value="{$_G.bbs_topics_result.id}" />{/if}
+			<input type="hidden" name="fid" value="{$_G.bbs_topics_result.fid|default:$magic.request.fid}" /> 
+				</td></tr>
+		</table>
+		</form>
+	</div>
+</div>
+<script src="{$tpldir}/js/bbs.js"></script>
+{literal}
+<script>
+var popedom_14="1";
+var topictype=0;
+window.onload=post_PageInit;
+function check_form(){
+	return checkAllAction();
+
+}
+</script>
+
+{/literal}	
+		</td>
+		<td class="middleright"></td>
+	</tr>
+	<tr>
+		<td class="bottomleft"></td>
+		<td class="bottomcenter"></td>
+		<td class="bottomright"></td
+	></tr>
+</table>
+{include file="footer.html"}

@@ -1,0 +1,19 @@
+
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('site_menu_1',this)">+</a></span><strong><a href="{$_A.admin_url}&q=site" >栏目列表</a></strong></div>
+			<div  style="margin-top:10px;" id="site_menu_1">
+				
+				<link rel="StyleSheet" href="plugins/dtree/dtree.css" type="text/css" />
+			<script type="text/javascript" src="plugins/dtree/dtree.js"></script>
+				<script type="text/javascript">
+				
+				d = new dTree('d','plugins/dtree/');
+				d.add(0,-1,'根目录','','','');
+				{foreach from = $_G.site_list item=item}
+				d.add('{$item.site_id}',{$item.pid|default:0},'{$item.name}','{$_A.admin_url}&q=site/edit&site_id={$item.site_id}&a=loop"','','');
+				
+				{/foreach}
+				document.write(d);
+				
+			</script>
+			</div>
+		

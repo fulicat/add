@@ -1,0 +1,21 @@
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('module_menu_1',this)">+</a></span><strong><a href="{$admin_url}&q=module/channel/list" >模块列表</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="module_menu_1">
+					{foreach from="$_A.module_install_list" item="module" }
+					<li><span>{if $module.fields==1}<a href="{$_A.admin_url}&q=module/fields&code={$module.code}">字段</a> - {/if} <a href="{$_A.admin_url}&q=module/{$module.code}">内容</a></span><a href="{$_A.admin_url}&q=module/channel/edit&code={$module.code}"  id="site" title="{$module.description}" >{$module.name}</a></li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+		
+		<div class="fenlan">
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('module_menu_2',this)">+</a></span><strong><a href="{$admin_url}&q=module" >模块管理</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="module_menu_2">
+					<li><a href="{$_A.admin_url}&q=module/channel" id="adminlist">全部模块</a></li>
+					<li><a href="{$_A.admin_url}&q=module/channel/install" id="adminlist">已安装模块</a></li>
+					<li><a href="{$_A.admin_url}&q=module/channel/unstall" id="adminlist">未安装模块</a></li>
+				</ul>
+			</div>
+		</div>

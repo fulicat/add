@@ -1,0 +1,44 @@
+ {include file="header.html"}
+ 
+<div class="wrap950 mar10">
+	<div class="main_left">
+		<div class="list_content_main_2">
+			<!--标题开始-->
+			<div class="title">
+				<img src="{$tpldir}/images/ico_3.gif" /> {$_G.site_result.name} 
+			</div>
+			<!--标题结束-->
+			
+			<div class="content ">
+				 <table width="100%">
+				 <tr>
+				 <td><img src="{$tpldir}/images/kefu.png" /></td>
+				 <td>{$_G.site_result.content}</td>
+				 </tr>
+				 </table>
+				  				
+			</div>
+		</div>
+		
+	</div>
+	<div class="main_right">
+		<div class="list_news ">
+			<div><span><a href="/gonggao/index.html">+ more</a></span><h3>网站公告</h3></div>
+			<!--ul>
+				{loop module="article" function="GetList" limit="6" site_id="22"}
+				<li><a href="/{$var.site_nid}/a{$var.id}.html" title="{$var.name}">{$var.name|truncate:17}</a></li>
+				{/loop}
+			</ul-->
+		</div>
+		{include file="zixun_right.html"}
+		<div class="list_news ">
+			<div><span><a href="/new/index.html">+ more</a></span><h3>新手指南</h3></div>
+			<!--ul>
+				{loop module="article" function="GetList" limit="6" site_id="10"}
+				<li><a href="/{$var.site_nid}/a{$var.id}.html" title="{$var.name}">{$var.name|truncate:17}</a></li>
+				{/loop}
+			</ul-->
+		</div>
+	</div>
+</div>
+{include file="footer.html"}

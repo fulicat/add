@@ -1,0 +1,9 @@
+<?
+		$code = "invite";
+		$name = "人才招聘";
+		$description = "人才招聘";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-07-07";
+		$type = "invite";
+		?>

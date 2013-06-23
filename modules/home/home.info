@@ -1,0 +1,9 @@
+<?
+		$code = "home";
+		$name = "·¿ÎÝ½éÉÜ";
+		$description = "·¿ÎÝ½éÉÜ";
+		$version = "1.0";
+		$author = "DWcms";
+		$date = "2010-08-14";
+		$type = "home";
+		?>

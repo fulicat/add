@@ -1,0 +1,9 @@
+<?
+		$code = "area";
+		$name = "地区模块";
+		$description = "全国的省，市，区";
+		$version = "1.0";
+		$author = "hycms";
+		$date = "2010-04-04";
+		$type = "area";
+		?>

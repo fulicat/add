@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteRule (.*)/index.html$ index.php?$1
+RewriteRule (.*)/index(\d+).html$ index.php?$1&page=$2
+RewriteRule (.*)/a(\d+)\.html$ index.php?$1/$2
+RewriteRule ^u/(\d+)/(.*)$ index.php?u&$1&$2
+RewriteRule ^u/(\d+)/(.*)/$ index.php?u&$1&$2
+RewriteRule ^u/(\d+)$ index.php?u&$1
+RewriteRule ^u/(\d+)/$ index.php?u&$1
+RewriteRule (.*)/index.html\?(.*) index.php?$1&$2
+RewriteRule (.*)/index(\d+).html\?(.*) index.php?$1&page=$2&$2

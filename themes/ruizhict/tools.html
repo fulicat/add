@@ -1,0 +1,89 @@
+{include file="header.html"}
+ 
+ 
+<div class="con_box t10">
+     <div>
+	     <div class="title sdf">
+		      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="12" align="left"><img src="{$tpldir}/images/t_left.gif" width="12" height="30" /></td>
+    <td align="left" background="{$tpldir}/images/t_bg.gif"><h1 class="dd">利息计算</h1></td>
+    <td width="12" align="right"><img src="{$tpldir}/images/t_right.gif" width="12" height="30" /></td>
+  </tr>
+</table>
+          </div>
+</div>
+{literal}
+<div class="m_l_bor" style="padding:10px;">
+		<font color="#FF0000">利息计算器,采用银行房贷等通用的"等额本息还款法",即借款者每月以相等的金额偿还贷款本息。</font> <br />
+		<div style="margin-top:10px">
+			<form action="/lixi/index.html" method="get">借款金额：<input type="text" name="account" size="10"  value="<? echo isset($_REQUEST['account'])?$_REQUEST['account']:""; ?>" value="<? echo $_REQUEST['account'];?>" /> 年利率：<input type="text" name="lilv"  size="10"  value="<? echo isset($_REQUEST['lilv'])?$_REQUEST['lilv']:""; ?>"/>%  借款期限：<input type="text" name="times"  size="10"  value="<? echo isset($_REQUEST['times'])?$_REQUEST['times']:""; ?>" />个月 还款方式：<select name="type"><option value="month" >按月还款</option></select>  <input type="submit" value="开始计算" /></form>
+		</div>
+</div>
+</div>
+</div>
+{/literal}
+<div class="con_box t10">
+     <div>
+	    <div class="title sdf">
+		      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="12" align="left"><img src="{$tpldir}/images/t_left.gif" width="12" height="30" /></td>
+    <td align="left" background="{$tpldir}/images/t_bg.gif"><h1 class="dd">手机号码查询</h1></td>
+    <td width="12" align="right"><img src="{$tpldir}/images/t_right.gif" width="12" height="30" /></td>
+  </tr>
+</table>
+          </div>
+</div>
+{literal}
+<div class="m_l_bor" style="padding:10px;">
+		<font color="#FF0000">在下面输入框中输入您要查询的手机号码,点击查询按钮即可查询该手机号所在地区。</font> <br />
+		<div style="margin-top:10px">
+			<form action="/phone/index.html" method="get" onsubmit="return chk()">	手机号码：<input type="text" name="phone"  id="phone" size="20" value="<? echo $_REQUEST['phone'];?>" />   <input type="submit" value="查 询" /></form>
+		</div>
+	</div>
+<script> 
+function chk()
+{
+var tel = document.all("phone").value;
+ 
+if(/^13\d{9}$/g.test(tel)|| (/^18\d{9}$/g.test(tel)) || (/^15\d{9}$/g.test(tel)))
+        {;
+		      return true;
+         }
+else
+        {
+           alert("手机号错误");
+		   return false;
+         }
+}
+</script>
+		</div>
+</div>
+</div>
+</div>
+{/literal}
+<div class="con_box t10">
+     <div>
+	 <div class="title sdf">
+		      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="12" align="left"><img src="{$tpldir}/images/t_left.gif" width="12" height="30" /></td>
+    <td align="left" background="{$tpldir}/images/t_bg.gif"><h1 class="dd">ip地址查询</h1></td>
+    <td width="12" align="right"><img src="{$tpldir}/images/t_right.gif" width="12" height="30" /></td>
+  </tr>
+</table>
+          </div>
+	   
+</div>
+{literal}
+<div class="m_l_bor" style="padding:10px;">
+		<font color="#FF0000">在下面输入框中输入您要查询的IP地址,点击查询按钮即可查询该IP所在地区。</font> <br />
+		<div style="margin-top:10px">
+			<form action="/ip/index.html" method="get">IP地址：<input type="text" name="ip" size="20" {literal}value="<?echo $_ip;?>"{/literal} />   <input type="submit" value="查 询" /></form>
+		</div>
+</div>
+</div>
+</div>
+{/literal}
+{include file="footer.html"}

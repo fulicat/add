@@ -1,0 +1,9 @@
+<?
+		$code = "discount";
+		$name = "уш©ш";
+		$description = "уш©ш";
+		$version = "1.0";
+		$author = "dwcms";
+		$date = "2010-07-20";
+		$type = "discount";
+?>

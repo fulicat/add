@@ -1,0 +1,9 @@
+<?
+		$code = "attestation";
+		$name = "证明材料";
+		$description = "证明材料";
+		$version = "2.81";
+		$author = "DWcms";
+		$date = "2010-08-14";
+		$type = "attestation";
+		?>

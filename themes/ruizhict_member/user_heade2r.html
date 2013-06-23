@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>{$_G.system.con_webname}</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link href="{$tpldir}/css/main.css" rel="stylesheet" type="text/css" />
+<link href="{$tpldir}/css/thickbox.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/themes/daxuejob/js/jquery.js"></script>
+<script type="text/javascript" src="/themes/daxuejob/js/main.js"></script>
+</head>
+
+<body>
+<!--头部开始-->
+<div class="header">
+	<!--工具栏开始-->
+	<div class="header_tools">
+		<div class="wrap950">
+			<ul class="floatl">
+				<li>您好， 欢迎来{$_G.system.con_webname}！</li>{if $_G.user_id==""}
+								<li><a href="/index.php?user&q=action/login">[登录]</a></li>
+				<li><a href="/index.php?user&q=action/reg" target="_blank">[注册]</a></li>
+				{else}
+				{$_G.user.username}
+				{/if}
+								<li><a href="/help/index.html">帮助中心</a></li>
+			</ul>
+			<ul class="floatr">
+				<li><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('{$_G.system.con_weburl}');" href="#">设为首页</a>  </li>
+				<li><span style="CURSOR: hand" onClick="window.external.addFavorite('{$_G.system.con_weburl}','{$_G.system.con_webname}')" title="{$_G.system.con_webname}">
+				<a >收藏本站</a></span>  </li>
+				<li><a href="{$_G.system.con_weburl}/help/index.html">帮助中心</a>  </li>
+			</ul>
+		</div>
+	</div>
+	<!--工具栏结束-->
+	
+	<div class="wrap950">
+		<!--logo与搜索开始-->
+		<div class="header_banner">
+			<div class="floatl">
+				<div class="header_logo"><a href="/" title="校际前程">校际前程</a></div>
+			</div>
+			<div class="header_sousuo">
+				 
+			</div>
+		</div>
+		<!--logo与搜索结束-->
+	
+		<!--栏目开始-->
+		<div class="header_site">
+			<ul class="header_site_hy">
+				<li><h2><a href="/" title="首页">首页</a></h2></li>
+				<li  {if $_G.site_result.nid=="invest" || $_G.site_presult.nid=="invest"} class="current"{/if}><a href="/invest/index.html">我要投资</a></li>
+				<li {if $_G.site_result.nid=="borrow" || $_G.site_presult.nid=="borrow"} class="current"{/if}><a href="/borrow/index.html">我要贷款</a></li>
+				<li ><a href="/train/index.html">我的账户</a></li>
+				<li ><a href="/zixun/index.html">安全中心</a></li>
+				<li ><a href="/jiaoyou/index.html">认证中心</a></li>
+				<li ><a href="/jiaoyou/index.html">借贷联盟</a></li>
+			</ul>
+		</div>
+		<!--栏目结束-->
+	</div>
+</div>
+<!--头部结束-->

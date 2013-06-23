@@ -1,0 +1,9 @@
+<?
+		$code = "ucenter";
+		$name = "ucenter";
+		$description = "ucenter discuz";
+		$version = "1.0";
+		$author = "discuz";
+		$date = "2010-04-03";
+		$type = "discuz";
+		?>

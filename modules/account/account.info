@@ -1,0 +1,9 @@
+<?
+		$code = "account";
+		$name = "资金账号管理";
+		$description = "资金账号管理";
+		$version = "1.0";
+		$author = "DWcms";
+		$date = "2010-08-26";
+		$type = "account";
+		?>

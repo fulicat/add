@@ -1,0 +1,188 @@
+{include file="header.html"}
+
+<table class="container_0">
+	<tr>
+		<td class="topleft"></td>
+		<td class="topcenter"></td>
+		<td class="topright"></td>
+	</tr> 
+	<tr>
+		<td class="middleleft"></td>
+		<td class="middlecenter">
+		<div class="div_out_inner_nobg">
+			<table width="100%">
+				<tr>
+					<td class="bbs_position" style="width:400px; font-size:12px;">
+						<span>当前位置:</span> <a href="/bbs/index.html">{$_G.bbs_setting.webname}</a>  {if $_G.bbs_forum_presult.pid!=0} -> <a href="/bbs/index.html?fid={$_G.bbs_forum_presult.id}">{$_G.bbs_forum_presult.name}</a>{/if} -> <a href="/bbs/index.html?fid={$_G.bbs_forum_result.id}">{$_G.bbs_forum_result.name}</a>
+					</td>
+					
+				</tr>
+			</table>
+		</div>
+
+		<div class="div_out bbs_forum_top">
+			<table class="title">
+				<tr>
+					<td class="left"></td>
+					<td>帖子状态</td>
+					
+					<td class="right"></td>
+				</tr>
+			</table>
+			<div class="bbs_view_h">本帖子共有 <b>{$_G.bbs_topics_result.hits}</b> 位阅读者, <b>{$_G.bbs_topics_result.posts_num}</b> 个回复.</div>
+			{if $_G.user_result.type_id==1}
+			<div class="bbs_view_h">
+				<b>帖子管理:</b> <span class="adminstr"><a href="javascript:postManager(1,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">删除</a> | 
+				<a href="javascript:postManager(2,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">移动</a> | 
+				<a href="javascript:postManager(3,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">屏蔽</a>| 
+				<a href="javascript:postManager(4,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">锁定</a> | 
+				<a href="javascript:postManager(5,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">置顶</a> | 
+				<a href="javascript:postManager(6,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">总置顶</a> | 
+				<a href="javascript:postManager(7,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">精华</a> | 
+				<a href="javascript:postManager(9,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">提升</a> | 
+				<a href="javascript:postManager(10,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">鉴定</a> | 
+				<a href="javascript:postManager(11,{$_G.bbs_topics_result.id},{$_G.bbs_topics_result.id})">高亮</a>
+				</span>
+			</div>
+			{/if}
+			
+
+			{list module="dwbbs" function="GetPostsList" var="loop" epage="10" tid="request" showpage="3"}
+			<div class="div_out bbs_forum_post">
+				<table class="post">
+					<tr>
+						<td class="left">
+							<div class="post_drop">
+								<ul>
+								<li><a href="/bbs/index.html?q=post&fid={$_G.bbs_topics_result.fid}"><img src="{$tpldir}/images/bbs_btn_post.gif" border="0" align="absmiddle" alt="发表帖子" /></a> <a href="/bbs/index.html?q=reply&tid={$_G.bbs_topics_result.id}"><img src="{$tpldir}/images/bbs_btn_reply.gif" border="0" align="absmiddle" alt="回复" /></a>
+								</li>
+								</ul>
+							</div>
+						</td>
+						<td class="right">
+							<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td class=Pagination_td1>
+									<div class="Pagination"><strong>&nbsp;&nbsp;1&nbsp;&nbsp;</strong></div>
+									</td>
+									<td class="Pagination_td2 Pagination_inputtd">
+									
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+		
+			{foreach from="$loop.list" item="item"}
+			
+			<div class="bbs_view_top_out">
+				<table class="bbs_view_a4">
+					<tr>
+						<td class="bbs_view_a1">
+							<div>
+								<a href="/u/{$item.user_id}" target="_blank">
+								<img src="{$item.user_id|avatar|imgurl_format}" border="0" align="absmiddle" />
+								</a>
+								<p class="namemsg">
+								<a href="/u/{$item.user_id}" target="_blank" class="name">{$item.username}</a>
+								<a href="javascript:void(0);" onclick="sendUserMsg('{$item.username}')" class="writemsg" title="给{$item.username}发送站内短信"></a></p>
+								<br />
+								<a href="credits.php?action=popedom&groupid=203" target="_blank"><u class="bbs_star_img" title="管理员"><i class=bbs_star_4></i><i class=bbs_star_4></i><i class=bbs_star_4></i><i class=bbs_star_4></i></u></a>
+								<!--
+								<dl class='bbs_view_a3'>
+								<dt>等级</dt><dd>11&nbsp;</dd><br />
+								<dt>籍贯</dt><dd>27&nbsp;</dd><br />
+								<dt>居住城市</dt>
+								<dd>27&nbsp;</dd>
+								<dt>注册时间</dt>
+								<dd>27&nbsp;</dd>
+								<dt>最后登录</dt>
+								<dd>2010-09-29&nbsp;</dd></dl>
+								-->
+							</div>
+						</td>
+						<td class="bbs_view_a2">
+							<div class="author"><a href="/u/{$item.user_id}" target="_blank" class="name sex0">{$item.username}</a> 发表于 <span class="time">{$item.addtime|time_format}</span>&nbsp; 发帖IP <span class="ip"><a href='/ip/index.html?ip={$item.addip}' target='_blank'>{$item.addip}</a></span> 
+							
+							{if $_G.user_result.type_id==1} &nbsp; <a href="/bbs/index.html?{if $item.istopic==1}q=edit&tid={$item.tid}{else}q=reply&postid={$item.id}{/if}">编辑</a>  | <a href="javascript:postManager(1,{if $item.istopic==1}{$item.tid}{else}0{/if},{$item.id})">删除</a> | <a href="javascript:postManager(3,0,{$item.id})">屏蔽</a>
+							{/if}
+							 </div>
+							<div class="floor"><a href="#f{$item.floor}" name="f{$item.floor}">#{$item.floor}</a></div>
+							<div class="title1">{$item.name}</div>
+							<div class="content">{$item.content|ubb}</div>
+						</td>
+					</tr>
+					<tr><td class="bbs_view_a1"></td><td class="bbs_view_a8"><div class="bbs_ad_4"></div></td></tr>
+					<tr><td class="bbs_view_a1"></td><td class="bbs_view_a7"><div><a href="/bbs/index.html?q=reply&action=reply&tid={$item.tid}&f={$item.floor}" class="reply">回复</a><a href="/bbs/index.html?q=reply&action=quote&tid={$item.tid}" class="quote">引用</a><a class="scrolltop" href="javascript:scroll(0,0);">顶端</a></div></td></tr>
+					<tr><td class="bbs_view_a5"></td><td class="bbs_view_a6"></td></tr>
+				</table>
+			</div>
+			{/foreach}
+			<a name="reply"></a>
+			<div class="div_out bbs_view_reply" >
+				<form action="" method="post" onsubmit="return check_form()">
+				<table>
+					<tr>
+						<td class="bbs_view_a1">
+							<div>
+								<a href="user.php?uid=1" target="_blank"><img src="{$_G.user_id|avatar}" /></a><br />
+								<a href="user.php?uid=1" target="_blank">{$_G.user_result.username}</a><br />
+							</div>
+						</td>
+						<td class="" style="margin-left:5px;">
+				<textarea style="width:400px; height:150px;display:none;" name="content" id="content"></textarea>
+				<iframe ID="Editor" name="Editor" src="/plugins/editor/ubbeditor/ubb/editor.htm?ubb=1&id=content&frmid=Editor" frameBorder="0" marginHeight="0" marginWidth="0" scrolling="No" style="height:250px;width:99%;"></iframe>
+				<br /><input type="submit" class="bbs_button_css" value="  提  交  " />
+				<input type="hidden" name="tid" value="{$_G.article_id}" /> 
+						</td>
+					</tr>
+				</table>
+				</form>
+			</div>
+			
+			<script src="{$tpldir}/js/bbs.js"></script>
+			{literal}
+			<script>
+			var popedom_14="";
+			window.onload=view_PageInit;
+			function check_form(){
+				return checkContent(true);
+				}
+			</script>
+			{/literal}
+			<div class="div_out bbs_forum_post">
+				<table class="post">
+					<tr>
+						<td class="left">
+							<div class="post_drop">
+								<ul>
+								<li><a href="/bbs/index.html?q=post&fid={$_G.bbs_topics_result.fid}"><img src="{$tpldir}/images/bbs_btn_post.gif" border="0" align="absmiddle" alt="发表帖子" /></a>
+								</li>
+								</ul>
+							</div>
+						</td>
+						<td class="right">
+							<table cellpadding=0 cellspacing=0 border=0>
+								<tr>
+									<td class=Pagination_td1>
+										{$loop.showpage}
+									</td>								
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			{/list}
+		</td>
+		<td class="middleright"></td>
+	</tr>
+	<tr>
+		<td class="bottomleft"></td>
+		<td class="bottomcenter"></td>
+		<td class="bottomright"></td>
+	</tr>
+</table>
+{include file="footer.html"}

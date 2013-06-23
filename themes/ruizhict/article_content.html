@@ -1,0 +1,47 @@
+{include file="header.html"}
+
+
+<div class="wrap950 mar10">
+	<div class="main_left">
+		
+		<!--标题开始-->
+		<div class="content_title">
+			<img src="{$tpldir}/images/ico_3.gif" />  {$_G.site_result.name}
+		</div>
+		<!--标题结束-->	
+		<div class="article_content ">
+			<div class="content_h3"><h3>{$_G.article.name}</h3></div>
+			<div class="content_div" align="center"> 发布者：{$_G.article.author|default:"-"} &nbsp;&nbsp;  发布时间：{$_G.article.addtime|date_format:"Y-m-d H:i:s"} &nbsp;&nbsp;  点击次数：{$_G.article.hits} </div>
+			
+			<!--内容开始-->
+			<div class="content_ro">
+			<table><tr>
+			  <td>{$_G.article.content}</td>
+			</tr></table>
+			</div>
+			<!--内容结束-->
+			
+			{articleside site_id="0" } 
+			<!--内容条页开始-->
+			<div class="content_pages">
+				<div class="floatl">
+					<span><img src="{$tpldir}/images/up_page.gif" align="absmiddle" /> <strong>上一条：</strong>{$var.up}</span>
+					<span>
+<img src="{$tpldir}/images/down_page.gif" /> <strong>下一条：</strong>{$var.down}</span>	
+				</div>
+			</div>
+			<!--内容条页结束-->
+			{/articleside}
+			
+		</div>
+		
+		
+			{include file="pinglun.html"}
+		
+	</div>
+	<div class="main_right">
+		{include file="zixun_right.html"}
+	</div>
+</div>
+{include file="footer.html"}
+

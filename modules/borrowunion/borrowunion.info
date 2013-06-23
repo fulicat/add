@@ -1,0 +1,9 @@
+<?
+		$code = "borrowunion";
+		$name = "融贷机构";
+		$description = "融贷机构";
+		$version = "1.0";
+		$author = "DWcms";
+		$date = "2010-08-20";
+		$type = "borrowunion";
+		?>

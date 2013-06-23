@@ -1,0 +1,16 @@
+		{foreach from="$control_menu" item="item" key="akey"}
+		<div class="fenlan" >
+			<div class="fenlan_title"><span><a href="javascript:void(0);" onclick="change_menu('control_menu_{$akey}',this)">+</a></span><strong><a href="{$query_site}&q={$item.url}&a=control">{$item.name}</a></strong></div>
+			<div class="fenlan_content">
+				<ul id="control_menu_{$akey}">
+					{foreach from="$item.sub" item="_item"}
+						<li { if $_item.show==0} style="display:none"{/if}>
+						<span>{foreach from="$_item._sub" item="__item"}<a href="{$query_site}&q={$__item.url}&a=control" { if $__item.show==0} style="display:none"{/if}>{$__item.name}</a> {/foreach}</span>
+						<a href="{$query_site}&q={$_item.url}&a=control">{$_item.name}</a>
+						</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+		{/foreach}
+		

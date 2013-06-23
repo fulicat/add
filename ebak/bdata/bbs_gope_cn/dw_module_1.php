@@ -1,0 +1,69 @@
+<?php
+require("../../inc/header.php");
+
+/*
+		SoftName : EmpireBak Version 2010
+		Author   : wm_chief
+		Copyright: Powered by www.phome.net
+*/
+
+DoSetDbChar('gbk');
+E_D("DROP TABLE IF EXISTS `dw_module`;");
+E_C("CREATE TABLE `dw_module` (
+  `module_id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `default_field` varchar(200) DEFAULT NULL,
+  `content` text,
+  `version` varchar(10) DEFAULT NULL,
+  `author` varchar(50) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `order` int(11) DEFAULT NULL,
+  `fields` int(2) DEFAULT NULL,
+  `purview` text,
+  `remark` text,
+  `issent` int(2) DEFAULT NULL,
+  `title_name` varchar(100) DEFAULT NULL,
+  `onlyone` int(2) DEFAULT NULL,
+  `index_tpl` varchar(50) DEFAULT NULL,
+  `list_tpl` varchar(50) DEFAULT NULL,
+  `content_tpl` varchar(50) DEFAULT NULL,
+  `search_tpl` varchar(100) DEFAULT NULL,
+  `article_status` int(2) DEFAULT NULL,
+  `visit_type` int(2) DEFAULT NULL,
+  `addtime` varchar(50) DEFAULT NULL,
+  `addip` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`module_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=gbk");
+E_D("replace into `dw_module` values('1','user','用户管理','基本的用户管理','','','1.0','hycms','2010-08-13','1','system','10','0','a:1:{s:4:\"user\";a:1:{s:8:\"用户管理\";a:10:{s:9:\"user_list\";s:8:\"用户列表\";s:9:\"user_view\";s:12:\"查看用户信息\";s:8:\"user_new\";s:8:\"添加用户\";s:9:\"user_edit\";s:8:\"修改用户\";s:8:\"user_del\";s:8:\"删除用户\";s:9:\"user_type\";s:8:\"用户类型\";s:15:\"user_type_order\";s:12:\"用户类型排序\";s:13:\"user_type_del\";s:12:\"删除用户类型\";s:13:\"user_type_new\";s:12:\"添加用户类型\";s:14:\"user_type_edit\";s:12:\"编辑用户类型\";}}}','','0','','0','','','','','0','0','','');");
+E_D("replace into `dw_module` values('2','manager','管理员管理','后台管理员管理','','','1.0','hycms','2010-08-13','1','system','10','0','a:1:{s:4:\"user\";a:1:{s:8:\"用户管理\";a:10:{s:9:\"user_list\";s:8:\"用户列表\";s:9:\"user_view\";s:12:\"查看用户信息\";s:8:\"user_new\";s:8:\"添加用户\";s:9:\"user_edit\";s:8:\"修改用户\";s:8:\"user_del\";s:8:\"删除用户\";s:9:\"user_type\";s:8:\"用户类型\";s:15:\"user_type_order\";s:12:\"用户类型排序\";s:13:\"user_type_del\";s:12:\"删除用户类型\";s:13:\"user_type_new\";s:12:\"添加用户类型\";s:14:\"user_type_edit\";s:12:\"编辑用户类型\";}}}','','0','','0','','','','','0','0','','');");
+E_D("replace into `dw_module` values('3','article','文章模块','文章管理模块','source,author,publish,area,status,order,litpic,summary,content','','2.81','hycms','','1','cms','10','1','a:1:{s:7:\"article\";a:1:{s:8:\"文章管理\";a:4:{s:12:\"article_list\";s:8:\"文章列表\";s:11:\"article_new\";s:8:\"添加文章\";s:12:\"article_edit\";s:8:\"编辑文章\";s:11:\"article_del\";s:8:\"删除文章\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','1','1281739618','127.0.0.1');");
+E_D("replace into `dw_module` values('4','area','地区模块','全国的省，市，区','','','1.0','hycms','','1','area','10','0','a:1:{s:4:\"area\";a:1:{s:8:\"地区模块\";a:1:{s:9:\"area_list\";s:8:\"地区管理\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1281739685','127.0.0.1');");
+E_D("replace into `dw_module` values('5','linkage','联动模块','表单的联动模块','','','1.0','dwcms','','1','linkage','10','0','a:1:{s:7:\"linkage\";a:1:{s:8:\"联动模块\";a:1:{s:12:\"linkage_list\";s:8:\"联动管理\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1281739695','127.0.0.1');");
+E_D("replace into `dw_module` values('33','ad','广告系统','广告系统','source,author,publish,area,status,order,litpic,summary,content',NULL,'1.0','hycms',NULL,'1','ad','10','0','a:1:{s:2:\"ad\";a:1:{s:8:\"广告管理\";a:5:{s:7:\"ad_list\";s:8:\"广告列表\";s:7:\"ad_view\";s:8:\"查看广告\";s:6:\"ad_new\";s:8:\"添加广告\";s:7:\"ad_edit\";s:8:\"编辑广告\";s:6:\"ad_del\";s:8:\"删除广告\";}}}',NULL,'0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1296099074','221.175.23.224');");
+E_D("replace into `dw_module` values('7','attestation','证明材料','证明材料','','','2.81','DWcms','','1','attestation','10','0','a:1:{s:11:\"attestation\";a:1:{s:8:\"证件管理\";a:16:{s:16:\"attestation_list\";s:8:\"证件列表\";s:15:\"attestation_new\";s:8:\"添加证件\";s:16:\"attestation_edit\";s:8:\"编辑证件\";s:15:\"attestation_del\";s:8:\"删除证件\";s:16:\"attestation_view\";s:8:\"审核证件\";s:21:\"attestation_type_list\";s:8:\"类型列表\";s:20:\"attestation_type_new\";s:8:\"添加类型\";s:21:\"attestation_type_edit\";s:8:\"编辑类型\";s:20:\"attestation_type_del\";s:8:\"删除类型\";s:20:\"attestation_realname\";s:8:\"实名认证\";s:15:\"attestation_all\";s:12:\"用户认证信息\";s:15:\"attestation_vip\";s:7:\"vip认证\";s:19:\"attestation_vipview\";s:7:\"vip审核\";s:19:\"attestation_viewall\";s:12:\"用户认证列表\";s:17:\"attestation_audit\";s:12:\"用户认证操作\";s:20:\"attestation_view_all\";s:12:\"用户认证查看\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1281786514','127.0.0.1');");
+E_D("replace into `dw_module` values('9','userinfo','用户信息','用户信息','','','2.81','DWcms','','1','userinfo','10','0','a:1:{s:8:\"userinfo\";a:1:{s:12:\"用户信息管理\";a:5:{s:13:\"userinfo_list\";s:8:\"信息列表\";s:12:\"userinfo_new\";s:8:\"添加信息\";s:13:\"userinfo_edit\";s:8:\"编辑信息\";s:12:\"userinfo_del\";s:8:\"删除信息\";s:13:\"userinfo_view\";s:8:\"查看信息\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1282302475','127.0.0.1');");
+E_D("replace into `dw_module` values('11','borrow','借款模块','借款模块','','','1.0','DWcms','','1','borrow','10','0','a:1:{s:6:\"borrow\";a:1:{s:8:\"借款管理\";a:9:{s:11:\"borrow_list\";s:8:\"借款列表\";s:10:\"borrow_new\";s:8:\"添加借款\";s:11:\"borrow_edit\";s:8:\"编辑借款\";s:13:\"borrow_amount\";s:8:\"借款额度\";s:18:\"borrow_amount_view\";s:8:\"额度管理\";s:10:\"borrow_del\";s:8:\"删除借款\";s:11:\"borrow_view\";s:8:\"审核借款\";s:11:\"borrow_full\";s:8:\"满标列表\";s:16:\"borrow_full_view\";s:8:\"满标查看\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1282317416','127.0.0.1');");
+E_D("replace into `dw_module` values('12','credit','信用积分','信用积分','','','1.0','dwcms','','1','credit','10','0','a:1:{s:6:\"credit\";a:1:{s:12:\"积分类型管理\";a:6:{s:11:\"credit_list\";s:12:\"查看用户积分\";s:10:\"credit_log\";s:12:\"查看积分明细\";s:16:\"credit_type_list\";s:12:\"积分类型列表\";s:15:\"credit_type_new\";s:12:\"添加积分类型\";s:16:\"credit_type_edit\";s:12:\"编辑积分类型\";s:15:\"credit_type_del\";s:12:\"删除积分类型\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1282347263','127.0.0.1');");
+E_D("replace into `dw_module` values('29','account','资金账号管理','资金账号管理','source,author,publish,area,status,order,litpic,summary,content','','1.0','DWcms','','1','account','10','0','a:1:{s:7:\"account\";a:1:{s:12:\"账号资金管理\";a:5:{s:12:\"account_list\";s:8:\"信息列表\";s:12:\"account_bank\";s:8:\"银行帐户\";s:12:\"account_cash\";s:8:\"提现记录\";s:16:\"account_recharge\";s:8:\"充值记录\";s:11:\"account_log\";s:8:\"资金记录\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1286778521','127.0.0.1');");
+E_D("replace into `dw_module` values('14','limitapp','额度申请','额度申请','','','1.0','DWcms','','1','limitapp','10','0','a:1:{s:8:\"limitapp\";a:1:{s:8:\"额度管理\";a:5:{s:13:\"limitapp_list\";s:8:\"申请列表\";s:12:\"limitapp_new\";s:8:\"添加额度\";s:13:\"limitapp_edit\";s:12:\"编辑申请额度\";s:12:\"limitapp_del\";s:10:\"删除申请款\";s:13:\"limitapp_view\";s:8:\"审核申请\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','1','1283139052','127.0.0.1');");
+E_D("replace into `dw_module` values('15','invest','投资模块','投资模块','','','1.0','DWcms','','1','invest','10','0','a:1:{s:6:\"invest\";a:1:{s:8:\"借款管理\";a:5:{s:11:\"invest_list\";s:8:\"借款列表\";s:10:\"invest_new\";s:8:\"添加借款\";s:11:\"invest_edit\";s:8:\"编辑借款\";s:10:\"invest_del\";s:8:\"删除借款\";s:11:\"invest_view\";s:8:\"审核借款\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1283398159','127.0.0.1');");
+E_D("replace into `dw_module` values('16','liuyan','汇通信贷','留言本功能','','','1.0','hycms','','1','liuyan','10','0','a:1:{s:6:\"liuyan\";a:1:{s:8:\"留言管理\";a:5:{s:11:\"liuyan_list\";s:8:\"用户列表\";s:12:\"liuyan_reply\";s:8:\"回复留言\";s:10:\"liuyan_set\";s:8:\"留言设置\";s:10:\"liuyan_new\";s:8:\"添加留言\";s:11:\"liuyan_edit\";s:8:\"修改留言\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1283398771','127.0.0.1');");
+E_D("replace into `dw_module` values('17','integral','积分兑换','积分物品兑换','','','1.0','dwcms','','1','integral','10','0','a:1:{s:0:\"\";a:1:{s:8:\"礼品兑换\";a:4:{s:13:\"integral_list\";s:12:\"礼品兑换列表\";s:12:\"integral_new\";s:12:\"添加礼品兑换\";s:12:\"integral_del\";s:12:\"删除礼品兑换\";s:16:\"integral_convert\";s:12:\"用户兑换信息\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1283723620','127.0.0.1');");
+E_D("replace into `dw_module` values('18','message','短消息/好友模块','短消息/好友模块','','','1.0','DWcms','','1','message','10','0','a:1:{s:7:\"message\";a:1:{s:10:\"短消息管理\";a:5:{s:12:\"message_list\";s:10:\"短消息列表\";s:11:\"message_new\";s:10:\"添加短消息\";s:12:\"message_edit\";s:10:\"编辑短消息\";s:11:\"message_del\";s:10:\"删除短消息\";s:12:\"message_view\";s:10:\"审核短消息\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1283755340','127.0.0.1');");
+E_D("replace into `dw_module` values('19','remind','提醒设置','提醒设置','','','1.0','dwcms','','1','remind','10','0','a:1:{s:6:\"remind\";a:1:{s:8:\"提醒设置\";a:1:{s:11:\"remind_list\";s:8:\"提醒管理\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1284121402','127.0.0.1');");
+E_D("replace into `dw_module` values('20','fee','借款还款费用管理','借款还款费用管理','','','1.0','借款还款费用管理','','1','fee','10','0','a:1:{s:3:\"fee\";a:1:{s:8:\"费用管理\";a:1:{s:3:\"fee\";s:8:\"费用管理\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1284530564','127.0.0.1');");
+E_D("replace into `dw_module` values('21','payment','支付方式','支付方式','','','1.0','hycms','','1','payment','10','0','a:1:{s:7:\"payment\";a:1:{s:8:\"支付方式\";a:1:{s:12:\"payment_list\";s:12:\"支付方式管理\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1284546324','127.0.0.1');");
+E_D("replace into `dw_module` values('22','invite','人才招聘','人才招聘','','','1.0','dwcms','','1','invite','10','0','a:1:{s:6:\"invite\";a:1:{s:8:\"人才招聘\";a:4:{s:11:\"invite_list\";s:8:\"招聘列表\";s:10:\"invite_new\";s:8:\"添加招聘\";s:10:\"invite_del\";s:8:\"删除招聘\";s:11:\"invite_type\";s:8:\"招聘类型\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','2','1284960507','127.0.0.1');");
+E_D("replace into `dw_module` values('23','comment','评论','评论','','','1.0','dwcms','','1','comment','10','0','a:1:{s:7:\"comment\";a:1:{s:8:\"评论管理\";a:3:{s:12:\"comment_list\";s:8:\"评论列表\";s:11:\"comment_new\";s:8:\"添加评论\";s:11:\"comment_del\";s:8:\"删除评论\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1285207290','127.0.0.1');");
+E_D("replace into `dw_module` values('24','dwbbs','汇通信贷论坛','帝网论坛1.0','source,author,publish,area,status,order,litpic,summary,content','','1.0','dwcms','','0','system','10','0','a:1:{s:5:\"dwbbs\";a:1:{s:8:\"论坛管理\";a:2:{s:14:\"dwbbs_forumall\";s:8:\"超级版主\";s:11:\"dwbbs_forum\";s:4:\"版主\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1286099461','127.0.0.1');");
+E_D("replace into `dw_module` values('25','borrowunion','融贷机构','融贷机构','source,author,publish,area,status,order,litpic,summary,content','','1.0','DWcms','','1','borrowunion','10','0','a:1:{s:11:\"borrowunion\";a:1:{s:8:\"融贷联盟\";a:5:{s:16:\"borrowunion_list\";s:8:\"联盟列表\";s:15:\"borrowunion_new\";s:8:\"添加机构\";s:16:\"borrowunion_edit\";s:8:\"编辑机构\";s:15:\"borrowunion_del\";s:8:\"删除机构\";s:16:\"borrowunion_view\";s:8:\"审核机构\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1286416643','127.0.0.1');");
+E_D("replace into `dw_module` values('26','borrowline','线下借款','线下借款模块，只要勇于线下的借款的功能','source,author,publish,area,status,order,litpic,summary,content','','1.0','DWcms','','1','borrow','10','0','a:1:{s:10:\"borrowline\";a:1:{s:8:\"线下借款\";a:5:{s:15:\"borrowline_list\";s:8:\"借款列表\";s:14:\"borrowline_new\";s:8:\"添加借款\";s:15:\"borrowline_edit\";s:8:\"编辑借款\";s:14:\"borrowline_del\";s:8:\"删除借款\";s:15:\"borrowline_view\";s:8:\"审核借款\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1286441108','127.0.0.1');");
+E_D("replace into `dw_module` values('30','links','友情链接','友情链接','source,author,publish,area,status,order,litpic,summary,content','','1.0','hycms','','1','links','10','0','a:1:{s:5:\"links\";a:1:{s:8:\"友情链接\";a:4:{s:10:\"links_list\";s:12:\"友情链接列表\";s:9:\"links_new\";s:8:\"添加链接\";s:9:\"links_del\";s:8:\"删除链接\";s:10:\"links_type\";s:8:\"链接类型\";}}}','','0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1287698604','119.233.164.154');");
+E_D("replace into `dw_module` values('32','scrollpic','滚动图片','滚动图片','source,author,publish,area,status,order,litpic,summary,content',NULL,'1.0','hycms',NULL,'1','scrollpic','10','0','a:1:{s:9:\"scrollpic\";a:1:{s:8:\"滚动图片\";a:4:{s:14:\"scrollpic_list\";s:4:\"列表\";s:13:\"scrollpic_new\";s:4:\"添加\";s:13:\"scrollpic_del\";s:4:\"删除\";s:14:\"scrollpic_type\";s:4:\"类型\";}}}',NULL,'0','标题','0','[code].html','[code]_list.html','[code]_content.html','[code]_search.html','0','0','1292819701','221.175.54.211');");
+
+require("../../inc/footer.php");
+?>
