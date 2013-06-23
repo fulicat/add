@@ -229,7 +229,7 @@ function userReg(){
    	return false;
 }
 
-var msg_can_reg = "<font color=blue># 可以注册</font>";
+var msg_can_reg = "";
 var username_msg = '* 请输入4-15位字符(中文5个).英文,数字,"_"的组合。';
 var username_msg_exist = "* 用户名已经存在,请重新输入";
 var email_msg_empty = "* Email 为空";
