@@ -29,6 +29,15 @@
 				 <div class=user_action_error id=conform_password_notice><font color="#999999">请重复输入上面的密码</font></td>
   </tr>
   <tr>
+    <td align="center" valign="middle">性&nbsp;&nbsp;&nbsp;&nbsp;别：</td>
+    <td valign="middle">
+	<select name="sex" id="sex">
+	<option value="1">男</option>
+	<option value="2">女</option>
+	</select>
+				  <div class=user_action_error id=sex_notice><font color="#999999">请选择性别</font></td>
+  </tr>
+  <tr>
     <td align="center" valign="middle">真实姓名：</td>
     <td valign="middle"> <input class="in_text" onblur="checkRealname(this.value);" type=text name="realname" id="realname">
 				  <div class=user_action_error id=realname_notice><font color="#999999">请填写你的真实姓名</font>
