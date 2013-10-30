@@ -1,9 +1,9 @@
-rewrite /(.*)/index.html$ /index.php?$1;
-rewrite /(.*)/index(d+).html$ /index.php?$1&page=$2;
-rewrite /(.*)/a(d+).html$ /index.php?$1/$2;
-rewrite ^/u/(d+)/(.*)$ /index.php?u&$1&$2;
-rewrite ^/u/(d+)/(.*)/$ /index.php?u&$1&$2;
-rewrite ^/u/(d+)$ /index.php?u&$1;
-rewrite ^/u/(d+)/$ /index.php?u&$1;
-rewrite /(.*)/index.html?(.*) /index.php?$1&$2;
-rewrite /(.*)/index(d+).html?(.*) /index.php?$1&page=$2&$2;
+rewrite /(.*)/index.html$ /index.php?$1 last;
+rewrite /(.*)/index(d+).html$ /index.php?$1&page=$2 last;
+rewrite /(.*)/a(d+).html$ /index.php?$1/$2 last;
+rewrite ^/u/(d+)/(.*)$ /index.php?u&$1&$2 last;
+rewrite ^/u/(d+)/(.*)/$ /index.php?u&$1&$2 last;
+rewrite ^/u/(d+)$ /index.php?u&$1 last;
+rewrite ^/u/(d+)/$ /index.php?u&$1 last;
+rewrite /(.*)/index.html?(.*) /index.php?$1&$2 last;
+rewrite /(.*)/index(d+).html?(.*) /index.php?$1&page=$2&$2 last;
