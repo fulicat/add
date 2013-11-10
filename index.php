@@ -39,14 +39,14 @@ if ($_G['is_cookie'] ==1){
 	if (isset($_SESSION['login_endtime']) && $_SESSION['login_endtime']>time()){
 		$_user_id = explode(",",authcode(isset($_SESSION[Key2Url("user_id","DWCMS")])?$_SESSION[Key2Url("user_id","DWCMS")]:"","DECODE"));
 	}
-	
+
 }
 $_G['user_id'] = $_user_id[0];
 
 if ($_G['user_id']!=""){
 	$_G['user_result'] = $user->GetOne(array("user_id"=>$_G['user_id']));
 	$_G['user_cache'] = $user->GetUserCache(array("user_id"=>$_G['user_id']));
-	
+
 }
 
 $query_string = explode("&",$_SERVER['QUERY_STRING']);
@@ -111,8 +111,8 @@ if (file_exists(ROOT_PATH."modules/area/area.class.php")){
 	//如果网站是采用二级地区分区的，则进行相关的配置
 	if (isset($_G['system']['con_area_part']) && $_G['system']['con_area_part']==1){
 		$city_area = explode(".",$_SERVER['SERVER_NAME']);
-		$area_city_nid = $city_area[0] ; 
-		
+		$area_city_nid = $city_area[0] ;
+
 		//获得网站的域名
 		if (count($city_area)==2){
 			$domain = $_SERVER['SERVER_NAME'];
@@ -121,7 +121,7 @@ if (file_exists(ROOT_PATH."modules/area/area.class.php")){
 		}
 		$_G['domain'] = $domain;//网站的域名
 		$_G['webname'] = "http://".$area_city_nid.".".$domain;//当前的域名
-			
+
 		//显示城市的列表
 		if ($area_city_nid =="city"){
 			$magic->assign("_G",$_G);
@@ -129,7 +129,7 @@ if (file_exists(ROOT_PATH."modules/area/area.class.php")){
 			$magic->display($tpl);
 			exit;
 		}
-		
+
 		//基本的地区跳转
 		elseif ($area_city_nid =="www" || count($city_area)==2){
 			if (isset($_REQUEST['set_city_nid'])){
@@ -143,19 +143,19 @@ if (file_exists(ROOT_PATH."modules/area/area.class.php")){
 			}
 			echo "<script>location.href='http://city.{$_G['domain']}';</script>";
 			exit;
-			
-			
+
+
 		}
-		
+
 		else{
-		
+
 			//循环寻找相关的城市信息
 			foreach ($_G['arealist'] as $key => $value){
 				if ($value['nid']==$area_city_nid){
 					//城市的基本信息
 					$_G['city_result'] = $_G['arealist'][$key];
 				}
-			}	
+			}
 			//循环寻找相关的地区信息
 			foreach ($_G['arealist'] as $key => $value){
 				//省份的基本信息
@@ -170,18 +170,18 @@ if (file_exists(ROOT_PATH."modules/area/area.class.php")){
 				if (isset($_REQUEST['area']) && $_REQUEST['area'] == $value['nid']){
 					$_G['area_result'] = $value;
 				}
-			}	
-			
+			}
+
 			//判断是不是城市的信息，如果不是，则返回城市页继续选择
 			if ($_G['province_result']['pid']!=0 || !isset($_G['city_result'])){
 				unset($_COOKIE['set_city']);
 				echo "<script>location.href='http://city.{$domain}';</script>";
 				exit;
 			}
-			
-		
+
+
 		}
-		
+
 	}
 }
 
@@ -194,7 +194,7 @@ if (file_exists(ROOT_PATH."core/site.class.php")){
 			if ($value['rank']!=""){
 				$_pur = explode(",",$value['rank']);
 				if (isset($_G['user_result']['type_id']) && in_array($_G['user_result']['type_id'],$_pur)){
-					$_G['site_list_pur'][$key] = $value; 
+					$_G['site_list_pur'][$key] = $value;
 				}
 			}
 		}
@@ -260,13 +260,13 @@ elseif ($_G['query_site'] == "u" ){
 	include_once(ROOT_PATH."modules/borrow/borrow.class.php");
 	$Bclass = new borrowClass();
 	$_G['U_uid'] = $user_id = $_G['query_string'][1];
-	
+
 	if(isset($_G['query_string'][2])){
 		$_G['query_string'][2]=str_replace("/",'',$_G['query_string'][2]);
 		if($_G['query_string'][2]=='borrowlist'||$_G['query_string'][2]=='borrowinvest') $U_gid=$_G['query_string'][2];
 		else $U_gid='';
 	}
-	
+
 	$magic->assign("U_gid",$U_gid);
 	$magic->assign("GU_uid",$_G['U_uid']);
 	$magic->display("u.html");
@@ -334,17 +334,17 @@ elseif ($_G['query_site'] == "action" ){
 	echo "<script>alert('添加成功');history.go(-1);</script>";
 }
 
-else{	
+else{
 		/**
 		* 关闭网站
 		**/
 		if ($_G['system']['con_webopen']==1){
 			die($_G['system']['con_closemsg']);
 		}
-		
-		
+
+
 		//获得站点和文章的信息
-		$quer = explode("/",$query_string[0]);	
+		$quer = explode("/",$query_string[0]);
 		if (isset($_REQUEST['query_site']) && $_REQUEST['query_site']!=""){
 			$site_nid =$_REQUEST['query_site'];
 		}else{
@@ -352,8 +352,8 @@ else{
 		}
 		$article_id = isset($quer[1])?$quer[1]:"";
 		$content_page = isset($quer[2])?$quer[2]:"";//内容的分页
-		
-		
+
+
 		$_G['article_id'] = $article_id;
 		//获得站点的信息
 		$_G['site_result'] = "";
@@ -364,7 +364,7 @@ else{
 				}
 			}
 		}
-		
+
 		//模块信息
 		$_G['module_result'] = "";
 		if (file_exists(ROOT_PATH."core/module.class.php")){
@@ -378,10 +378,10 @@ else{
 			$_G['site_result']['nid'] = "bbs";
 			include_once ("modules/dwbbs/dwbbs.inc.php");
 		}
-		
+
 		//判断站点是否存在
 		elseif (!empty($_G['site_result'])){
-		
+
 			//获得子站点的信息
 			foreach ($_G['site_list'] as $key => $value){
 				if ($value['pid'] == $_G['site_result']['site_id']){
@@ -398,7 +398,7 @@ else{
 					}
 				}
 			}
-			
+
 			if (isset($_G['site_presult']) && $_G['site_presult']['pid']!=0){
 				foreach ($_G['site_list'] as $key => $value){
 					if ($value['site_id'] == $_G['site_presult']['pid']){
@@ -406,7 +406,7 @@ else{
 					}
 				}
 			}
-			
+
 			//单条文章
 			if ($article_id!="" && is_numeric($article_id)){
 				$code = $_G['site_result']['code'];
@@ -417,14 +417,14 @@ else{
 					$result = $class->GetOne(array("id"=>$article_id,"click"=>true));
 					$_G['article'] = $result;
 				}
-			
+
 				if (count($_G['article']) <= 0){
 					$template = "error.html";
 				}else{
 					$template = $_G['site_result']['content_tpl'];
 				}
 			}
-			
+
 			//文章列表
 			else{
 				if ($_G['site_result']['pid']==0){
@@ -433,21 +433,20 @@ else{
 					$template = $_G['site_result']['list_tpl'];
 				}
 			}
-			
+
 		}else{
 			//var_dump($site_nid);exit;
 			if ($site_nid==""){
 			// 默认首页的模板文件
-				$template = !isset($_G['system']['con_index_tpl'])?"index.html":$_G['system']['con_index_tpl'];
+				$template = !isset($_G['system']['con_index_tpl'])?"flat/index.html":$_G['system']['con_index_tpl'];
 			}else{
-				$msg = array("嘿嘿！我是网站维护者阿来...您的输入有误,找不到相应的页面。","<a href='/'>返回首页</a>             <a href='/bbs/index.html'>来论坛玩玩</a>");
+				$msg = array("嘿嘿！您的输入有误,找不到相应的页面。","<a href='/'>返回首页</a>             <a href='/bbs/index.html'>来论坛玩玩</a>");
 			}
 		}
 		if (isset($msg) && $msg!=""){
 			$_G['msg'] = $msg;
 			$template = "error.html";
 		}
-		
 		$magic->assign("_G",$_G);
 		if (isset($_G['site_result']['code']) && $_G['site_result']['code']!=""){
 			$magic->display(format_tpl($template,array("code"=>$_G['site_result']['code'])));
@@ -455,9 +454,9 @@ else{
 			$magic->display($template);
 		}
 		exit;
-		
-		
-		
+
+
+
 }
 
 ?>
