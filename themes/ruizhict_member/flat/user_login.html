@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+{include file="flat/meta.html" template_dir="themes/ruizhict"}
+</head>
+<body>
+<!--头部开始-->
+{include file="flat/header.html" template_dir="themes/ruizhict"}
+<!--头部结束-->
+        <div id="MiddleWrap">
+            <div class="w">
+                <!-- 面包屑 -->
+                <div class="crumb">
+                    <dl>
+                        <dt>
+                            您的位置：
+                        </dt>
+                        <dd>
+                            <a href="/" title="{$_G.system.con_webname}首页">{$_G.system.con_webname}</a>&ensp;&gt;&ensp;<em>会员登录</em>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="login_box">
+                    <!-- 登录信息 -->
+                    <div class="user_info login_info">
+                        <form name="login" method="post" action="" >
+                            <fieldset>
+                                <legend>欢迎来到{$_G.system.con_webname}，请输入您的账号和密码</legend>
+                                <ul>
+                                    <li>
+                                        <label for="username"><em>*</em>用户名：</label>
+                                        {literal}
+                                        <input id="keywords" name="keywords" type="text" class="text long" maxlength="64" value="用户名/邮箱进行登录" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                        {/literal}
+                                        <span>请输入您网站的用户名</span>
+                                    </li>
+                                    <li class="clearfix">
+                                        <label for="password"><em>*</em>密&ensp;&ensp;&ensp;&ensp;码：</label>
+                                        <input class="text long" type="password" name="password" id="password" maxlength="16" />
+                                        <span>请输入6到16位密码</span>
+                                    </li>
+                                    <li class="clearfix">
+                                        <label for="code"><em>*</em>验证码：</label><input name="valicode" type="text" size="8" maxlength="4" class="text short" /><span><img src="/plugins/index.php?q=imgcode" alt="点击刷新" onclick="this.src='/plugins/index.php?q=imgcode&amp;t=' + Math.random();" align="absmiddle" style="cursor:pointer"></span>
+                                    </li>
+                                    <li class="clearfix dark">
+                                        <label> </label><input name="cookietime" type="checkbox" checked="checked" class="checkbox" value="7200"><span>记住我</span><span><a href="/?user&amp;q=action/getpwd" class="blue" title="忘记密码">忘记密码?</a></span>
+                                    </li>
+                                    <li class="clearfix">
+                                        <label> </label><button type="submit" class="submit_btn login" title="立即登录">立即登录</button>
+                                    </li>
+                                </ul>
+                            </fieldset>
+                        </form>
+                    </div><!-- 右侧 -->
+                    <div class="sidebar">
+                        <p>
+                            还不是安德贷会员？
+                        </p>
+                        <p>
+                            <a href="/?user&amp;q=action/reg" title="立即注册" class="submit_btn regist">立即注册</a>
+                        </p>
+                        <dl>
+                            <dt class="finan">
+                                我要理财
+                            </dt>
+                            <dd>
+                                理财优势：低门槛、快乐理财、月收本金利息、享受10%以上的投资收益。
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt class="loan">
+                                我要借款
+                            </dt>
+                            <dd>
+                                借款优势：便捷、低费率、服务全国、贷前0费用、全新网络借款体验。
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="Mt"></div>
+        </div><!--中间部分 End-->
+        {include file="flat/footer.html" template_dir="themes/ruizhict"}
+    </body>
+</html>

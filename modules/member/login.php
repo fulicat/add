@@ -31,7 +31,7 @@ if (isset($_POST['password'])){
 			}else{
 				$ctime = time()+60*60;
 			}
-			
+
 			if ($_G['is_cookie'] ==1){
 				setcookie(Key2Url("user_id","DWCMS"),authcode($data['user_id'].",".time(),"ENCODE"),$ctime);
 			}else{
@@ -61,5 +61,5 @@ if (isset($_POST['password'])){
 $_U['login_msg'] = $login_msg;
 }
 $title = 'ÓÃ»§µÇÂ¼';
-$template = 'user_login.html';
+$template = 'flat/user_login.html';
 ?>

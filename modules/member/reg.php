@@ -13,7 +13,7 @@ if (!defined('ROOT_PATH'))  die('不能访问');//防止直接访问
 			$index = post_var($var);
 			$index["type_id"] = 2;
 			$user_id = $user->AddUser($index);
-			
+
 			if ($user_id>0){
 				$data['user_id'] = $user_id;
 				$data['username'] = $index['username'];
@@ -25,7 +25,7 @@ if (!defined('ROOT_PATH'))  die('不能访问');//防止直接访问
 				$data['type'] = "reg";
 				$result = $user->SendEmail($data);
 				$data['reg_step'] = "reg_email";
-				
+
 				//set_session($data);//注册session
 				//建议cookie
 				//setcookie("user_id",$user_id,time()+60*60);
@@ -35,7 +35,7 @@ if (!defined('ROOT_PATH'))  die('不能访问');//防止直接访问
 				}else{
 					$ctime = time()+60*60;
 				}
-				
+
 				if ($_G['is_cookie'] ==1){
 					setcookie(Key2Url("user_id","DWCMS"),authcode($user_id.",".time(),"ENCODE"),$ctime);
 				}else{
@@ -50,7 +50,7 @@ if (!defined('ROOT_PATH'))  die('不能访问');//防止直接访问
 		}
 		else{
 			$title = '用户注册';
-			$template = 'user_reg_info.html';
-			
+			$template = 'flat/user_reg_info.html';
+
 		}
 ?>

@@ -160,3 +160,4 @@ html { _background-image: url(about:blank); _background-attachment: fixed; }
 .sidebar dl dt.finan { background:url(../images/y_icon_1.gif) no-repeat left center; }
 .sidebar dl dt.loan { background:url(../images/y_icon_2.gif) no-repeat left center; }
 .sidebar dl dd { color:#666; }
+.user_action_error { color: #FF0000; }
