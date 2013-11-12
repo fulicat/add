@@ -1,6 +1,5 @@
 {include file="header.html"}
 
-
 <!--子栏目 开始-->
 {literal}
 <?
@@ -12,13 +11,13 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 {if $magic.request.type==late}
 
 <div class="wrap950 invest">
-	<div class="invest_order"> 
+	<div class="invest_order">
 		<div class="floatl">
 			<strong>逾期的借款人</strong>
 		</div>
 		<div class="floatr">
-			显示： <a href="{$_G.epurl}&epage=20"><img src="{$tpldir}/images/ico_20.gif" align="absmiddle" /></a> 
-			<a href="{$_G.epurl}&epage=40"><img src="{$tpldir}/images/ico_40.gif" align="absmiddle" /></a> 
+			显示： <a href="{$_G.epurl}&epage=20"><img src="{$tpldir}/images/ico_20.gif" align="absmiddle" /></a>
+			<a href="{$_G.epurl}&epage=40"><img src="{$tpldir}/images/ico_40.gif" align="absmiddle" /></a>
 			<a href="{$_G.epurl}&epage=60"><img src="{$tpldir}/images/ico_60.gif" align="absmiddle" /></a> &nbsp;&nbsp;
 		</div>
 	</div>
@@ -59,11 +58,11 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					<li>最长逾期天数:{$var.late_numdays}天</li>
 					<li >更新时间：{$_G.nowtime|date_format:"Y-m-d H:i:s"}</li>
 				</ul></td>
-			   
+
 			</tr>
 			{/foreach}
-		</table> 
-		
+		</table>
+
 	</div>
 	<!--分页开始-->
 				<div>
@@ -74,7 +73,7 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					</table>
 				</div>
 				<!--分页结束-->
-	
+
 {/list}
 </div>
 
@@ -93,28 +92,28 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 			</div>
 			<div class="bo_t">还款方式：</div>
 			<div class="bo_c">
-				{linkages name="style" nid="borrow_style" value="$magic.request.style" default="没有限制"} 
+				{linkages name="style" nid="borrow_style" value="$magic.request.style" default="没有限制"}
 			</div>
 			<div class="bo_t">借款目的：</div>
 			<div class="bo_c">
-				{linkages name="use" nid="borrow_use" value="$magic.request.use" default="没有限制"}  
+				{linkages name="use" nid="borrow_use" value="$magic.request.use" default="没有限制"}
 			</div>
 		</div>
-		
+
 		<div class="bor">
 			<div class="bo_t">金额范围：</div>
 			<div class="bo_c">
-				{linkages name="account1" nid="account_amange" type="value" value="$magic.request.account1" }  
-				
-				到 
-				{linkages name="account2" nid="account_amange" type="value" value="$magic.request.account2" default="没有限制"}  
-				
+				{linkages name="account1" nid="account_amange" type="value" value="$magic.request.account1" }
+
+				到
+				{linkages name="account2" nid="account_amange" type="value" value="$magic.request.account2" default="没有限制"}
+
 			</div>
 			<div class="bo_t">期 限：</div>
 			<div class="bo_c">
-				
-				{linkages name="limittime" nid="borrow_time_limit" type="value" value="$magic.request.limittime" default="没有限制"}  
-				
+
+				{linkages name="limittime" nid="borrow_time_limit" type="value" value="$magic.request.limittime" default="没有限制"}
+
 			</div>
 			<div class="bo_t">奖 励：</div>
 			<div class="bo_c">
@@ -122,16 +121,16 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					<option value="">无限制</option>
 					<option value="1" {if $magic.request.award=="1"} selected="selected"{/if}>只显示有奖励的</option>
 					<option value="2" {if $magic.request.award=="2"} selected="selected"{/if}>只显示没奖励的</option>
-				</select> 
+				</select>
 			</div>
 		</div>
-		
+
 		<div class="bor">
 			<div class="bo_t">所在地区：</div>
 			<div class="bo_c" style="width:230px;">
-				<script src="/plugins/index.php?q=area&type=p,c&area={$magic.request.city|default:$magic.request.province}"></script> 
+				<script src="/plugins/index.php?q=area&type=p,c&area={$magic.request.city|default:$magic.request.province}"></script>
 			</div>
-			
+
 			<div class="bo_c">
 				<input type="image" src="{$tpldir}/images/sousuo.gif"> <input type="hidden" name="type" value="{$magic.request.type}" />
 			</div>
@@ -143,35 +142,35 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 <!--投资搜索 结束-->
 
 <div class="wrap950 invest">
-	<div class="invest_order"> 
+	<div class="invest_order">
 		<div class="floatl">
 		{if $var.is_vouch!=1}
-			<span><img src="{$tpldir}/images/order.gif" align="absmiddle" /></span> 
+			<span><img src="{$tpldir}/images/order.gif" align="absmiddle" /></span>
 			<span>
 				{if $magic.request.order=='account_up'}<a href="{$_G.uurl}&order=account_down"><font color="#FF0000">金额↑</font></a>
 				{elseif $magic.request.order=='account_down'}<a href="{$_G.uurl}&order=account_up"><font color="#FF0000">金额↓</font></a>
 				{else}<a href="{$_G.uurl}&order=account_up">金额</a>{/if}
-			</span> 
+			</span>
 			<span>
 				{if $magic.request.order=='apr_up'}<a href="{$_G.uurl}&order=apr_down"><font color="#FF0000">利率↑</font></a>
 				{elseif $magic.request.order=='apr_down'}<a href="{$_G.uurl}&order=apr_up"><font color="#FF0000">利率↓</font></a>
 				{else}<a href="{$_G.uurl}&order=apr_up">利率</a>{/if}
-			</span> 
+			</span>
 			<span>
 				{if $magic.request.order=='jindu_up'}<a href="{$_G.uurl}&order=jindu_down"><font color="#FF0000">进度↑</font></a>
 				{elseif $magic.request.order=='jindu_down'}<a href="{$_G.uurl}&order=jindu_up"><font color="#FF0000">进度↓</font></a>
 				{else}<a href="{$_G.uurl}&order=jindu_up">进度</a>{/if}
-			</span> 
+			</span>
 			<span>
 				{if $magic.request.order=='credit_up'}<a href="{$_G.uurl}&order=credit_down"><font color="#FF0000">信用↑</font></a>
 				{elseif $magic.request.order=='credit_down'}<a href="{$_G.uurl}&order=credit_up"><font color="#FF0000">信用↓</font></a>
 				{else}<a href="{$_G.uurl}&order=credit_up">信用</a>{/if}
-			</span>  
+			</span>
 			{/if}
 		</div>
 		<div class="floatr">
-			显示： <a href="{$_G.epurl}&epage=20"><img src="{$tpldir}/images/ico_20.gif" align="absmiddle" /></a> 
-			<a href="{$_G.epurl}&epage=40"><img src="{$tpldir}/images/ico_40.gif" align="absmiddle" /></a> 
+			显示： <a href="{$_G.epurl}&epage=20"><img src="{$tpldir}/images/ico_20.gif" align="absmiddle" /></a>
+			<a href="{$_G.epurl}&epage=40"><img src="{$tpldir}/images/ico_40.gif" align="absmiddle" /></a>
 			<a href="{$_G.epurl}&epage=60"><img src="{$tpldir}/images/ico_60.gif" align="absmiddle" /></a> &nbsp;&nbsp;
 		</div>
 	</div>
@@ -207,7 +206,7 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					<li>{$var.use|linkage}</li>
 					<li>{$var.style|linkage:"borrow_style"}</li>
 				</ul></td>
-				
+
 				{if $var.is_vouch==1}
 				<td ><ul class="li">
 					<li >
@@ -232,13 +231,13 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					</li>
 					<li>
 					已经完成：
-						
+
 						<span >&nbsp;{$var.scale}%</span></li>
 					<li>已完成投标：{$var.account_yes}</li>
 					<li>投标的状态：{if $var.status==3}成功招标{elseif $var.scale==100}满标审核中{else}正在招标中{/if}</li>
 				</ul></td>
 				{/if}
-				
+
 			   <td  ><ul class="li">
 					<li class="cu"><img src="{$_G.system.con_credit_picurl}{ $var.credit_pic}" title="{$var.credit_jifen}分"  /></li>
 					<li>招标期限：{$var.time_limit}个月</li>
@@ -264,8 +263,8 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 </td>
 			</tr>
 			{/foreach}
-		</table> 
-		
+		</table>
+
 	</div>
 	<!--分页开始-->
 				<div>
@@ -276,7 +275,7 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
 					</table>
 				</div>
 				<!--分页结束-->
-	
+
 {/list}
 </div>
 {/if}

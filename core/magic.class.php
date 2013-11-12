@@ -6,8 +6,8 @@
  * $Author: QQ134716
  * $Time:2012-03-09
  * $Vesion:1.0
- * $Update:None 
- * $UpdateDate:None 
+ * $Update:None
+ * $UpdateDate:None
 ******************************/
 
 /**
@@ -17,34 +17,34 @@ if (!defined('MAGIC_DIR')) {
     define('MAGIC_DIR', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 }
 
-class Magic 
+class Magic
 {
 	var $template_dir = "themes";//定义模板目录
-	
+
 	var $compile_dir = "data/compile";//定义模板缓存目录
-	
+
 	var $plugins_dir = "plugins/magic";//定义插件目录
-	
+
 	var $left_tag = "{";//左边的样式
-	
+
 	var $right_tag = "}";//右边的样式
-	
+
 	var $mysql_file = 'mysql.class.php';//mysql 文件
-	
+
 	var $mysql_open = false;//数据库文件是否打开
-	
+
 	var $magic_vars = array();//magic的定义变量
-	
+
     var $file_perms = 0644;//文件的属性
-	
+
 	var $dir_perms = 0711;//文件的属性
-	
+
 	var $is_compile   =  true;//模板编译检查
-	
+
 	var $force_compile = false;//是否一直编译
-	
+
 	var $template_error = false;//模板编译错误
-	
+
 	/**
 	 * 构造函数
 	 */
@@ -53,7 +53,7 @@ class Magic
 		$this->mysql = $mysql;
 		$this->assign('SCRIPT_NAME', isset($_SERVER['SCRIPT_NAME']) ? $_SERVER['SCRIPT_NAME']: @$GLOBALS['HTTP_SERVER_VARS']['SCRIPT_NAME']);
 	}
-	
+
 	/**
      * 定义模板的值
      *
@@ -72,11 +72,11 @@ class Magic
                 $this->magic_vars[$tpl_var] = $value;
         }
     }
-	
+
 	/**
      * 清除定义的变量
      *
-     * @param string $tpl_var 
+     * @param string $tpl_var
      */
     function assign_clear($tpl_var) {
         if (is_array($tpl_var)) {
@@ -87,7 +87,7 @@ class Magic
             unset($this->magic_vars[$tpl_var]);
 		}
     }
-	
+
 	 /**
      * 清除所有的变量
      *
@@ -95,16 +95,16 @@ class Magic
     function assign_clear_all() {
         $this->_tpl_vars = array();
     }
-	
-	
+
+
 	function magic_include($parse){
 		$include_file = $parse['file'];
 		$template_dir = empty($parse['vars']['template_dir'])?$this->template_dir:$parse['vars']['template_dir'];
 		$this->magic_vars = array_merge($this->magic_vars, $parse['vars']);
 		$this->compile_file($include_file,$template_dir);
 	}
-	
-	
+
+
 	/**编译的文件名路劲**/
 	function compile_path($template_name){
 		$new_compile_name = "%".urlencode($template_name).".php";
@@ -114,7 +114,7 @@ class Magic
 			$this->compile_path =  $new_compile_name;
 		}
 	}
-	
+
 	/**模板的文件名路劲**/
 	function template_path($template_name,$template_dir=""){
 		if ($template_dir!=""){
@@ -124,9 +124,9 @@ class Magic
 		}else{
 			$this->template_path = $template_name;
 		}
-		
+
 	}
-	
+
 	function template_read($filename) {
         if ( file_exists($filename) && is_readable($filename) && ($fd = @fopen($filename, 'rb')) ) {
             $contents = '';
@@ -139,7 +139,7 @@ class Magic
             return false;
         }
     }
-	
+
 	//创建文件
 	function template_write($compile_path,$contents) {
 		$this->template_create_dir(dirname($compile_path));//先创建目录
@@ -155,7 +155,7 @@ class Magic
 		@chmod($template_path, $this->file_perms);
 		return true;
 	}
-	
+
 	/* 循环创建目录 */
 	function template_create_dir($compile_path) {
 		if (DIRECTORY_SEPARATOR!='/') {
@@ -164,7 +164,7 @@ class Magic
 		if (is_dir($compile_path)){
 			return true;
 		}
-		
+
 		if (@ mkdir($compile_path, $this->dir_perms)){
 			return true;
 		}
@@ -172,10 +172,10 @@ class Magic
 		if (!$this->template_create_dir(dirname($compile_path))){
 			return false;
 		}
-		
+
 		return mkdir($compile_path, $this->dir_perms);
 	}
-	
+
 	function check_compiled($template_path, $compile_path){
 		if ($this->force_compile) {
 			return false;
@@ -190,13 +190,13 @@ class Magic
 			return false;
 		}
 	}
-	
+
 	function gethtml($template_name,$template_dir){
 		$this->compile_path($template_name);//编译文件的完整路劲
 		//return $this->compile_path;
 		$this->template_path($template_name,$template_dir);//模板的完整路劲
 		$_template_path = $this->template_path;
-		
+
 		$_template_dir = $this->template_dir ;
 		$this->template_dir = $template_dir;
 		$this->template_path = $template_dir."/".$template_name;
@@ -206,15 +206,15 @@ class Magic
 		if (!file_exists($this->template_path)){
 			$this->trigger_error("the template $this->template_path not exitst");
 		}
-		
+
 		$_contents = $this->template_read($this->template_path);//读取模板的内容
 		$contents = $this->compile_content($_contents);//内容编译
-		
+
 		/** 检查是否需要编译，是则自动编译并读取相关的文件 **/
 		if (!$this->check_compiled($this->template_path,$this->compile_path)){
 			$this->template_write($this->compile_path,$contents);
 		}
-		
+
 		if(!$this->is_compile){
 			$this->compile_path = tempnam ("/tmp", "FOO");
 			$this->template_write($this->compile_path,$contents);
@@ -227,9 +227,9 @@ class Magic
 		$this->template_path = $_template_path;
 		$this->template_dir = $_template_dir;
 		return $contents;
-		
+
 	}
-	
+
 	 /**
      * 执行显示模板文件
      *
@@ -240,45 +240,45 @@ class Magic
     function display($template_name,$template_dir=null,$type=null) {
 		$this->compile_file($template_name,$template_dir,$type);
 	}
-	
+
 	function compile_file($template_name,$template_dir="",$type=""){
 		$this->template_path($template_name,$template_dir);//模板的完整路劲
 		$this->compile_path($template_name);//编译文件的完整路劲
-		
+
 		/* 判断文件是否存在 */
 		if (!file_exists($this->template_path)){
 			$this->trigger_error("the template $this->template_path) not exitst");
 		}
-		
+
 		$_contents = $this->template_read($this->template_path);//读取模板的内容
 		$contents = $this->compile_content($_contents);//内容编译
-		
+
 
 		/** 检查是否需要编译，是则自动编译并读取相关的文件 **/
 		if (!$this->check_compiled($this->template_path,$this->compile_path)){
 			$this->template_write($this->compile_path,$contents);
 		}
-		
+
 		if(!$this->is_compile){
 			$this->compile_path = tempnam ("/tmp", "FOO");
 			$this->template_write($this->compile_path,$contents);
 		}
-		
+
 		ob_start();
 		include $this->compile_path ;
 		$contents = ob_get_contents();
 		ob_end_clean();
 		echo $contents;
-		
+
 	}
-	
+
 	function compile_content($content){
 		if ($content == "") return "";
 		$left_tag = preg_quote($this->left_tag, '~');
         $right_tag = preg_quote($this->right_tag, '~');
 		$text_blocks = array();
 		$compiled_tags = array();
-		
+
         /* 用替换的思想替换掉literal */
 		$ldq = preg_quote($this->left_tag, '~');
         $rdq = preg_quote($this->right_tag, '~');
@@ -290,19 +290,19 @@ class Magic
 			$$_m = $value;
 			$content = str_replace($value,$_m,$content);
 		}
-		
+
         preg_match_all("~{$left_tag}\s*(.*?)\s*{$right_tag}~s", $content, $_match);
         $template_tags = $_match[1];
         /* 区分所有的模块 */
         $text_blocks = preg_split("~{$left_tag}.*?{$right_tag}~s", $content);
-		
-			
+
+
 		/* 模块的集成 */
 		for ($i = 0; $i < count($template_tags); $i++) {
 			$compiled_tags[] = $this->compile_tag($template_tags[$i]);
 		}
-		
-		
+
+
 		/* 模块的集成 */
 		$content = "";
         for ($i = 0; $i <  count($text_blocks); $i++) {
@@ -318,8 +318,8 @@ class Magic
         }
 		return $content;
 	}
-	
-	
+
+
 	function compile_tag($template_tag){
 		preg_match_all('~( (?>[^"\"\'=\s]+))+ | [=]~x', $template_tag, $match);
 		$tag_str = $match[0];
@@ -327,12 +327,12 @@ class Magic
 		/* 变量 */
 		if ($tag_command{0} == '$' ){
 			return $this->compile_variable_tag($template_tag);
-		}	
+		}
 		/* if判断语句 */
 		elseif ($tag_command == 'if' || $tag_command == 'else' || $tag_command == 'elseif' || $tag_command == '/if'){
 			return $this->compile_if_tag($tag_command,$template_tag);
 		}
-		
+
 		/* foreach */
 		elseif ($tag_command == 'foreach' || $tag_command == '/foreach'){
 			$parse_var = $this->compile_parse_var($tag_str);
@@ -342,8 +342,8 @@ class Magic
 		elseif ($tag_command == 'literal' || $tag_command == '/literal'){
 			//return $this->compile_literal_tag($tag_command,$parse_var);
 		}
-		
-		
+
+
 		/* include */
 		elseif ($tag_command == 'include'){
 			$parse_var = $this->compile_parse_var($tag_str);
@@ -369,9 +369,9 @@ class Magic
 				$this->trigger_error("unrecognized tag '$tag_command'", E_USER_ERROR, __FILE__, __LINE__);
 			}
 		}
-		
+
 	}
-	
+
 	function compile_variable_tag($template_tag){
 		$_tpl_var = explode("|",$template_tag);
 		$result = $this->compile_var_tag($_tpl_var[0]);
@@ -421,7 +421,7 @@ class Magic
 			return $output;
 		}
 	}
-	
+
 	//处理foreachif等的
 	function compile_parse_var($tag_str){
 		$parse_var = array();
@@ -431,12 +431,12 @@ class Magic
 					$parse_var[$tag_str[$key-1]] = $this->compile_var_tag($tag_str[$key+1]);
 				}
 			}
-			return $parse_var;		
+			return $parse_var;
 		}else{
 			return $tag_str;
 		}
 	}
-	
+
 	function magic_modifier ($tag_str,$string,$parse_var){
 		$_file = $this->plugins_dir."/modifier.".$tag_str.".php";
 		if (file_exists($_file)){
@@ -449,7 +449,7 @@ class Magic
 			}
 		}
 	}
-	
+
 	function magic_function ($tag_str,$parse_var){
 		$_file = $this->plugins_dir."/function.".$tag_str.".php";
 		if (file_exists($_file)){
@@ -481,7 +481,7 @@ class Magic
 			return $output;
 		}
 	}
-	
+
 	//直接获取的函数
 	function magic_sqlfunc ($tag_str,$parse_var){
 		$_file = $this->plugins_dir."/sqlfunc.".$tag_str.".php";
@@ -499,7 +499,7 @@ class Magic
 		$_tag_str = str_replace("/","",$tag_str);
 		$_file = $this->plugins_dir."/sql.".$_tag_str.".php";
 		preg_match_all('~( (?>[^"\"=\s]+))+ | [ \"=]~x', $template_tag, $match);
-		
+
 		$tag_str = $match[0];
         $tag_command = $tag_str[0];
 		$_var = array();
@@ -510,7 +510,7 @@ class Magic
 		$d =0;
 		$n = 1;
 		for ($i=1 ;$i<count($tag_str);$i++){
-			
+
 			if ( $i>$q && $tag_str[$i]!=" " &&  $a == "b"){//判断第一个的key
 				$a = $tag_str[$i];
 				$_var[$a] = "";
@@ -525,7 +525,7 @@ class Magic
 			if ($m==1 &&  $i>$q && $i>$d && $tag_str[$i]!="\"" &&  $a != "b" ){
 					$_var[$a] .= $this->compile_var_tag($tag_str[$i]);
 			}
-			
+
 			if ($i>$q && $tag_str[$i]=="\"" && $m==1 ){
 				$q = $i;
 				$a = "b";
@@ -542,7 +542,7 @@ class Magic
 		$parse_var .= ")";
 		$var_name = !isset($_var['var'])?"var":$_var['var'];
 		$_default = !isset($_var['default'])?"":$_var['default'];
-		
+
 		if (file_exists($_file)){
 			if ($tag_str[0]{0} != "/"){
 				$output = "";
@@ -556,7 +556,7 @@ class Magic
 
 		}
 	}
-	
+
 	function magic_sql ($tag_str,$parse_var,$magic_vars,$mysql){
 		$_file = $this->plugins_dir."/sql.".$tag_str.".php";
 		include_once $_file;
@@ -566,10 +566,10 @@ class Magic
 		}else{
 			return $this->trigger_error("modifier: missing function '$_func' attribute");
 		}
-		
+
 	}
-	
-	
+
+
 	function magic_block ($tag_str,$parse_var){
 		$_tag_str = str_replace("/","",$tag_str);
 		$_file = $this->plugins_dir."/block.".$_tag_str.".php";
@@ -583,9 +583,9 @@ class Magic
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	function compile_literal_tag(){
 		return "";
 	}
@@ -598,8 +598,8 @@ class Magic
 				$tag_str = str_replace("$","",$tag_str);
 				$_var = explode(".",$tag_str);
 				if (count($_var)==1){
-					if (isset($this->magic_vars['$tag_str'])) { $this->magic_vars['$tag_str'] = "";} 
-					
+					if (isset($this->magic_vars['$tag_str'])) { $this->magic_vars['$tag_str'] = "";}
+
 					$result .= "\$this->magic_vars['$tag_str']";
 				}elseif ($_var[0] == "magic"){
 					$__var = "";
@@ -622,20 +622,20 @@ class Magic
 						$result .= "\$_SESSION".$__var;
 					}
 				}else{
-					
+
 					$result .= "\$this->magic_vars";
 					foreach($_var as $key ){
 						$result .= "['$key']";
 					}
 				}
-				
+
 			}else{
 				 $result .= $tag_str;
 			}
 		}
 		return $result;
 	}
-	
+
 	function compile_if_tag ($tag_command,$template_tag){
 		if ($tag_command == "if" || $tag_command == "elseif"){
 			$_preg_match = " |!==|*|-|+|\/|%|===|==|!=|<>|<<|>>|<=|>=|\&\&|\|\||>|<|\(|\)|\"\"|\'";
@@ -646,7 +646,7 @@ class Magic
 			$result = "";
 			$_res = "";
 			foreach ($tag_str as $key){
-				
+
 					if ($key{0} == "$"){
 						$_result = $this->compile_var_tag($key);
 						$result .= " $_result";
@@ -665,7 +665,7 @@ class Magic
 			return "<? endif; ?>";
 		}
 	}
-	
+
 	function compile_include_tag($tag_command,$parse_var) {
 		$arg_list = array();
 		if (empty($parse_var['file'])) {
@@ -690,9 +690,9 @@ class Magic
 		}else{
 			$output  = "<? if (!isset($_file)) $_file='';$_arg; \$_from = $_file; ";
 			$output  .= " \$this->magic_include(array('file' => \$_from, 'vars' => array(".implode(',', (array)$arg_list)."))); unset(\$_from);?>";
-			return $output; 
+			return $output;
 		}
-		
+
 	}
 	function compile_editor_tag($parse_var){
 		$_name = $parse_var['name'];
@@ -718,7 +718,7 @@ class Magic
 			}
 			if (empty($_table) && !empty($parse_var['table'])){
 				$_table = $parse_var['table'];
-			}else{	
+			}else{
 				return $this->trigger_error("loop: missing 'table' attribute");
 			}
 			$var_name = empty($parse_var['name'])?"var":$parse_var['name'];
@@ -751,12 +751,12 @@ class Magic
 				return $this->trigger_error("foreach: missing 'from' attribute");
 			}
 			$from = $parse_var['from'];
-			
+
 			if (empty($parse_var['item'])) {
 				return $this->trigger_error("foreach: missing 'item' attribute");
 			}
 			$item = $parse_var['item'];
-			
+
 			if (isset($parse_var['key'])) {
 				$key  = $parse_var['key'];
 				if (!preg_match('~^\w+$~', $key)) {
@@ -780,7 +780,7 @@ class Magic
 			} else {
 				$result .= "if (count(\$_from)>0):\n;";
 				$result .= "    foreach (\$_from as $key_part \$this->magic_vars['$item']):\n";
-				
+
 			}
 			$result .= '?>';
 			return $result;
@@ -789,7 +789,7 @@ class Magic
 		}
 	}
 
-	
+
 
 	 /**
      * 触发器错误
@@ -797,7 +797,7 @@ class Magic
      * @param string $error_msg
      * @param integer $error_type
      */
-    function trigger_error($error_msg, $error_type = E_USER_WARNING) {
+    function trigger_error($error_msg, $error_type = E_USER_WARNING) {//debug_print_backtrace();
         trigger_error("Magic error: $error_msg", $error_type);
     }
 }
