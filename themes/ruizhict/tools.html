@@ -1,6 +1,6 @@
 {include file="header.html"}
- 
- 
+
+
 <div class="con_box t10">
      <div>
 	     <div class="title sdf">
@@ -42,23 +42,7 @@
 			<form action="/phone/index.html" method="get" onsubmit="return chk()">	手机号码：<input type="text" name="phone"  id="phone" size="20" value="<? echo $_REQUEST['phone'];?>" />   <input type="submit" value="查 询" /></form>
 		</div>
 	</div>
-<script> 
-function chk()
-{
-var tel = document.all("phone").value;
- 
-if(/^13\d{9}$/g.test(tel)|| (/^18\d{9}$/g.test(tel)) || (/^15\d{9}$/g.test(tel)))
-        {;
-		      return true;
-         }
-else
-        {
-           alert("手机号错误");
-		   return false;
-         }
-}
-</script>
-		</div>
+	</div>
 </div>
 </div>
 </div>
@@ -74,7 +58,7 @@ else
   </tr>
 </table>
           </div>
-	   
+
 </div>
 {literal}
 <div class="m_l_bor" style="padding:10px;">

@@ -49,7 +49,7 @@ if ($_U['query_sort'] == "action"){
 		$username = $_REQUEST['username'];
 		$sql = "select * from {user} where `username`='{$username}'";
 		$result = $mysql->db_fetch_array($sql);
-		
+
 		if ($result == false){
 			echo true;exit;
 		}else{
@@ -62,7 +62,7 @@ if ($_U['query_sort'] == "action"){
 		$email = urldecode($_REQUEST['email']);
 		$sql = "select * from {user} where email='{$email}'";
 		$result = $mysql->db_fetch_array($sql);
-	
+
 		if ($result == false){
 			echo true;exit;
 		}else{
@@ -82,13 +82,13 @@ if ($_U['query_sort'] == "action"){
 		}
 		include_once("login.php");
 	}
-	
+
 
 	# 退出页面
 	elseif ($_U['query_class'] == 'logout'){
 		include_once("logout.php");
 	}
-	
+
 	/*
 	# 用户注册页面
 	elseif ($_U['query_class'] == 'reg'){
@@ -102,23 +102,23 @@ if ($_U['query_sort'] == "action"){
 				exit;
 			}
 		}
-		
-	
+
+
 		$_SESSION['reg_step'] = "";
 		$title = '用户注册';
 		$template = 'user_reg.html';
 	}
-	
+
 	*/
 	# 用户注册页面
 	elseif ($_U['query_class'] == 'reg'){
 		include_once("reg.php");
-		
+
 	}
-	
+
 	# 发送激活邮件
 	elseif ($_U['query_class'] == 'reg_email'){
-	
+
 		if ($_G['user_id']==""){
 			header('location:index.php?user&q=action/login');
 		}
@@ -147,11 +147,11 @@ if ($_U['query_sort'] == "action"){
 				$_U['sendemail'] = $result['email'];
 				$emailurl = "http://mail.".str_replace("@","",strstr($result['email'],"@"));
 				$_U['emailurl'] = $emailurl;
-				$template = 'user_reg_email.html';
+				$template = 'flat/user_reg_email.html';
 			}
 		}
 	}
-	
+
 	# 发送激活邮件
 	elseif ($_U['query_class'] == 'reg_send_email'){
 		if ($_G['user_id']==""){
@@ -193,8 +193,8 @@ if ($_U['query_sort'] == "action"){
 		}
 		exit;
 	}
-	
-	
+
+
 	# 激活
 	elseif ($_U['query_class'] == 'active') {
 		require_once("modules/credit/credit.class.php");
@@ -202,7 +202,7 @@ if ($_U['query_sort'] == "action"){
 		$_id = explode(",",authcode(trim($id),"DECODE"));
 		$data['user_id'] = $_id[0];
 		$result = $user->ActiveEmail($data);
-		
+
 		$result = creditClass::GetTypeOne(array("nid"=>"email"));
 		$_A['arrestation_value'] = $result['value'];
 		$_A['credit_type_id'] = $result['id'];
@@ -221,9 +221,9 @@ if ($_U['query_sort'] == "action"){
 		else{
 			$msg = array('激活失败','','index.php?user&q=reg_email');
 		}
-		
+
 	}
-	
+
 	# 头像
 	elseif ($_U['query_class'] == 'reg_avatar') {
 		if($_G['user_id']==""){
@@ -233,7 +233,7 @@ if ($_U['query_sort'] == "action"){
 		if (isset($_REQUEST['jump']) && $_REQUEST['jump'] == "true"){
 			$_SESSION['reg_step'] = "";
 		}
-		
+
 		if (isset($_SESSION['reg_step']) && $_SESSION['reg_step']=="reg_email"){
 			header('location:index.php?user&q=action/reg_email');
 			exit;
@@ -254,12 +254,12 @@ if ($_U['query_sort'] == "action"){
 			}
 		}
 	}
-	
+
 	# 取回密码页面
 	elseif ($_U['query_class'] == 'getpwd'){
 		include_once("getpwd.php");
 	}
-	
+
 	# 重新修改密码
 	elseif ($_U['query_class'] == 'updatepwd'){
 		$updatepwd_msg = "";
@@ -283,7 +283,7 @@ if ($_U['query_sort'] == "action"){
 		}else{
 			$updatepwd_msg = "您的操作有误，请勿乱操作";
 		}
-		
+
 		$updatepwd_msg = "";
 		if(isset($_POST['password']) && $updatepwd_msg=="" ){
 			$password = $_POST['password'];
@@ -305,11 +305,11 @@ if ($_U['query_sort'] == "action"){
 				}
 			}
 		}
-		
+
 		$_U['update_msg'] = $update_msg;
 		$_U['updatepwd_msg'] = $updatepwd_msg;
 		$template = 'user_updatepwd.html';
-		
+
 	}
 	# 检查提示
 	elseif ($_U['query_class'] == 'check'){
@@ -320,20 +320,20 @@ if ($_U['query_sort'] == "action"){
 		}
 		exit;
 	}
-	
-	#要请好友注册	
-	elseif ($_U['query_class'] == "reginvite"){	
+
+	#要请好友注册
+	elseif ($_U['query_class'] == "reginvite"){
 		$_user_id = Url2Key($_REQUEST['u'],"reg_invite");
 		$_SESSION['reginvite_user_id'] = $_user_id[1];
 		header('location:index.php?user&q=action/reg');
 	}
-	
-# 用户中心处理数据的地方	
-}elseif ($_U['query_sort'] == "code"){	
+
+# 用户中心处理数据的地方
+}elseif ($_U['query_sort'] == "code"){
 	if  (!isset($_G['user_id']) || $_G['user_id']==""){
 			header('location:index.php?user&q=action/login');
 	}
-	
+
 	if (is_file(ROOT_PATH."/modules/{$_U['query_class']}/{$_U['query_class']}.inc.php")){
 		include(ROOT_PATH."/modules/{$_U['query_class']}/{$_U['query_class']}.inc.php");
 	}else{
@@ -351,25 +351,25 @@ if ($_U['query_sort'] == "action"){
 		exit;
 	}
 	$_U['user_cache'] = userClass::GetUserCache(array("user_id"=>$_G['user_id']));//用户缓存
-	
-	
+
+
 	//短消息条数
 	include_once(ROOT_PATH."/modules/message/message.class.php");
 	$_message = messageClass::GetCount(array("user_id"=>$_G['user_id'],"status"=>0,"deltype"=>0));
-	$_U['user_cache']['message'] =$_message['num']; 
-	
-	
+	$_U['user_cache']['message'] =$_message['num'];
+
+
 	//好友请求数
 	$_friends_apply = userClass::GetFriendsRCount(array("user_id"=>$_G['user_id'],"status"=>0));
-	$_U['user_cache']['friends_apply'] =$_friends_apply['num']; 
-	
-	
+	$_U['user_cache']['friends_apply'] =$_friends_apply['num'];
+
+
 	# 如果用户没有登录则跳转到
-	
+
 	if ($_G['user_id'] == "" ){
 		header('location:index.php?user&q=action/login');
 	}
-	
+
 	$template = "user_main.html";
 }
 
@@ -400,5 +400,5 @@ function set_session($data = array()){
 $magic->assign("_U",$_U);
 
 $magic->display($template);
-exit;	
+exit;
 ?>
