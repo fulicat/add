@@ -50,7 +50,7 @@ if (!defined('ROOT_PATH'))  die('不能访问');//防止直接访问
 		}
 		else{
 			$title = '用户注册';
-			$template = 'flat/user_reg_info.html';
+			$template = 'user_reg_info.html';
 
 		}
 ?>

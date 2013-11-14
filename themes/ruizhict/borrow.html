@@ -1,225 +1,75 @@
 {include file="header.html"}
-
-<link href="{$tempdir}/css/borrow_new.css" rel="stylesheet" type="text/css" />
-
-
-
-<!--借款是怎么发生的 结束-->
-
-<div class="con_box t10"><img border="0" usemap="#Map" src="{$tempdir}/images/banner3.jpg"></div>
-
-<map id="Map" name="Map"><area href="/publish/index.html?type=0" coords="32,109,135,141" shape="rect"><area href="/publish/index.html?type=1" coords="153,106,257,140" shape="rect"><area href="/publish/index.html?type=vouch" coords="277,103,384,143" shape="rect"></map><div class="foot" style="border:0 none; height:10px"></div>
-
-
-
-<div class="wrap950 list_1">
-
-	<div class="title"><img src="{$tpldir}/images/ico_4.gif" /> 借款流程</div>
-
-<div class="m_l_bor"><div style="width: 900px; height: 100px; padding-left: 20px;" class="process">
-
-            <ul style="width: 900px;">
-
-            <li><a href="/index.php?user&amp;q=action/reg">注册</a></li>
-
-			<li><a href="/index.php?user&amp;q=code/user/realname">实名认证</a></li>
-
-			<li><a href="/index.php?user&amp;q=code/userinfo">填写个人资料</a></li>
-
-			<li><a href="/index.php?user&amp;q=code/attestation">上传资料证明    </a></li>
-
-			<li><a href="/publish/index.html?type=month">发布借款标</a></li>
-
-			<li><a href="/index.php?user&amp;q=code/borrow/repayment">借款成功</a></li>
-
-			<li><a href="/index.php?user&amp;q=code/borrow/loandetail">每月还款</a></li>
-
-            </ul>
-
-        </div>
-
-       </div>	<div class="foot" style="border:0 none; height:1px"></div>
-
-</div>
-
-<!--借款是怎么发生的 结束-->
-
-
-
-<!--借款帮助 开始-->
-
-<div class="wrap950 list_1">
-
-	<div class="title"><img src="{$tpldir}/images/ico_4.gif" /> 用户帮助中心</div>
-
-	<div class="content">
-
-		<ul class="list_li_1">
-
-		{loop module="article" function="GetList" limit="16" site_id="10"}
-
-			<li ><a href="/{$var.site_nid}/a{$var.id}.html">{$var.name} </a></li>
-
-			{/loop}
-
-		</ul>
-
+<!--头部结束-->
+<!--中间部分 Start-->
+<div id="MiddleWrap">
+	<div class="w">
+		<!-- 面包屑 -->
+		<div class="crumb">
+			<dl>
+				<dt>您的位置：</dt>
+				<dd><a href="/" title="{$_G.system.con_webname}">{$_G.system.con_webname}</a>&ensp;&gt;&ensp;<em>我要贷款</em></dd>
+			</dl>
+		</div>
+		<!-- banner -->
+		<div class="lend_banner">
+			<a href="/publish/index.html?type=0" title="按月分期还款"><img src="{$tempdir}/images_flat/method_1.gif" /></a>
+			<a href="/publish/index.html?type=1" title="按季度还款"><img src="{$tempdir}/images_flat/method_2.gif" /></a>
+			<a href="/publish/index.html?type=vouch" title="担保还款贷款"><img src="{$tempdir}/images_flat/method_3.gif" /></a>
+		</div>
+		<!-- 借款流程 -->
+		<div class="path">
+			<h3>借款流程：</h3>
+			<a href="/index.php?user&amp;q=action/reg" title="注册" class="path_reg">注册</a>
+			<a href="/index.php?user&amp;q=code/user/realname" title="实名认证">实名认证</a>
+			<a href="/index.php?user&amp;q=code/userinfo" title="完善个人资料">完善个人资料</a>
+			<a href="/index.php?user&amp;q=code/attestation" title="上传资料证明">上传资料证明</a>
+			<a href="/publish/index.html?type=month" title="发布借款标">发布借款标</a>
+			<a href="/index.php?user&amp;q=code/borrow/repayment" title="借款成功">借款成功</a>
+			<a href="/index.php?user&amp;q=code/borrow/loandetail" title="每月还款" class="path_last">每月还款</a>
+			<div class="clear"></div>
+		</div>
+		<!-- 借款须知 -->
+		<div class="lend_info">
+			<h4>借款须知</h4>
+			<div class="title_h1">具备的基本条件</div>
+			<ol>
+				<li>1、注册成为信立贷会员</li>
+				<li>2、申请成为VIP会员</li>
+				<li>3、工作收入或经营稳定</li>
+				<li>4、具有明确的借款用途</li>
+				<li>5、填写详细的个人信息，并提供最少三个紧急联系人</li>
+				<li>6、通过全部的基本认证</li>
+			</ol>
+			<div class="title_h1">提供的资料</div>
+			<dl>
+				<dt>基本资料</dt>
+				<dd>
+					<p>身份证、户口本、住址证明、信用报告、银行流水、手机清单。</p>
+					<p>住址证明：要求有个人住址的水电物业单、纸质固话账单、纸质信用卡账单等收件资料的扫描件，且需提供相应的房产证、按揭合同或租赁合同。地址证明3个月更新1次。</p>
+					<p>手机清单：具有正常的呼出呼入记录，未经排序、筛选连贯的通讯记录。手机通话清单可以去营业厅打印后扫描，也可以在网上查询截图，截图时要求包含手机号。 清单更新要求每月1次。</p>
+					<p>信用报告：个人征信报告需要在当地的人民银行打印，需要原件扫描上传。信用报告要求6个月更新1次。</p>
+					<p>银行流水:   要求必须有近3个月完整的流水。若是工薪收入者，银行流水必须包含银行代发工资的记录。若是个体工商户或是企业主，必须提供经营企业的银行流水 以及企业账目。</p>
+				</dd>
+				<dt>辅助材料</dt>
+				<dd>
+					<p>工作证明资料、能力证明材料、经营主体资质、经营业绩资料等，结婚证、房产、车产等资产证明文件。</p>
+					<p>房产： 包含房产证、购房发票、按揭合同、抵押合同、还款账户银行流水，若是自住房产，包含水电清单。</p>
+					<p>车产：包含车辆登记证、行驶证、驾驶证，购车发票等。</p>
+				</dd>
+				<dt>其他联系人</dt>
+				<dd>
+					<p>直系亲属以及同事、朋友等至少3名以上联络人姓名、联系电话。（直系亲属身份证明应包含身份证、户口本的扫描件及电话。若为配偶的，必须提供结婚证）。</p>
+				</dd>
+			</dl>
+		</div>
+		<div class="hint">由于借款人的个人资信状况不同，所需要提供的辅助资料会有所差异。若会员希望获得更高资信评级，就应提供更详细的信息。若审核有特殊要求时需要即时提供近期更新。</div>
 	</div>
+	<!-- 悬浮按钮 -->
+	<div class="online_help"><a href="#" title="在线帮助">在线帮助</a></div>
 
-	<div class="foot"></div>
 
+	<div class="Mt"></div>
 </div>
-
-<!--借款帮助 结束-->
-
-
-
-<!--注意事项 开始-->
-
-<div class="wrap950 list_1">
-
-	<div class="title"><img src="{$tpldir}/images/ico_4.gif"  /> 借款须知</div>
-
-	<div class="content">
-
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-
-  <tr>
-
-    <th align="left">借款者必须具备的基本条件 </th>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">1、注册成为信立贷会员 </td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">2、申请成为VIP会员 </td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">3、工作收入或经营稳定 </td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">4、具有明确的借款用途</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">5、填写详细的个人信息，并提供最少三个紧急联系人 </td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">6、通过全部的基本认证 </td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&nbsp;</td>
-
-  </tr>
-
-  <tr>
-
-    <th align="left">借款者需要提供的资料 </th>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">◆<strong>基本资料</strong>：身份证、户口本、住址证明、信用报告、银行流水、手机清单。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&bull; 住址证明：要求有个人住址的水电物业单、纸质固话账单、纸质信用卡账单等收件资料的扫描件，且需提供相应的房产证、按揭合同或租赁合同。地址证明3个月更新1次。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&bull; 手机清单：具有正常的呼出呼入记录，未经排序、筛选连贯的通讯记录。手机通话清单可以去营业厅打印后扫描，也可以在网上查询截图，截图时要求包含手机号。清单更新要求每月1次。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&bull; 信用报告: 个人征信报告需要在当地的人民银行打印，需要原件扫描上传。信用报告要求6个月更新1次。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&bull; 银行流水: 要求必须有近3个月完整的流水。若是工薪收入者，银行流水必须包含银行代发工资的记录。若是个体工商户或是企业主，必须提供经营企业的银行流水，以及企业账目。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&nbsp;</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">◆<strong>辅助材料</strong>: 工作证明资料、能力证明材料、经营主体资质、经营业绩资料等，结婚证、房产、车产等资产证明文件。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&bull; 房产：包含房产证、购房发票、按揭合同、抵押合同、还款账户银行流水，若是自住房产，包含水电清单。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&bull; 车产：包含车辆登记证、行驶证、驾驶证，购车发票等。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">&nbsp;</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">◆<strong>其他联系人</strong>：直系亲属以及同事、朋友等至少3名以上联络人姓名、联系电话。（直系亲属身份证明应包含身份证、户口本的扫描件及电话。若为配偶的，必须提供结婚证）。</td>
-
-  </tr>
-
-  <tr>
-
-    <td align="left">由于借款人的个人资信状况不同，所需要提供的辅助资料会有所差异。若会员希望获得更高资信评级，就应提供更详细的信息。若审核有特殊要求时需要即时提供近期更新。 </td>
-
-  </tr>
-
-      </table>
-
-</div>
-
-	<div class="foot"></div>
-
-</div>
-
-<!--注意事项 结束-->
-
-
-
+<!--中间部分 End-->
+<!--底部 Start-->
 {include file="footer.html"}

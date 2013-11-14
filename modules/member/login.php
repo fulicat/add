@@ -61,5 +61,5 @@ if (isset($_POST['password'])){
 $_U['login_msg'] = $login_msg;
 }
 $title = 'ÓÃ»§µÇÂ¼';
-$template = 'flat/user_login.html';
+$template = 'user_login.html';
 ?>

@@ -438,7 +438,7 @@ else{
 			//var_dump($site_nid);exit;
 			if ($site_nid==""){
 			// 默认首页的模板文件
-				$template = !isset($_G['system']['con_index_tpl'])?"flat/index.html":$_G['system']['con_index_tpl'];
+				$template = !isset($_G['system']['con_index_tpl'])?"index.html":$_G['system']['con_index_tpl'];
 			}else{
 				$msg = array("嘿嘿！您的输入有误,找不到相应的页面。","<a href='/'>返回首页</a>             <a href='/bbs/index.html'>来论坛玩玩</a>");
 			}

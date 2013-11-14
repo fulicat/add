@@ -1,35 +1,26 @@
-<div class="footer">
+<div id="footerDiv">
+    <div class="friendLinkWrap">
+        <!--友情链接 Start-->
+        <div class="w friendLink">
+            <dl>
+                <dt><span>友情链接：</span></dt>
+                {loop module="links" function="GetList" limit="30"}
+                <dd><a href="{$var.url}" target="_blank">{$var.webname}</a></dd>
+                {/loop}
+            </dl>
+        </div>
+    </div>
+    <!--友情链接 End-->
+    <div class="footer_b">
+        <div class="w footerWrap">
+            <p>CopyRight &copy 2013 {if $_G.article.name!=""}{$_G.article.name} - {/if}{if $_G.site_result.name} {$_G.site_result.name} -  {/if}{$_G.system.con_webname} 版权所有 {$_G.system.con_beian}  全国统一客服热线:{$_G.system.con_fuwutel}</p>
+        </div>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-  <tr>
-
-    <td>&nbsp;</td>
-
-  </tr>
-
-  <tr>
-
-    <td class="footer_bg" height="30">{site pid="1" status=1 }<a href="/{$var.nid}/index.html" target="_blank">{$var.name}</a> | {/site}</td>
-
-  </tr>
-
-  <tr>
-
-    <td height="40">CopyRight <font style="font-family:'新宋体'; size:15px">&copy;</font> 2011 {$_G.system.con_webname} 版权所有 {$_G.system.con_beian}&nbsp;&nbsp;全国统一客服热线:{$_G.system.con_fuwutel}</td>
-
-  </tr>
-
-  <tr>
-
-    <td height="30">{$_G.system.con_tongji}</td>
-
-  </tr>
-
-</table>
+    </div>
 
 </div>
 
+<!--底部 End-->
 </body>
-
 </html>

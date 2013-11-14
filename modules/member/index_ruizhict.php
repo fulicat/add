@@ -147,7 +147,7 @@ if ($_U['query_sort'] == "action"){
 				$_U['sendemail'] = $result['email'];
 				$emailurl = "http://mail.".str_replace("@","",strstr($result['email'],"@"));
 				$_U['emailurl'] = $emailurl;
-				$template = 'flat/user_reg_email.html';
+				$template = 'user_reg_email.html';
 			}
 		}
 	}
