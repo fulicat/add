@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>取回密码_{$_G.system.con_webname}</title>
+<link href="{$tempdir}/css/main.css" type="text/css" rel="stylesheet" />
+<link href="{$tempdir}/css/user.css" type="text/css" rel="stylesheet" />
+<link href="{$tempdir}/css/tipswindown.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$tempdir}/js/jquery.js"></script>
+<script type="text/javascript" src="{$tempdir}/js/user.js"></script>
+<script type="text/javascript" src="{$tempdir}/js/tipswindown.js"></script>
+</head>
+
+<body>
+
+<!--用户登录注册的头部 开始-->
+<div class="user_action_main">
+	<div class="user_action_logo"><a href="/"><img src="{$tempdir}/images/logo.gif" /></a></div>
+	<div class="user_action_bar"> 
+	<a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('{$_G.system.con_weburl}');" href="#">设为首页</a> | 
+	<span style="CURSOR: hand" onClick="window.external.addFavorite('{$_G.system.con_weburl}','{$_G.system.con_webname}')" title="{$_G.system.con_webname}">
+	<a >收藏本站</a></span> |  
+	<a href="{$_G.system.con_weburl}/help/index.html">帮助中心</a> </div>
+</div>
+<!--用户登录注册的头部 结束-->
+
+<!--用户注册 开始-->
+<div class="user_action_main">
+
+	<!--用户注册左边 开始-->
+	<div class="user_action_reg_left">
+		<!--用户注册 开始-->
+		<div class="user_action_getpwd_top"></div>
+		<div class="user_action_reg_submit" style="padding-top:0">
+			<form action="" method="post" name="formUser" >
+			<div class="user_action_reg_form">
+				{if $_U.updatepwd_msg!=""}
+					<br /><font color="#FF0000">{$_U.updatepwd_msg}</font><br /><br /><br />
+					<a href="index.php?user&q=action/login">返回登录</a>
+				{else}
+				<p>{if $_U.update_msg==""}请重新设置你的登录密码{else}<font color="#FF0000">{$_U.update_msg}</font>{/if}</p>
+				<p>
+				  <label for="email">用户名：</label>
+				  <strong style="font-size:16px;">{$_U.user_result.username}</strong>
+				</p>
+				<p>
+				  <label for="email">密码：</label>
+				  <input type="password" maxLength=15  class="user_aciton_input1" name=password id=password >
+				</p>
+				<p>
+				  <label for="email">确认密码：</label>
+				  <input type="password"  maxLength=15  class="user_aciton_input1" name=confirm_password id=confirm_password  >
+				</p>
+				<p  align="left">
+				<span> <input type="submit" value="" class="sb"  /> <input type="hidden" name="id" value="{$magic.request.id}" /></span>
+				</p>	
+				{/if}
+			</div>
+			</form>
+		</div>
+		<div class="user_action_reg_foot"></div>
+	</div>
+	<!--用户注册右边 开始-->
+	{include file="user_reg_right.html"}
+	<!--用户注册右边 结束-->
+</div>
+<!--用户注册 结束-->
+
+
+{include file="user_footer.html"}

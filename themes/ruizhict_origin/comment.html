@@ -1,0 +1,29 @@
+{include file="header.html"}
+
+
+<!--借款帮助 开始-->
+<div class="wrap950 list_1">
+	<div class="title"><img src="{$tpldir}/images/ico_4.gif" /> 评论管理：</div>
+
+	<div class="content">
+		<ul class="pinglun_list">
+		{list module="comment" var="loop" function="GetList" code="$magic.request.code" article_id="$magic.request.id" showpage="3"}
+			{foreach from ="$loop.list" item="item"}<LI>
+<DIV class=pinglun_co_left>
+<DIV class=pinglun_co_pic><IMG height=73 src="{$item.user_id|avatar}" 
+width=73></DIV><A href="">{$item.username}</A></DIV>
+<DIV class=floatr>
+<DIV class=pinglun_co_content>{$item.comment}<BR><FONT 
+style="FONT-SIZE: 12px; FLOAT: right">{$item.addtime|date_format}
+</FONT></DIV></DIV></LI>
+{/foreach}
+		</ul>
+		<div align="center">{$loop.showpage}</div>
+		{/list}
+	</div>
+	<div class="foot"></div>
+</div>
+<!--借款帮助 结束-->
+
+
+{include file="footer.html"}

@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
+<title>{if $_G.article.name!=""}{$_G.article.name} - {/if}{if $_G.site_result.name} {$_G.site_result.name} -  {/if}{$_G.system.con_webname}</title>
+<link rel="stylesheet" href="{$tempdir}/css/style.css" type="text/css" />
+<link rel="shortcut icon" href="{$tempdir}/favicon.ico"/>
+<script type="text/javascript" src="http://chat.kefu360.com/code/1242" charset="UTF-8"></script>
+</head>
+<body>
+<div id="head">
+<div id="header">
+<div class="logo"><img src="{$tempdir}/images/logo.gif" width="252px"></div>
+<div class="header_right_1"><img src="{$tempdir}/images/phone.gif"/></div>
+<div class="nav">
+<ul>
+<li><a href="#" onClick="bj"><span>首页</span></a></li>
+<li><a href="invest/index.html">我要投资</a></li>
+<li><a href="borrow/index.html">我要借款</a></li>
+<li><a href="?user">我的账号</a></li>
+<li><a href="?safe">安全中心</a></li>
+<li><a href="?tools">工具箱</a></li>
+<li><a href="?kefu">客服中心</a></li>
+<li><a href="?bbs">论坛</a></li>
+<li><a href="?down/a85.html">下载</a></li>
+<li><a href=# onClick="this.style.behavior='url(#default#homepage)';this.setHomePage(document.location.host);event.returnValue=false;"><font color="#666666" size="-1">设为首页</font></a></li>
+<li><a href="Javascript:window.external.addFavorite(document.location.href,document.title)"><font color="#666666" size="-1">加入收藏</font></a></li></ul>
+</div>
+<div class="nav_bottom">
+<ul>
+<li><a href="about/index.html">关于我们</a></li>
+<li><a href="/help/index.html">新手入门</a></li>
+<li><a href="law/index.html">法律政策</a></li>
+<li><a href="question/index.html">常见问题</a></li>
+<li><a href="lianxi/index.html">联系我们</a></li>
+</ul>
+</div>
+</div>
+<!--头部-->
+<div id="flash"><img src="{$tempdir}/default/banner_1.jpg"></div>
+<div id="flash_right">
+	{if $_G.user_id==""}
+	<div class="flash_right_top"><p>欢迎您:游客</p></div>
+	<div class="flash_right_center">
+		<img src="{$tempdir}/default/qiepian_22.gif" height="70px">
+	</div>
+	<div class="flash_right_row_left">
+		<ul style="width:90px; margin:0px; padding:0px">
+			<li><a href="/index.php?user&q=action/reg" class="flash_bj">免费注册</a></li>
+			<li><a href="/help/index.html" class="flash_bj">投资必读</a></li>
+			<li><a href="?safe" class="flash_bj">安全中心</a></li>
+		</ul>
+	</div>
+	<div class="flash_right_row_right">
+	<ul style="width:90px; margin:0px; padding:0px">
+	<li><a href="?user" class="flash_bj">会员登录</a></li>
+	<li><a href="/help/index.html" class="flash_bj" >贷款必读</a></li>
+	<li><a href="/new/index.html" class="flash_bj">借款入门</a></li></ul>
+	</div>
+	{else}
+	<div class="flash_right_top"><p>欢迎您:{$_G.user_result.username}</p></div>
+	<div class="flash_right_center">
+		<img src="{$_G.user_id|avatar}" height="70px">
+	</div>
+	<div class="flash_right_row_left">
+		<ul style="width:90px; margin:0px; padding:0px">
+			<li><a href="/index.php?user" class="flash_bj">用户中心</a></li>
+			<li><a href="/index.php?user&q=code/borrow/succes" class="flash_bj">我要收款</a></li>
+			<li><a href="/index.php?user&q=code/account/recharge_new" class="flash_bj">我要充值</a></li>
+		</ul>
+	</div>
+	<div class="flash_right_row_right">
+	<ul style="width:90px; margin:0px; padding:0px">
+	<li><a href="/index.php?user&q=action/logout" class="flash_bj">安全退出</a></li>
+	<li><a href="/index.php?user&q=code/borrow/repayment" class="flash_bj" >我要还款</a></li>
+	<li><a href="/index.php?user&q=code/account/cash_new" class="flash_bj">我要提现</a></li></ul>
+	</div>
+	{/if}	
+</div>
+
+<div id="LC">
+<div class="LC_top">
+{article module="borrow" function="GetAll"}
+	<p style="margin-top:5px; margin-bottom:0px">申请贷款总额:<font color="#FF0000">￥{$var.borrow_all}</font>&nbsp;&nbsp;
+	已放款总额:<font color="#FF0000">￥{$var.borrow_yesall}</font>&nbsp;&nbsp;
+	贷款总笔数:<font color="#FF0000">{$var.borrow_times}</font>笔&nbsp;&nbsp;
+	已放款数:<font color="#FF0000">{$var.borrow_yestimes}</font>笔</p>
+{/article}
+</div>
+<div class="LC_tu">
+<a href="/index.php?user&q=action/reg" class="LC_bj"><span>注册会员</span></a>
+<a href="index.php?user&q=code/user/realname" class="LC_bj"><span>实名认证</span></a>
+<a href="index.php?user&q=code/userinfo" class="LC_bj"><span>填写个人资料</span></a>
+<a href="index.php?user&q=code/attestation" class="LC_bj"><span>上传证明资料</span></a>
+<a href="publish/index.html" class="LC_bj"><span>发布借款标</span></a>
+<a class="LC_bj"><span>借款成功</span></a>
+<a class="LC_bj"><span>每月还款</span></a>
+</div>
+</div>
+
+<div id="left">
+<div class="new">
+<div class="new_top"><p>最新动态</p></div>
+<div class="new_row">
+<ul>
+	{loop module="article" function="GetList" limit="7" site_id="22"  status=1}
+			<li><a title="{$_G.system.con_webname}" href="{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.name|truncate:12}</a><br/></li>
+	{/loop}
+</ul>
+</div>
+</div>
+<div class="dk">
+<div class="new_top"><p>成功贷款项目</p></div>
+<div class="new_row">
+{loop module="borrow" function="GetList" var="var" limit="3" status="3" order="addtime"}
+<div class="dk_row_lb">
+	<ul style="margin:0px; padding:2px">
+		<li style="margin-left:5px; padding:0px">		
+		  <a href="invest/a{$var.id}.html" target="_blank" title="{$var.name}">
+		  <img src="{$var.user_id|avatar|litpic:"50,50"}" style="float:left; border:none;" width="50" height="50">
+		  <font color="#0033CC">{$var.name|truncate:10}</font><br /><span>金额:<font color="#CC0033">￥{$var.account}</font><br />年利率:{$var.apr}%</span></a>
+		</li>
+	</ul>
+</div>
+{/loop}
+</div>
+</div>
+
+
+<div class="yq">
+	<div class="yq_top"><p>逾期黑名单</p>
+	</div>
+	<div class="yq_row">
+	{loop module="borrow" function="GetLateList" var="var" limit="4" order="late_days"}					
+		<div class="yq_row_1">
+			<ul>
+				<li><a href="/u/{$var.user_id}" target="_blank">
+				<img src="{$var.user_id|avatar}" style="float:left; border:none;" width="50px" height="50px">
+				<span>{$var.realname}</span></a><br /><span>逾期金额:￥<font color="#CC0033">{$var.late_account}</font><br />手机号码:{$var.phone}</span>
+				</li>
+			</ul>
+		</div>			
+	 {/loop}			
+	</div>
+</div>
+<!--left_end-->
+</div>
+
+
+<div id="zblb">
+	<div class="zblb_top"><span>正在招标中的借款列单</span></div>
+	<div class="zblb_row">
+		<div class="zblb_row_left">
+		{loop module="borrow" function="GetList" var="var" limit="0,5" status="1" order="addtime"}		
+			<div class="zblb_row_left_1">
+				<ul>
+					<li><a href="invest/a{$var.id}.html" target="_blank">
+					<img src="{$var.user_id|avatar|litpic:"80,80"}" style="float:left; width:80px; height:80px;">					
+					<span>{$var.name|truncate:15}</span></a><br>
+					{if $var.award==1}<img src="{$tpldir}/images/jiangli.gif" />
+					{elseif  $var.award==2}<img src="{$tpldir}/images/jiangli.gif" />
+					{/if}{if $var.flag==1}<img src="{$tpldir}/images/tuijian.gif"/>
+					{elseif $var.flag==2}<img src="{$tpldir}/images/danbao.gif" />
+					{elseif $var.flag==3}<img src="{$tpldir}/images/diya.gif" />{/if}
+					<font style="font-size:12px; margin-top:10px; line-height:18px">
+					信用度:<img src="{$_G.system.con_credit_picurl}{ $var.credit_pic}" title="{$var.credit_jifen}"  align="absmiddle" /><br>
+					金额:<font color="#FF0000">￥{$var.account}</font> 年利率:{$var.apr}%<br>
+					借款期限:{$var.time_limit}个月 已完成:{$var.scale}%<br>						
+					<div title="已完成{$var.scale}%" style="width:140px;border: 1px solid #666666;">
+					<img src="{$tpldir}/images/tiaotiao.gif" style="width:{$var.scale|default:0}%;height:10px; margin:0; padding:0"></font><br/>
+					</div>
+					</li>
+				</ul>
+			</div>
+		{/loop}
+		</div>
+		<div class="zblb_row_right">
+		{loop module="borrow" function="GetList" var="var" limit="5,5" status="1" order="addtime"}		
+			<div class="zblb_row_right_1">
+				<ul>
+					<li><a href="invest/a{$var.id}.html" target="_blank">
+					<img src="{$var.user_id|avatar|litpic:"80,80"}" style="float:left; width:80px; height:80px;">					
+					<span>{$var.name|truncate:15}</span></a><br>
+					{if $var.award==1}<img src="{$tpldir}/images/jiangli.gif" />
+					{elseif  $var.award==2}<img src="{$tpldir}/images/jiangli.gif" />
+					{/if}{if $var.flag==1}<img src="{$tpldir}/images/tuijian.gif"/>
+					{elseif $var.flag==2}<img src="{$tpldir}/images/danbao.gif" />
+					{elseif $var.flag==3}<img src="{$tpldir}/images/diya.gif" />{/if}
+					<font style="font-size:12px; margin-top:10px; line-height:18px">
+					信用度:<img src="{$_G.system.con_credit_picurl}{ $var.credit_pic}" title="{$var.credit_jifen}"  align="absmiddle" /><br>
+					金额:<font color="#FF0000">￥{$var.account}</font> 年利率:{$var.apr}%<br>
+					借款期限:{$var.time_limit}个月 已完成:{$var.scale}%<br>					
+					<div title="已完成{$var.scale}%" style="width:140px;border: 1px solid #666666;">
+					<img src="{$tpldir}/images/tiaotiao.gif" style="width:{$var.scale|default:0}%;height:10px; margin:0; padding:0"></font><br/>
+					</div>
+					</li>
+				</ul>
+			</div>
+		{/loop}
+		</div>
+	</div>
+</div>
+
+<div id="right">
+<div id="sq">
+<div class="sq_top"><p>社区精华帖</p></div>
+<div class="sq_row">
+<div class="sq_row_1">
+   <ul>
+		{loop module="dwbbs" function="GetTopicsList" var="var" limit="9" status="1" order="addtime"}
+			<li><a href="/bbs/index/html?q=view&tid={$var.id}" target="_blank">{$var.name|truncate:20}</a>
+			</li>
+		{/loop}
+	</ul>
+</div>
+</div>
+</div>
+<div id="zs">
+<div class="zs_top"><span>专业知识</span><span>投资知识</span><span>贷款知识</span></div>
+<div class="zs_row">
+<div class="zs_row_left"></div>
+<div class="zs_row_right">
+	<ul>
+		{loop module="article" function="GetList" limit="9" site_id="59" var="item" status="1" order="addtime"}
+			<li ><a href="{$item.site_nid}/a{$item.id}.html" target="_blank">{$item.name|truncate:16}</a></li>
+		{/loop}
+	</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="footer">
+	<div class="footer_top"><p>合作伙伴</p></div>
+	<div class="hb">
+		<ul>
+		{loop module="links" function="GetList" limit="8" logo="true" order="addtime"}
+			<a href="{$var.url}" target="_blank">
+			<img src="{$var.logoimg}" width="100px" height="43px" hspace="5" vspace="4" /></a>	
+		{/loop}
+		</ul>
+	</div>
+	<div class="footer_wz">
+		<div class="footer_wz_row">
+			<ul>
+			  <li>{site pid="1" status=1 }<a title="{$_G.system.con_webname}" href="/{$var.nid}/index.html" target="_blank">{$var.name}</a> |{/site}{$_G.system.con_tongji}</li>
+			</ul>
+		</div>
+		<div class="footer_wz_right">
+		<span>彙通信貸 版权所有 ◎2011-2015. <br>
+		全国统一客服热线：{$_G.system.con_fuwutel}&nbsp;&nbsp;&nbsp;
+		ICP证:{$_G.system.con_beian}&nbsp;&nbsp;&nbsp;</span>
+		</div>	
+	</div>
+</div>
+</div>
+</body>
+</html>

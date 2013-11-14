@@ -1,0 +1,62 @@
+ {include file="header.html"}
+<div class="wrap950 mar10">
+	<img src="{$tpldir}/images/vip_bg.gif" />
+</div>
+<!--借款帮助 开始-->
+<div class="wrap950 list_1">
+	<div class="title"><img src="{$tpldir}/images/ico_4.gif" /> 您的vip信息：</div>
+	<div class="content">
+		{if $_G.user_result.vip_status==0}
+			{if $_G.user_result.real_status!=1}<br />
+<br />
+
+				<div align="center"><font color="#FF0000">{$_G.system.con_webname}提醒你：</font>你还没通过实名认证，请先进行 <a href="/index.php?user&q=code/user/realname"><strong>实名认证</strong></a>。</div><br />
+<br />
+<br />
+{elseif $_G.user_result.email_status==0}<br />
+<br />
+
+				<div align="center"><font color="#FF0000">{$_G.system.con_webname}提醒你：</font>你的邮箱还没认证通过，请先进行 <a href="/index.php?user&q=code/user/email_status"><strong>邮箱认证</strong></a>。</div><br />
+<br />
+<br />
+
+
+			{else}
+			<form action="/index.php?user&q=code/user/applyvip" method="post">
+			<ul class="ul_li_1">
+				<li>您的状态是：{if $_G.user_result.vip_status==0}普通会员{else}<font color="#FF0000">VIP会员,有效时间：</font>{/if}</li>
+				<li>用户名：{$_G.user_result.username}</li>
+				<li>姓 名 ：{$_G.user_result.realname}</li>
+				<li>邮 箱 ：{$_G.user_result.email}</li>
+				<li>选择客服 ：<select name="kefu_userid">
+				{loop module="user" function="GetList" limit="all" type_id="3,7"}
+				<option value="{$var.user_id}">{$var.realname}({$var.username})</option>
+				{/loop}
+				</select></li>
+				<li>备 注 ：<textarea rows="5" cols="50" name="vip_remark"></textarea></li>
+				<li>验证码：<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" /></li>
+				<li><input type="submit" value="我要申请" /></li>
+			</ul>
+			</form>
+			{/if}
+		{else}
+		<ul class="ul_li_1">
+			<li>您的状态是：{if $_G.user_result.vip_status==0}普通会员{elseif $_G.user_result.vip_status==2}VIP申请中{elseif $_G.user_result.isvip=="-1"}VIP申请中,请耐心等待{else}<font color="#FF0000">VIP会员</font>{/if}</li>
+			{if $_G.user_result.isvip==1}<li>有效时间：{$_G.user_result.vip_time|date_format} 到 {$_G.user_result.vip_time+60*60*24*365|date_format}</li>{/if}
+			<li>用户名：{$_G.user_result.username}</li>
+			<li>姓 名 ：{$_G.user_result.realname}</li>
+			<li>邮 箱 ：{$_G.user_result.email}</li>
+			<li>客 服 ：{$_G.user_cache.kefu_realname}({$_G.user_cache.kefu_username})
+			<li>备 注 ：{$_G.user_result.vip_remark}</li>
+			
+		</ul>
+		{/if}
+	</div>
+	<div class="foot"></div>
+	<div>
+	<img src="{$tpldir}/images/index_ad2.jpg" />
+	</div>
+</div>
+<!--借款帮助 结束-->
+
+{include file="footer.html"}

@@ -1,0 +1,147 @@
+{include file="header.html"}
+<!--body container BEGIN-->
+
+<table class="container_0">
+	<tr>
+		<td class="topleft"></td>
+		<td class="topcenter"></td>
+		<td class="topright"></td>
+	</tr>
+	<tr>
+		<td class="middleleft"></td>
+		<td class="middlecenter">
+		<div class="div_out_inner_nobg">
+			<table width="100%">
+				<tr>
+					<td class="bbs_position" >
+						<span>当前位置:</span> <a href="/bbs/index.html">{$_G.bbs_setting.webname}</a> -> <a href="/bbs/index.html">首页</a>
+					</td>
+					<td>
+						<div class="bbs_static_out">
+							<ul>
+								<li>今日:{$_G.bbs_cache_result.bbs_today_topics}</li>
+								<li>昨日:{$_G.bbs_cache_result.bbs_today_topics}</li>
+								<li>最高帖子:{$_G.bbs_cache_result.bbs_most_topics}</li>
+								<li>主题:{$_G.bbs_cache_result.bbs_topics_num}</li>
+								<li>帖子:{$_G.bbs_cache_result.bbs_posts_num}</li>
+								<li>新会员:<a href="/index.php?user&q=view&username={$_G.bbs_cache_result.last_user}" class="spc">{$_G.bbs_cache_result.last_user}</a></li>
+							</ul>
+							
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="div_out bbs_index_forum">
+			<table class="title">
+				<tr>
+					<td class="left"></td>
+					<td>论坛版块</td>
+					<td class="right"></td>
+				</tr>
+			</table>
+			<div class="bbs_index_fourm_out">
+				<div class="div_clear" style="height:6px;"></div>
+				{foreach from="$_G.bbs_forum_list" item="item"}
+				<div class="bbs_index_forum_1"><span class="bbs_folder_1" id="folder_{$item.id}" onclick="forumFolder({$item.id})">{$item.name}</span></div>
+				<div class="div_out_inner bbs_index_forum_2" id="folderdiv_{$item.id}">
+					{foreach from="$item.sub" item="var"}
+					<table class="bbs_index_a3">
+						<tbody>
+							<tr>
+								<td class="bbs_index_a3_0"><img src="{$tpldir}/images/bbs_ico_hasnew.png" border="0" /></td>
+								<td class="bbs_index_a3_1">
+									<b><a href="/bbs/index.html?q=forums&fid={$var.id}">{$var.name}</a></b> 
+									(今日:<b class="today">{$var.today_num}</b>)<p></p><p>版主: {$var.admins|default:"空缺中"}</p>
+								</td>
+								<td width="140px" align="center">
+								<span class="topicsnum">{$var.topics_num}</span> / {$var.posts_num }
+								</td>
+								<td width="">
+									<a href="/bbs/index.html?q=view&tid={$var.lasttid}">{$var.lastpost}</a><br />
+									<a href="/index.php?user&q=code/user/view&username={$var.lastuser}">{$var.lastuser}</a> - <span class="time">{$var.lastposttime|date_format:"Y-m-d"}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					{/foreach}
+					<div class="div_clear"></div>
+				</div>
+				{/foreach}
+				{literal}
+				<script>
+				function forumFolder(fid){
+					var obj=$("#folder_"+fid);
+					if (obj.attr("class")=='bbs_folder_1'){
+						obj.toggleClass();
+						obj.addClass('bbs_folder_0');
+						$("#folderdiv_"+fid).hide() ;
+					}else{
+						obj.toggleClass();
+						obj.addClass('bbs_folder_1');
+						$("#folderdiv_"+fid).show() ;
+					}
+				}
+				
+				</script>
+				{/literal}
+			</div>
+			
+		</div>
+		
+		<div class="div_clear" style="height:12px;"></div>
+		
+		<div class="div_out bbs_index_else">
+			<table class="title">
+				<tr>
+					<td class="left"></td>
+					<td>论坛其他</td>
+					<td class="right"></td>
+				</tr>
+			</table>
+			<div class="bbs_index_else_out">
+			
+				<div class="bbs_index_a4">
+					<b><a href="online.php">在线用户</a></b> - 共 <b>{$_G.online.num}</b> 人在线, <b>{$_G.online.user_num}</b> 位会员, <b>{$_G.online.nouser_num}</b> 位访客, 最多 <b>{$_G.cache.user_online_num}</b> 人发生在 <b>{$_G.cache.user_online_time|time_format}</b> 
+				</div>
+				
+				<div class="bbs_index_a5">
+					<img src="/data/images/group/1.gif" border="0" align="absmiddle" /> 管理员&nbsp; 
+					<img src="/data/images/group/2.gif" border="0" align="absmiddle" /> 超级版主&nbsp; 
+					<img src="/data/images/group/3.gif" border="0" align="absmiddle" /> 版主&nbsp; 
+					<img src="/data/images/group/4.gif" border="0" align="absmiddle" /> 荣誉会员&nbsp; 
+					<img src="/data/images/group/5.gif" border="0" align="absmiddle" /> 会员&nbsp;
+				</div>
+				
+				<div class="bbs_index_a5_online">
+					<ul>
+						{foreach from="$_G.online.list" item="item"}
+						<li>
+							{if $item.username==""}
+								<img src="/data/images/group/0.gif" border="0" align="absmiddle" />游客
+							{else}
+								{if $item.type_id=="1"}
+								<img src="/data/images/group/1.gif" border="0" align="absmiddle" />
+								{else}
+								<img src="/data/images/group/5.gif" border="0" align="absmiddle" />
+								{/if}<a href='user.php?uid=1' target='_blank' title='最后活动:{$item.activetime|time_format}'>{$item.username}</a>
+							{/if}
+						</li>
+						{/foreach}
+					</ul>
+				</div>
+				<!--
+				<div class="bbs_index_a4"><b>友情链接</b></div>
+				<div class="bbs_index_a6">
+					
+				</div>
+				-->
+				<div class="bbs_index_a7">
+					<div class="div_clear" style="height:1px;"></div>
+				</div>
+			</div>
+		</div>
+</td><td class="middleright"></td></tr><tr><td class="bottomleft"></td><td class="bottomcenter"></td><td class="bottomright"></td></tr>
+</table><!--body container END-->
+{include file="footer.html"}

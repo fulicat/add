@@ -1,0 +1,210 @@
+{include file="header.html" template_dir="themes/ruizhict"}
+<!--用户中心的主栏目 开始-->
+<div class="wrap950 mar10">
+	<!--左边的导航 开始-->
+	<div class="user_left">
+		{include file="user_menu.html"}
+	</div>
+	<!--左边的导航 结束-->
+	
+	<!--右边的内容 开始-->
+	<div class="user_right">
+		<div class="user_right_menu">
+			
+			<ul>
+				<li class="title" ><a href="{$_U.query_url}">证明信息 </a></li>
+				<li {if $_U.query_type=="list"} class="current"{/if}><a href="{$_U.query_url}">证明材料</a></li>
+				<li {if $_U.query_type=="one"} class="current"{/if}><a href="{$_U.query_url}/one">单个资料上传</a></li>
+				<li {if $_U.query_type=="more"} class="current"{/if}><a href="{$_U.query_url}/more">多个资料上传</a></li>
+			</ul>
+			
+		</div>
+		
+		
+		
+		<!--收件箱 开始-->
+		{if $_U.query_type=="list"}
+	
+		<div class="user_right_main">
+			<table  border="0"  cellspacing="0" class="user_list_table">
+			<form action="" method="post" id="form1">
+				<tr class="head" >
+				<td>说明信息 </td>
+				<td>资料类型</td>
+				<td>上传时间 </td>
+				<td>审核时间</td>
+				<td>审核说明</td>
+				<td>积分 </td>
+				<td>状态</td>
+				<td>操作</td>
+				</tr>
+				{ foreach  from=$_U.attestation_list key=key item=item}
+				<tr  {if $key%2==1} class="tr1"{/if}>
+				<td>{$item.name|default:-}</td>
+				<td>{$item.type_name}</td>
+				<td>{ $item.addtime|date_format:"Y-m-d H:i"}</td>
+				<td>{ $item.verify_time|date_format:"Y-m-d H:i"|default:-}</td>
+				<td>{$item.verify_remark|default:-}</td>
+				<td>{$item.jifen|default:0} 分</td>
+				<td>{if $item.status==0}未审核{elseif $item.status==2}审核失败{else}已审核{/if}</td>
+				
+				<td><a href="{$item.litpic|imgurl_format}" target="_blank">查看</a></td>
+				
+				</tr>
+				{ /foreach}
+			</form>	
+			</table>
+			<!--收件箱 结束-->
+		</div>
+
+		{elseif $_U.query_type=="one"}
+		<div class="user_right_main">
+			<form action="" name="form1" method="post" onsubmit="return check_form()" enctype="multipart/form-data">
+			<div class="user_help"><font color="#FF0000">*</font> 必须是本人的相关资料<br />
+			<font color="#FF0000">*</font> 真实 有效<br /></div>
+			<div class="user_right_border">
+				<div class="l">资料上传：</div>
+				<div class="c">
+					<input type="file" name="litpic" /> 上传最大的图片为1M，上传的格式为jpg.gif
+				</div>
+			</div>
+			<div class="user_right_border">
+				<div class="l">上传类型：</div>
+				<div class="c">
+					<select name="type_id">
+					{foreach from="$_U.attestation_type_list" item="item"}
+					<option value="{$item.type_id}">{$item.name}</option>
+					{/foreach}
+					</select>
+				</div>
+			</div>
+			<div class="user_right_border">
+				<div class="l">备注说明：</div>
+				<div class="c">
+					<textarea cols="50" rows="5" name="name"></textarea>
+				</div>
+			</div>
+			
+			<div class="user_right_border">
+			<div class="l">验证码：</div>
+			<div class="c">
+				<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" />
+			</div>
+		</div>
+			<div class="user_right_border">
+				<div class="e"></div>
+				<div class="c">
+					<input type="submit"  value="确认提交" size="30" /> 
+				</div>
+			</div>
+			</form>
+			<div class="user_right_foot">
+			* 温馨提示：我们将严格对用户的所有资料进行保密
+			</div>
+		</div>
+			{literal}<script>
+				function check_form(){
+					 var frm = document.forms['form1'];
+					 var file = frm.elements['litpic'].value;
+					 var errorMsg = '';
+					  if (file.length == 0 ) {
+						errorMsg += '* 图片不能为空' + '\n';
+					  }
+					 
+					  if (errorMsg.length > 0){
+						alert(errorMsg); return false;
+					  } else{  
+						return true;
+					}
+				
+				}
+			</script>{/literal}
+			<!--修改登录密码 结束-->
+			
+		{elseif $_U.query_type=="more"}
+		<div class="user_right_main">
+			<form action="" name="form1" method="post" onsubmit="return check_form()" enctype="multipart/form-data">
+			<div class="user_help"><font color="#FF0000">*</font> 必须是本人的相关资料<br />
+					<font color="#FF0000">*</font> 真实 有效<br />
+			</div>
+			
+			<div class="user_right_border">
+				<div class="l">上传类型：</div>
+				<div class="c">
+					<select name="type_id">
+					{foreach from="$_U.attestation_type_list" item="item"}
+					<option value="{$item.type_id}">{$item.name}</option>
+					{/foreach}
+					</select>
+				</div>
+			</div>
+			
+			<div class="user_right_border">
+				<div class="l">备注说明：</div>
+				<div class="c">
+					<textarea cols="50" rows="5" name="name"></textarea>
+				</div>
+			</div>
+			
+			<div class="user_right_border">
+				<div class="l">验证码：</div>
+				<div class="c">
+					 <input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" />
+				</div>
+			</div>
+			
+			<div class="user_right_border">
+				<div class="l">上传照片:</div>
+				<div class="c">
+					<div>
+						<b id="upfile"><input type="file" name="pics[1]" id="pics1" class="fabu_input_text"  onchange="upfile(this,1)"/></b>
+					</div>	
+					<div id="fabu_pic"  >
+						<ul class="imagesload" id="imagesload">
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			<div class="user_right_border">
+				<div class="e"></div>
+				<div class="c">
+					<input type="submit"  value="确认提交" size="30" /> 
+				</div>
+			</div>
+			</form>
+	</div>
+	<script>
+		var tempdir = "{$tempdir}";
+		{literal}
+		function upfile(va,id){
+			var imgtype = ["gif", "jpeg", "jpg"];
+			if (!RegExp("\.(" + imgtype.join("|") + ")$", "i").test(va.value.toLowerCase())) {
+				alert("图片类型必须是" + imgtype.join("，") + "中的一种");
+				this.value = "";
+				return false;
+			}
+			$("#fabu_pic").show();
+			aid = id+1;
+			va.style.display = "none";
+			var iload = '<li id=picli'+id+'><div class="pic"><img src="'+va.value+'"  width="64" height="64" /></div><div> <img src="'+tempdir+'/images/dui.gif"/> 上传成功 <a href="javascript:" onclick="del('+id+')"><img src="'+tempdir+'/images/laji.gif" border=0 /></a>&nbsp;</div></li>';
+			var aa = '<input type="file" name="pics['+aid+']" id="pics'+aid+'" class="fabu_input_text" onchange="upfile(this,'+aid+')"/>';
+			$("#upfile").after(aa);
+			$("#imagesload").html($("#imagesload").html()+iload);
+		}
+		function del(id){
+			$("#picli"+id).remove();
+			$("#pics"+id).remove();
+			if($("#imagesload li").size()==0){
+			$("#fabu_pic").hide();
+			}
+		}
+		</script>
+		{/literal}
+	
+	
+		{/if}
+</div>
+<!--用户中心的主栏目 结束-->
+{include file="user_footer.html"}

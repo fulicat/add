@@ -1,0 +1,114 @@
+
+{include file="header.html"}
+
+<div class="wrap950 mar10">
+	<div class="main_left">
+		<div class="list_content_main_2">
+		<!--标题开始-->
+		<div class="title">
+			<img src="{$tpldir}/images/ico_3.gif" /> {$_G.site_result.name} 
+		</div>
+		<!--标题结束-->
+		
+		<div class="content">
+			
+<script>
+var user_id = '{$_G.user_id}';
+{literal}
+function check_form(){
+	if (user_id==""){
+		alert('你还没有登录，请先登录');
+		return true;
+	}
+	 var frm = document.forms['form1'];
+	 var title = frm.elements['title'].value;
+	 var content = frm.elements['content'].value;
+	 var valicode = frm.elements['valicode'].value;
+	 var errorMsg = '';
+	  if (title.length == 0 ) {
+		errorMsg += '标题必须填写' + '\n';
+	  }
+	  if (content.length == 0 ) {
+		errorMsg += '内容必须填写' + '\n';
+	  }
+	  if (valicode.length == 0 ) {
+		errorMsg += '验证码必须填写' + '\n';
+	  }
+	  if (errorMsg.length > 0){
+		alert(errorMsg); return false;
+	  } else{  
+		return true;
+	  }
+}
+
+</script>
+{/literal}
+<form name="form1" method="post" action="/index.php?user&q=code/liuyan/add&s={$site_id}" onsubmit="return check_form();" enctype="multipart/form-data" >
+<table width="100%" border="0"  cellspacing="1" class="liuyan">
+	<tr>
+		<td width="15%" align="right">类型：</td>
+		<td align="left"  class="main_td1" >&nbsp; 
+		<select name="type">
+			{loop module="liuyan" function="GetTypeList"}
+			<option value="{$var}">{$var}</option>
+			{/loop}
+		</select>  
+		</td>
+	</tr>
+	<tr>
+		<td width="15%" align="right">标题：</td>
+		<td align="left"  class="main_td1" >&nbsp;&nbsp;<input type="text" name="title"  class="input_border" value="{ $result.title}" size="30" />  
+		</td>
+	</tr>
+	<tr >
+		<td width="15%" align="right">姓名：</td>
+		<td align="left" class="main_td1" >&nbsp;&nbsp;<input type="text" name="name"  class="input_border" value="{ $result.name}" size="30" /></td>
+	</tr>
+	<tr>
+		<td width="15%" align="right">电话:</td>
+		<td align="left" class="main_td1">&nbsp;&nbsp;<input type="text" name="tel"  class="input_border" value="{ $result.tel}" size="30" /></td>
+	</tr>
+	<tr >
+		<td align="right">内容:</td>
+		<td align="left" class="main_td1">&nbsp;&nbsp;<textarea name="content" class="input_border" style="height:80px;" cols="35" rows="5">{$result.content}</textarea></td>
+	</tr>
+	<tr >
+		<td align="right">验证码:</td>
+		<td align="left" class="main_td1">&nbsp;&nbsp;<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" /></td>
+	</tr>
+	<tr>
+		<td  colspan="2"  align="center">
+		{ if $t == "edit" }<input type="hidden" name="id" value="{ $result.id }" />{/if}
+		<input type="submit"  name="submit" value="确认提交" />
+		<input type="reset"  name="reset" value="重置表单" />
+		</td>
+	</tr>
+</table>
+</form>
+		</div>
+	</div>
+		
+	</div>
+	<div class="main_right">
+		<div class="list_news ">
+			<div><span><a href="/gonggao/index.html">+ more</a></span><h3>网站公告</h3></div>
+			<ul>
+				{loop module="article" function="GetList" limit="6" site_id="22"}
+				<li><a href="/{$var.site_nid}/a{$var.id}.html" title="{$var.name}">{$var.name|truncate:17}</a></li>
+				{/loop}
+			</ul>
+		</div>
+		{include file="zixun_right.html"}
+		<div class="list_news ">
+			<div><span><a href="/new/index.html">+ more</a></span><h3>新手指南</h3></div>
+			<ul>
+				{loop module="article" function="GetList" limit="6" site_id="10"}
+				<li><a href="/{$var.site_nid}/a{$var.id}.html" title="{$var.name}">{$var.name|truncate:17}</a></li>
+				{/loop}
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+{include file="footer.html"}

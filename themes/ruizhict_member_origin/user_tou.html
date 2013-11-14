@@ -1,0 +1,23 @@
+<div class="user_avatar">
+	<div class="user_avatar_pic">
+		<div class="user_avatar_pic_left">
+			<img src="{$result.litpic}" height="80" width="80" />
+		</div>
+		<div class="user_avatar_pic_right">
+			<ul>
+			<li><a href="index.php?user">我的主页</a></li>
+			<li><a href="index.php?user&q=view">个人资料</a></li>
+			<li><a href="index.php?user&q=info">修改资料</a></li>
+			<li><a href="index.php?user&action=logout">退出登录</a></li>
+			</ul>	
+		</div>
+	</div>
+	<div  class="user_avatar_pic_content">
+		<ul>
+			<li>昵称：{$result.username}</li>
+			<li>姓名：{$result.realname}</li>
+			<li>等级：</li>
+			<li>积分：<font color="#FF0000">0</font></li>
+		</ul>	
+	</div>
+</div>

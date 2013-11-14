@@ -1,0 +1,112 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title></title>
+<link href="{$tpldir}/css/main.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{$tpldir}/js/bbs.js"></script>
+<script>
+var tid={$magic.request.tid};
+var postid={$magic.request.postid};
+var popwin=window.parent.popwin;
+</script>
+</head>
+<body class="bbs_postmanager_body">
+	<form id="postform" onsubmit="return false;">
+		<table class="bbs_postmanager_table">
+			<tr>
+				<td class="bbs_postmanager_left">帖子:</td>
+				<td>
+				<div class="bbs_postmanager_content"><span id="bbs_postmanager_title">{$_G.bbs_post_result.name}</span></div>
+				<input type="hidden" name="tid" id="tid" value="{$magic.request.tid}" />
+				<input type="hidden" name="postid" id="postid" value="{$magic.request.postid}" />
+				<input type="hidden" name="fid" id="fid" value="{$_G.bbs_post_result.fid}" />
+				</td>
+			</tr>
+			{if $magic.request.action == "delPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td>{if $magic.request.tid==0 || $magic.request.tid==""}直接删除{else}放入回收站{/if}</td></tr>
+
+			{elseif $magic.request.action == "movePost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td>移动至版块 <select name="value" id="value">{$_result}</select></td></tr>
+
+			{elseif $magic.request.action == "coverPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td><select name="value" id="value"><option value="1">屏蔽内容</option><option value="0">解除屏蔽</option></select></td></tr>
+				
+			{elseif $magic.request.action == "lockPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td><select name="value" id="value"><option value="1">锁定帖子</option><option value="0">解锁帖子</option></select></td></tr>
+			
+			{elseif $magic.request.action == "topPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td><select name="value" id="value"><option value="1">置顶帖子</option><option value="0">取消置顶</option></select></td></tr>
+
+			{elseif $magic.request.action == "alltopPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td><select name="value" id="value"><option value="1">总置顶帖子</option><option value="0">取消置顶</option></select></td></tr>
+			
+			{elseif $magic.request.action == "goodPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td><select name="value" id="value"><option value="1">设为精华</option><option value="0">取消精华</option></select></td></tr>
+			
+			{elseif $magic.request.action == "upPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td>提升帖子</td></tr>
+			
+			{elseif $magic.request.action == "stampPost"}
+			<tr><td class="bbs_postmanager_left">操作:</td><td>鉴定为 <select name="value" id="value"><option value="0">取消鉴定</option>{$cache_stampsoption}</select></td></tr>
+			
+			{elseif $magic.request.action == "highlightPost"}
+			<tr><td class="bbs_postmanager_left">高亮:</td><td>
+			<input type="text" class="text_css" size="8" style="color:{$_G.bbs_post_result.highlight}" value="" id="highlightcolor" name="highlightfontC" onfocus="colorpicker.choose(event);" onkeyup="colorChanged(this.value);" /> <img src="{$tpldir}/images/ico_color.gif" align="absmiddle" border="0" id="img_color" class="colorpicker" onclick="colorpicker.choose(event);" /> &nbsp; 
+			<input type="checkbox" value="1" name="highlightfontB[]" id="highlightfontB" onclick="selectFontB(this.checked)" class="checkbox_css" /><b>B</b>
+			<input type="checkbox" value="1" name="highlightfontI[]" id="highlightfontI" onclick="selectFontI(this.checked)" class="checkbox_css" /><i>I</i> 
+			<input type="checkbox" value="1" name="highlightfontU[]" id="highlightfontU" onclick="selectFontU(this.checked)" class="checkbox_css" /><u>U</u>
+			{literal}
+			<script type="text/javascript">
+				var highlight="";
+				function colorChanged(color){
+					E("bbs_postmanager_title").style.color = color;
+					E("highlightcolor").style.color = color;
+					E("highlightcolor").value = color;		
+				}
+				colorpicker.previewColor = function(color){
+					color=color==""?"#000000":color;
+					colorChanged(color);
+				}
+				colorpicker.chooseColor = function(color){
+					color=color==""?"#000000":color;
+					colorChanged(color);
+				}
+				function selectFontB(b){
+					E("highlightfontB").checked=b;
+					E("bbs_postmanager_title").style.fontWeight=b?'bold':'normal';
+				}
+				function selectFontI(b){
+					E("highlightfontI").checked=b;
+					E("bbs_postmanager_title").style.fontStyle=b?'italic':'normal';
+				}
+				function selectFontU(b){
+					E("highlightfontU").checked=b;
+					E("bbs_postmanager_title").style.textDecoration=b?'underline':'none';
+				}
+				if(highlight!=''){
+					var hls=highlight.split(",");
+					try{
+						colorChanged(hls[0]);
+						selectFontB(hls[1]=="1");
+						selectFontI(hls[2]=="1");
+						selectFontU(hls[3]=="1");
+					}catch(err){
+						alert(err);
+					}
+				}
+				
+			
+			</script>
+			{/literal}
+			</td></tr>
+			{/if}
+
+<tr><td class="bbs_postmanager_left">原因:</td><td><textarea style="width:300px; height:60px;" name="reason" id="reason"></textarea></td></tr>
+<tr style="display:none;"><td class="bbs_postmanager_left">操作员:</td><td>{$lg.displaynam}</td></tr>
+<tr class="bbs_postmanager_noborder"><td></td><td><input type="button" class="button_css" value=" 提 交 " onclick="{$magic.request.action}()" /></td></tr>
+</table>
+</form>
+</body>
+</html>

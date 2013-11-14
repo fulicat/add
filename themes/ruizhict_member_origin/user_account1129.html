@@ -1,0 +1,528 @@
+{include file="header.html" template_dir="themes/ruizhict"}
+<!--用户中心的主栏目 开始-->
+<div class="wrap950 mar10">
+	<!--左边的导航 开始-->
+	<div class="user_left">
+		{include file="user_menu.html"}
+	</div>
+	<!--左边的导航 结束-->
+	
+	<!--右边的内容 开始-->
+	<div class="user_right">
+		<div class="user_right_menu">
+			<ul>
+				<li class="title" >我的账户信息</li>
+				<li {if $_U.query_type=="list"} class="current"{/if}><a href="{$_U.query_url}">帐户详情</a></li>
+				<li {if $_U.query_type=="bank"} class="current"{/if}><a href="{$_U.query_url}/bank">银行账号</a></li>
+				<li {if $_U.query_type=="recharge_new"} class="current"{/if}><a href="{$_U.query_url}/recharge_new">帐户充值</a></li>
+				<li {if $_U.query_type=="recharge"} class="current"{/if}><a href="{$_U.query_url}/recharge">充值记录</a></li>
+				<li {if $_U.query_type=="cash_new"} class="current"{/if}><a href="{$_U.query_url}/cash_new">帐户提现</a></li>
+				<li {if $_U.query_type=="cash"} class="current"{/if}><a href="{$_U.query_url}/cash">提现记录</a></li>
+				<li {if $_U.query_type=="log"} class="current"{/if}><a href="{$_U.query_url}/log">资金明细</a></li>
+			</ul>
+		</div>
+		
+		<div class="user_right_main">
+		<!--资金使用记录列表 开始-->
+		{if $_U.query_type=="log"}
+			<table  border="0"  cellspacing="1" class="user_list_table">
+			  <form action="" method="post">
+				<tr class="head">
+					<td>类型</td>
+					<td>操作金额</td>
+					<td>总金额</td>
+					<td>可用金额</td>
+					<td>冻结金额</td>
+					<td>待收金额</td>
+					<td>交易对方</td>
+					<td>记录时间</td>
+					<td width="130">备注信息</td>
+				</tr>
+				{ foreach  from=$_U.account_log_list key=key item=item}
+				<tr  {if $key%2==1} class="tr1"{/if}>
+					<td>{ $item.type|linkage:"account_type"}</td>
+					<td>￥{ $item.money}</td>
+					<td>￥{ $item.total}</td>
+					<td>￥{ $item.use_money}</td>
+					<td>￥{ $item.no_use_money|default:0}</td>
+					<td>￥{ $item.collection}</td>
+					<td>{ $item.to_username|default:admin}</td>
+					<td>{ $item.addtime|date_format:"Y-m-d H:i:s"}</td>
+					<td width="130">{ $item.remark}</td>
+				</tr>
+				{ /foreach}
+				<tr >
+					<td colspan="11" class="page">
+						{$_U.show_page}
+					</td>
+				</tr>
+			</form>	
+		</table>
+		<!--资金使用记录列表 结束-->
+		
+		<!--充值记录列表 开始-->
+		{elseif $_U.query_type=="recharge"}
+		<table  border="0"  cellspacing="1" class="user_list_table">
+		<form action="" method="post">
+			<tr class="head" >
+			<td>类型</td>
+			<td>支付方式</td>
+			<td>充值金额</td>
+			<td>备注</td>
+			<td>充值时间</td>
+			<td>状态</td>
+			<td>管理备注</td>
+			</tr>
+			{list module="account" function="GetRechargeList" showpage="3" var="loop" user_id="0"}
+			{ foreach  from=$loop.list key=key item=item}
+			<tr  {if $key%2==1} class="tr1"{/if}>
+			<td>{if $item.type==1}网上充值{else}线下充值{/if}</td>
+			<td>{ $item.payment_name}</td>
+			<td><font color="#FF0000">￥{ $item.money}</font></td>
+			<td>{ $item.remark}</td>
+			<td>{ $item.addtime|date_format:"Y-m-d H:i"}</td>
+			<td>{if $item.status==0}审核中{elseif  $item.status==1} 充值成功 {elseif $item.status==2}充值失败{/if}</td>
+			
+			<td>{ $item.verify_remark|default:"-"}</td>
+			</tr>
+			{ /foreach}
+			<tr >
+				<td colspan="11" class="page">{$loop.showpage}</div>
+				</td>
+			</tr>
+			{/list}
+		</form>	
+		</table>
+		<!--充值记录列表 结束-->
+		
+		<!--提现记录列表 开始-->
+		{elseif $_U.query_type=="cash"}
+		<table  border="0"  cellspacing="1" class="user_list_table">
+			<form action="" method="post">
+				<tr class="head">
+					<td>提现银行</td>
+					<td>提现账号</td>
+					<td>提现总额</td>
+					<td>到账金额</td>
+					<td>手续费</td>
+					<td>提现时间</td>
+					<td>状态</td>
+					<td>操作</td>
+				</tr>
+				{ foreach  from=$_U.account_cash_list key=key item=item}
+				<tr  {if $key%2==1} class="tr1"{/if}>
+					<td>{ $item.bank_name}</td>
+					<td>{ $item.account}</td>
+					<td>￥{ $item.total|default:0}</td>
+					<td>￥{ $item.credited|default:0}</td>
+					<td>￥{ $item.fee|default:0}</td>	
+					<td>{ $item.addtime|date_format:"Y-m-d H:i"}</td>
+					<td>{if $item.status==0}审核中{elseif  $item.status==1} 提现成功 {elseif $item.status==2}提现失败 {elseif $item.status==3}用户取消{/if}</td>
+					<td>{if $item.status==0}<a href="#" onclick="javascript:if(confirm('确定要取消此提现申请')) location.href='{$_U.query_url}/cash_cancel&id={$item.id}'">取消提现</a>{else}-{/if}</td>
+				</tr>
+				{ /foreach}
+				<tr >
+					<td colspan="11" class="page">
+						{$_U.show_page}
+					</td>
+				</tr>
+			</form>	
+		</table>
+		<!--提现记录列表 结束-->
+		
+		<!--账号充值 开始-->
+		{elseif $_U.query_type=="recharge_new"}
+		<div class="user_help">{$_G.system.con_webname}禁止信用卡套现、虚假交易等行为,一经发现将予以处罚,包括但不限于：限制收款、冻结账户、永久停止服务,并有可能影响相关信用记录。
+</div>
+		<div class="user_right_border">
+			<div class="l">真实姓名：</div>
+			<div class="c">
+				{$_G.user_result.realname}
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">账号：</div>
+			<div class="c">
+				{$_G.user_result.email}
+			</div>
+		</div>
+		<form action="" method="post" name="form1"  >
+		<div id="returnpay">
+		<div class="user_right_border">
+			<div class="l">充值方式：</div>
+			<div class="c">
+				<input type="radio" name="type"  id="type"  class="input_border" checked="checked" onclick="change_type(1)" value="1"  /> 网上充值 <input type="radio" name="type"  id="type" class="input_border"  value="2"  onclick="change_type(2)" /> 线下充值 
+			</div>
+		</div>
+		<div class="user_right_border">
+			<div class="l">充值金额：</div>
+			<div class="c">
+				<input type="text" name="money"  class="input_border" value="" size="10" onkeyup="commit(this);" maxlength="9" /> 元 <span id="realacc">实际入账：，<font color="#FF0000" id="real_money">0</font> 元</span>
+			</div>
+		</div>
+		<div id="type_net">
+			<div class="user_right_border">
+				<div class="l">充值类型：</div>
+				<div class="c">
+					{foreach from=$_U.account_payment_list item="var"}
+					{if $var.nid!="offline"}
+					<input type="radio" name="payment1"  class="input_border" checked="checked" value="{$var.id}" id="payment1"  /> {$var.name} <input type="hidden" name="payname{$var.id}" value="{$var.name}" />({$var.description})
+					{/if}
+					{/foreach}
+				</div>
+			</div>
+		</div>
+		
+		<div id="type_now" class="dishide">
+			<div class="user_right_border">
+				<div class="l">充值银行：</div>
+				<div class="c">
+					{foreach from=$_U.account_payment_list item="var"}
+					{if $var.nid=="offline"}
+					<input type="radio" name="payment2"  class="input_border" checked="checked" value="{$var.id}"  />{$var.name}  <br /><font color="#FF0000">{$var.description}</font> <br />
+					{/if}
+					{/foreach}
+				</div>
+			</div>
+			<div class="user_right_border">
+				<div class="l">账单流水号：</div>
+				<div class="c">
+					<input type="text" name="remark"  class="input_border" value="" size="30" />
+				</div>
+			</div>
+		</div>
+		<div class="user_right_border">
+			<div class="l">验证码：</div>
+			<div class="c">
+				<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" />
+			</div>
+		</div>
+		<div class="user_right_border">
+			<div class="l"></div>
+			<div class="c">
+				<input type="submit" name="name"  value="确认提交" size="30" /> 
+			</div>
+		</div>
+		</form>
+		</div>
+		
+		
+		{literal}
+		<script>
+			function change_type(type){
+				if (type==2){
+					$("#type_net").addClass("dishide");
+					$("#type_now").removeClass();
+					$("#realacc").hide();
+				}else{
+					$("#type_now").addClass("dishide");
+					$("#type_net").removeClass();
+					
+					$("#realacc").show();
+				}
+				
+			}
+		function payment (){
+	 		var type = GetRadioValue("type");
+			if (type==1){
+				$("#returnpay").html("<font color='red'>请到打开的新页面充值</font>");
+				
+			}
+			
+		}
+        function commit(obj) {
+            if (parseFloat(obj.value) > 0 ) 
+            {
+//                var realMoney = Math.round(parseFloat(obj.value)) / 100;
+
+//                if (realMoney > 50) realMoney = 50;
+
+//                document.getElementById("hspanReal").innerText = Math.round(parseFloat(obj.value)*10)/10 - realMoney;
+                var realMoney=parseFloat(obj.value);
+                if(realMoney>=5000)
+                {
+                    document.getElementById("real_money").innerText = realMoney - 50;
+                }
+                else 
+                {
+                    document.getElementById("real_money").innerText = parseInt(realMoney*0.99*100)/100;
+                }
+            }else{
+				 var realMoney=parseFloat(obj.value);
+                 document.getElementById("real_money").innerText = realMoney ;
+			}
+        }
+    </script>
+		{/literal}
+		<div class="user_right_foot">
+		* 温馨提示：网上银行充值过程中请耐心等待,充值成功后，请不要关闭浏览器,充值成功后返回{$_G.system.con_webname},充值金额才能打入您的帐号。如有问题,请与我们联系
+		</div>
+		
+		<!--账号充值 结束-->
+		
+		
+		<!--银行账号 开始-->
+		{elseif $_U.query_type=="bank"}
+		<div class="user_help">{$_G.system.con_webname}禁止信用卡套现、虚假交易等行为,一经发现将予以处罚,包括但不限于：限制收款、冻结账户、永久停止服务,并有可能影响相关信用记录。
+</div>
+		<div class="user_right_border">
+			<div class="l">真实姓名：</div>
+			<div class="c">
+				{$_U.account_bank_result.realname}
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">账号：</div>
+			<div class="c">
+				{$_U.account_bank_result.email}
+			</div>
+		</div>
+		
+		{if $_U.account_bank_result.bank!=""}
+		<div class="user_right_border">
+			<div class="l">开户银行：</div>
+			<div class="c">
+				{$_U.account_bank_result.bank|linkage}
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">开户行名称：</div>
+			<div class="c">
+				{$_U.account_bank_result.branch}
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">银行账号：</div>
+			<div class="c">
+				{$_U.account_bank_result.account}
+			</div>
+		</div>
+		{/if}
+		<form action="" method="post">
+		<div class="user_right_border">
+			<div class="l">开户银行：</div>
+			<div class="c">
+				<script src="/plugins/index.php?q=linkage&name=bank&nid=account_bank&value={$_U.account_bank_result.bank}"></script>
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">开户行支行名称：</div>
+			<div class="c">
+				<input type="text" name="branch" value="{$_U.account_bank_result.branch}" /><br />
+<span>**分行**支行**分理处或营业部(如：上海分行杨浦支行控江路分理处),如果您无法确定,建议您致电您的开户银行客服进行询问。 </span>
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">银行账号：</div>
+			<div class="c">
+				<input type="text" name="account" value="{$_U.account_bank_result.account}" /><br />
+<span>特别提醒：上述银行卡号的开户人姓名必须为“{$_U.account_bank_result.realname}”, 个人银行账号必须填写正确,否则你的提现资金将存在风险。 如果要修改的话必须要补全, 可以任何时候修改以您的姓名开户的银行卡号。</span>
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l"></div>
+			<div class="c">
+				<input type="hidden" name="user_id" value="{$_G.user_id}" />
+				<input type="submit" name="name"  value="确认提交" size="30" /> 
+			</div>
+		</div>
+		</form>
+		<div class="user_right_foot">
+		* 温馨提示：禁止信用卡套现
+		</div>
+		<!--银行账号 结束-->
+		
+		
+		<!--提现 开始-->
+		{elseif $_U.query_type=="cash_new"}
+		<div class="user_help">注：1、请输入您要取出金额,我们将在1至3个工作日(国家节假日除外)之内将钱转入您网站上填写的银行帐号。 <br />
+			  2、如你急需要把钱转到你的帐号或者24小时之内网站未将钱转入到你的银行帐号,请联系客服中心。 <br />
+			  3、确保您的银行帐号的姓名和您的网站上的真实姓名一致。 <br />
+			  4、在钱打到您帐号时会发一封站内信通知你。 <br />
+			  5、每笔提现金额至少10元以上。 <br />
+			  6、每笔提现金额最高不能超过44980元以上。 <br />
+			  7、您目前能提取的最高额度是<font color="#FF0000">{if $_G.user_cache.use_money>44980}44980{else}{$_G.user_cache.use_money}{/if}元</font>。 <br />
+		</div>
+		<form action="" method="post" onsubmit="return check_form()" name="form1">
+		<div class="user_right_border">
+			<div class="l">真实姓名：</div>
+			<div class="c">
+				{$_G.user_result.realname}
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">账户余额：</div>
+			<div class="c">
+				{$_G.user_result.use_money|default:0}元
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">可用余额：</div>
+			<div class="c">
+				{$_G.user_result.use_money|default:0}元
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">冻结总额：</div>
+			<div class="c">
+				{$_G.user_result.no_use_money|default:0}元
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">提现的银行：</div>
+			<div class="c">
+				{$_U.account_bank_result.bank|linkage} {$_U.account_bank_result.branch} {$_U.account_bank_result.account} 
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">交易密码：</div>
+			<div class="c">
+				{if $_U.account_bank_result.paypassword==""}<a href="{$_U.query_url}&q=code/user/paypwd"><font color="#FF0000">请先设置一个支付密码</font></a>{else}<input type="password" name="paypassword" />{/if}
+			</div>
+		</div>
+		
+		<div class="user_right_border">
+			<div class="l">提现金额：</div>
+			<div class="c">
+				<input type="text" name="money" />大于10元小于44980元
+			</div>
+		</div>
+		<div class="user_right_border">
+			<div class="l">验证码：</div>
+			<div class="c">
+				<input name="valicode" type="text" size="11" maxlength="4"  tabindex="3"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" />
+			</div>
+		</div>
+		<div class="user_right_border">
+			<div class="l"></div>
+			<div class="c">
+				<input type="hidden" name="user_id" value="{$_G.user_id}" />
+				<input type="submit" name="name"  value="确认提交" size="30" /> 
+			</div>
+		</div>
+		</form>
+		<div class="user_right_foot">
+		* 温馨提示：禁止信用卡套现
+		</div>
+		
+<script>
+var use_money = {$_G.user_result.use_money|default:0};
+{literal}
+function check_form(){
+	 var frm = document.forms['form1'];
+	 var paypassword = frm.elements['paypassword'].value;
+	 var money = frm.elements['money'].value;
+	 var errorMsg = '';
+	  if (paypassword.length == 0 ) {
+		errorMsg += '请输入您的交易密码' + '\n';
+	  }
+	  if (money.length == 0 ) {
+		errorMsg += '请输入你的提现金额' + '\n';
+	  }
+	 if (money <10 || money >44980) {
+		errorMsg += '提现金额要大于10元少于44980' + '\n';
+	  }
+
+	 if (money >use_money) {
+		errorMsg += '您的提现金额大于现有的可用余额' + '\n';
+	  }
+	  if (errorMsg.length > 0){
+		alert(errorMsg); return false;
+	  } else{  
+		return true;
+	  }
+}
+</script>
+{/literal}
+		<!--提现 结束-->
+				{else}
+				{article module="borrow" function="GetUserLog" user_id="0"}
+				<div style="line-height:30px; font-size:15px; font-weight:bold">个人资金详情</div>
+				<div class="user_right_border">
+					<div class="linvest">账户总额：<strong>￥{$var.total|default:0}</strong></div>
+					
+					<div class="linvest">可用余额：<font color="#FF0000">￥{$var.use_money|default:0}</font></div>
+					
+					<div class="linvest">冻结金额：￥{$var.no_use_money|default:0}</div>
+					
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">投标冻结总额：￥{$var.tender|default:0}</div>
+					<div class="linvest">提现冻结总额：￥{$var.cash_frost|default:0}</div>
+					<div class="linvest">保证金冻结总额：￥{$var.margin|default:0}</div>
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">充值总额：￥{$var.recharge|default:0}</div>
+					<div class="linvest">在线充值总额：￥{$var.recharge_online|default:0}</div>
+					<div class="linvest">线下充值总额：￥{$var.recharge_downline|default:0}</div>
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">总手续费：￥{$var.fee+$var.recharge_fee|default:0}</div>
+					<div class="linvest">充值手续费：￥{$var.fee|default:0}</div>
+					<div class="linvest">提现手续费：￥{$var.recharge_fee|default:0}</div>
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">借款额度：￥{$var.fee+$var.recharge_fee|default:0}</div>
+					<div class="linvest">最低额度：￥500</div>
+					<div class="linvest">最高额度：￥{$var.amount|default:0}</div>
+				</div>
+				<div style="line-height:30px; font-size:15px; font-weight:bold">投资资金详情</div>
+			
+				<div class="user_right_border">
+					<div class="linvest">借出总额：￥{$var.invest_account|default:0}</div>
+					<div class="linvest">投标总额：￥{$var.invest_render|default:0}</div>
+					<div class="linvest">待收利息：￥{$var.invest_fee|default:0}</div>
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">净赚利息：￥{$var.invest_sfee|default:0}</div>
+					<div class="linvest">最近收款日期：￥{$var.invest_nowtime|default:0}</div>
+					<div class="linvest">待回收金额：￥{$var.invest_nowaccount|default:0}</div>
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">已回收金额：￥{$var.invest_nowaccount|default:0}</div>
+					<div class="linvest">奖励收入总额：￥{$var.invest_award|default:0}</div>
+				</div>
+				
+				<div style="line-height:30px; font-size:15px; font-weight:bold">贷款资金详情</div>
+			
+
+				<div class="user_right_border">
+					<div class="linvest">借款总额：￥{$var.borrow_account|default:0}</div>
+					<div class="linvest">发标次数：{$var.borrow_times|default:0}</div>
+					<div class="linvest">还款标数：{$var.payment_times|default:0}</div>
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">待还笔数：{$var.borrow_successtime|default:0}</div>
+					<div class="linvest">待还总额：{$var.borrow_pay|default:0}</div>
+					<div class="linvest">最近应还款金额：￥{$var.borrow_nowpay|default:0}</div>
+				</div>
+				<div class="user_right_border">
+					<div class="linvest">最近还款日期：{$var.time|default:-}</div>
+					
+				</div>
+				<!--
+				<div class="user_right_border">
+					<div class="linvest">逾期已还总金额：￥{$var.fee+$var.recharge_fee|default:0}</div>
+					<div class="linvest">奖励支出总额：￥{$var.fee|default:0}</div>
+					<div class="linvest">待付滞纳金总额：￥{$var.fee|default:0}</div>
+				</div>
+				-->
+				{/article}
+			{/if}
+	</div>
+	<!--右边的内容 结束-->
+</div>
+<!--用户中心的主栏目 结束-->
+{include file="user_footer.html"}

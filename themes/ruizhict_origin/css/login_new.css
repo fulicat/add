@@ -1,0 +1,74 @@
+.con_box
+
+{
+
+	margin: 0px auto;
+
+	width: 980px;
+
+}
+
+.t10
+
+{
+
+	margin-top: 10px;
+
+}
+
+.lo_text
+
+{
+
+	border-bottom: #cdcdcd 1px solid;
+
+	border-left: #cdcdcd 1px solid;
+
+	height: 22px;
+
+	border-top: #cdcdcd 1px solid;
+
+	border-right: #cdcdcd 1px solid;
+
+}
+
+TABLE.tab_log TD
+
+{
+
+	font-size: 14px;
+
+}
+
+TABLE.tab_log TD SPAN
+
+{
+
+	color: #999999;
+
+	font-size: 12px;
+
+}
+
+TABLE.tab_log TD SPAN A
+
+{
+
+	color: #ff0000;
+
+}
+
+.login_bor
+
+{
+
+	width: 333px;
+
+	background: url(../images/login_bg.jpg) no-repeat;
+
+	float: left;
+
+	height: 328px;
+
+}
+

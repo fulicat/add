@@ -1,0 +1,174 @@
+@charset "utf-8";
+/* CSS Document */
+a{ text-decoration:none}
+a:hover{ text-decoration:underline}
+.wp{ width:980px; margin:0 auto;overflow:hidden;*zoom:1; padding-bottom:10px;  }
+body{ font-size:12px;font-family:SimSun,Arial,sans-serif,"Microsoft YaHei",Mingliu,Verdana, Helvetica,Lucida; background:#F4F7FE}
+
+.topnav,
+.nav{ background:url(../png/bg.png) repeat-x}
+.header .logo,
+.header h1 a,
+/*.nav li a,*/
+.nav li li.currert,
+.nav li li.currert a,
+.nav .s1#current,
+.login .s6 a{ background:url(../png/icon.png) no-repeat}
+
+
+.topnav{ height:29px; line-height:29px; overflow:hidden}
+.topnav .leftnav{ float:left}
+.topnav .leftnav li{float:left;}
+.topnav .leftnav li a{ margin:0 10px; color:#666666}
+.login{ float:right;}
+.login li{ float:left; padding-left:15px;}
+.login .s1{ color:#333333}
+.login .s2 a{ color:#329B03}
+.login .s3 a{ color:#FF5301}
+.login .s4 a{ color:#FF5301}
+.login .s6 a{ color:#FF5301; padding-left:24px; background-position:-581px -174px ;}
+.login .s7 a{ color:#0264CF}
+
+.topnav .wp,
+.nav .wp{ background:none}
+.header_frame{ background:#ffffff}
+.header{ background:#FFFFFF}
+.header .logo,
+.header h1 a{ float:left; width:169px; height:61px; background-position:0 -77px;}
+
+.nav{ background-position:0 -30px;}
+.nav li{ float:left;  margin-right:3px; }
+.nav li ul{ position:absolute; margin-top:35px;
+	
+}
+.nav li a{ float:left; height:35px; width:93px}
+.nav li li{ line-height:40px; text-align:center; height:40px;}
+.nav li li a{ color:#808080; width:85px;}
+.nav li li a{}
+
+.nav .wp{ padding-bottom:0;}
+
+.nav .s1 a{
+	background-position:-6px 0;
+	text-decoration: none;
+}
+
+.nav .s1#current a{background-position:-6px -38px}
+.nav .s2 a{
+	background-position:-100px 0;
+	text-decoration: none;
+}
+
+.nav .s2#current a{ background-position:-100px -38px}
+
+
+
+.nav .s3 a{
+	background-position:-194px 0;
+	text-decoration: none;
+}
+.nav .s3#current a {
+	background-position:-100px -38px
+}
+.nav .s3 a:hover,
+.nav .s3#current a{ background-position:-194px -38px}
+.nav .s4 a{
+	background-position:-288px 0;
+	text-decoration: none;
+}
+.nav .s4#current a {
+	background-position:-100px -38px
+}
+.nav .s4 a:hover,
+.nav .s4#current a{ background-position:-288px -38px}
+.nav .s5 a{
+	background-position:-382px 0;
+	text-decoration: none;
+}
+.nav .s5#current a {
+	background-position:-100px -38px
+}
+
+.nav .s5 a:hover,
+.nav .s5#current a{ background-position:-382px -38px}
+.nav .s6 a{
+	background-position:-476px 0;
+	text-decoration: none;
+}
+.nav .s6#current a {
+	background-position:-100px -38px
+}
+.nav .s6 a:hover,
+.nav .s6#current a{ background-position:-476px -38px}
+
+.nav li li.currert { background-position:left -512px; padding-left:5px}
+.nav li#current  li a{
+	float:left;
+	background:none;
+	padding-right:5px;
+	height:40px;
+}
+.nav li#current  li a:hover{
+	float:left;
+	background-position:-80px -514px;
+	padding-right:5px;
+	text-decoration: none;
+	background-image: url(../png/icon.png);
+	background-repeat: no-repeat;
+}
+.nav li#current  li.currert a{
+	float:left;
+	background:url(../png/icon.png) no-repeat;
+	background-position:right -514px;
+	padding-right:5px;
+}
+.nav li#current  li.currert a:hover{
+	background-position:right -514px;
+}
+.nav .wp a span {
+	text-align: center;
+	width: 93px;
+	display: block;
+	height: 35px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 35px;
+	color: #FFF;
+}
+.nav .wp #current a span {
+	text-align: center;
+	width: 93px;
+	display: block;
+	height: 35px;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 35px;
+	color: #2596FF;
+}
+
+
+.sub_nav{
+	height:40px;
+	line-height:40px;
+	overflow:hidden;
+}
+
+.foot{ border-top:2px solid #1D8AFF}
+.foot .footnav{ height:33px; line-height:33px;padding-left:86px; padding-right:115px;}
+.foot .footnav li{ float:left; color:#999999}
+.foot .footnav li a{ color:#0962CA; margin:0 8px}
+.foot .footnav li.copyright{ float:right; padding:0; color:#3F3F3F}
+.foot .content{ line-height:23px; text-align:center; color:#7F7F7F}
+
+.nav .s2 ul{ margin-left:-95px; zoom:1;}
+
+.nav #current a {
+    background: url("../png/icon.png") no-repeat scroll -100px -38px transparent;
+}
+
+/*font*/
+
+.f-16-red{ color:#F00; font-size:16px;}
+.f-12-red{ color:#F00; font-size:12px;}
+.f-bold-12-red{ color:#F00; font-size:12px; font-weight:bold;}
+.f-bold{ font-weight:bold;}

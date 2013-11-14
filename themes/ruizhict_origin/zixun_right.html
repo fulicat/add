@@ -1,0 +1,11 @@
+
+		{site site_id="42"}
+		<div class="list_news ">
+			<div><span><a href="/{$var.nid}/index.html">+ more</a></span><h3>{$var.name}</h3></div>
+			<!--ul>
+				{loop module="article" function="GetList" limit="6" site_var="var" var="item" order="hits"}
+				<li><a href="/{$var.site_nid}/a{$item.id}.html" title="{$item.name}">{$item.name|truncate:17}</a></li>
+				{/loop}
+			</ul-->
+		</div>
+		{/site}

@@ -1,0 +1,42 @@
+ {include file="header.html"}
+{if $_G.user_id==""}
+	<script>alert("你还没有登录，请先登录再查看");location.href='/index.php?user';</script>
+{/if}
+{article module="borrow" function="GetOne" id="$magic.request.borrow_id"}
+{if $var.status!=3}
+<script>alert("您的操作有误");location.href='/index.php?user';</script>
+{/if}
+<div class="wrap950 mar10">
+	<div class="protocol">
+		<div class="title">借款协议书</div>
+		<div class="but">借款协议号：{$var.addtime}{$var.number_id} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;借款人： {$var.username}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出借人：详见本协议第一条 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签订日期：{$var.repayment_time|date_format:"Y-m-d"}</div>
+		<div class="xieyi">借款人通过{$_G.system.con_webname}网站(以下简称“本网站”)的居间,就有关借款事项与各出借人达成如下协议：</div>
+		<div><b>第一条：借款详情如下表所示： </b></div>
+		<div>
+			<table class="gvList" cellspacing="0" rules="all" border="1" id="ctl00_ContentPlaceHolder1_gvLoans" style="width:100%;border-collapse:collapse;">
+				<tr height="30">
+					<th align="center" scope="col">出借人(id)</th>
+					<th align="center" scope="col">借款金额</th>
+					<th align="center" scope="col">借款期限</th>
+					<th align="center" scope="col">年利率</th>
+					<th align="center" scope="col">借款开始日</th>
+					<th align="center" scope="col">借款到期日</th>
+					<th align="center" scope="col">月截止还款日</th>
+					<th align="center" scope="col">月还款本息</th>
+				</tr>
+				{loop module="borrow" var="bor" function="GetTenderList" borrow_id="request" limit="all"}
+				<tr height="30">
+					<td>{$bor.username}</td><td>{$bor.tender_account}元</td><td>{$var.time_limit|linkage:"borrow_time_limit"}</td><td>{$var.apr}%</td><td>{$var.success_time|date_format:"Y-m-d"}</td><td>{$var.end_time|date_format:"Y-m-d"}</td><td>{$var.each_time}</td><td>
+		                       {$bor.equal.monthly_repayment } 元
+		                    </td>
+				</tr>
+				{/loop}
+		  </table>
+		</div>
+		<div class="content">
+			{$_G.site_result.content}
+		</div>
+	</div>
+</div>
+{/article}
+{include file="footer.html"}

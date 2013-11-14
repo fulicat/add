@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>兼职中心_{$sys_info.con_webname}</title>
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+{include file="header.html" template_dir="themes/ruizhict"}
+<div class="wrap950 user_banner"></div>
+<div class="wrap950 mar10">
+	<div class="user_left">
+		{include file="user_tou.html"}
+		<div class="user_manage"></div>
+		{include file="user_menu.html"}
+	</div>
+	<div class="user_right">
+		<div class="user_position"><img src="{$tpldir}/images/ico_7.gif" />你现在的位置：<a href="/">首页</a> -> <a href="/index.php?user">会员中心</a> -> 兼职中心</div>
+		{include file="user_gonggao.html"}
+		
+		<div class="user_r_main">
+			<div class="user_a floatl">
+				<div class="user_a_title"><span ><a href="">最新岗位</a> | <a href="">热门岗位</a> | <a href="">推荐岗位</a></span><strong>兼职岗位</strong></div>
+				<div class="user_a_content">
+					<ul>
+						{codelist var="var" limit="6"  code="jianzhi" }
+						<li>[{$var.city_name}] <a href="/{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.name}</a></li>
+						{/codelist}
+					</ul>
+				</div>
+			</div>
+			<div class="user_a floatr">
+				<div class="user_a_title"><span ><a href="">工资发放</a> | <a href="">录取通知</a> </span><strong>工资录取</strong></div>
+				<div class="user_a_content">
+					<ul>
+						{codelist var="var" limit="6"  code="luqu" }
+						<li>[{$var.city_name}] <a href="/{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.name}</a></li>
+						{/codelist}
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="user_r_main">
+			<div class="user_a floatl">
+				<div class="user_a_title"><strong>最新培训</strong></div>
+				<div class="user_a_content">
+					<ul>
+						{codelist var="var" limit="6"  code="peixun" }
+						<li>[{$var.city_name}] <a href="/{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.name}</a></li>
+						{/codelist}
+					</ul>
+				</div>
+			</div>
+			<div class="user_a floatr">
+				<div class="user_a_title"><strong>最新活动</strong></div>
+				<div class="user_a_content">
+					<ul>
+						{codelist var="var" limit="6"  code="huodong" }
+						<li>[{$var.city_name}] <a href="/{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.name}</a></li>
+						{/codelist}
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="user_r_main">
+			<div class="user_a floatl">
+				<div class="user_a_title"><strong>综合资讯</strong></div>
+				<div class="user_a_content">
+					<ul>
+						{cmslist var="var" limit="6"  code="zixun" }
+						<li>[{$var.city_name}] <a href="/{$var.site_nid}/a{$var.id}.html" target="_blank">{$var.title}</a></li>
+						{/cmslist}
+					</ul>
+				</div>
+			</div>
+			<div class="user_a floatr">
+				<div class="user_a_title"><strong>交流论坛</strong></div>
+				<div class="user_a_content">
+					<ul>
+						<li>会员公告会员公告会员公告</li>
+						<li>会员公告会员公告会员公告</li>
+						<li>会员公告会员公告会员公告</li>
+						<li>会员公告会员公告会员公告</li>
+						<li>会员公告会员公告会员公告</li>
+						<li>会员公告会员公告会员公告</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{include file="footer.html"}

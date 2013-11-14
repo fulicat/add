@@ -1,0 +1,77 @@
+
+{include file="header.html"}
+
+ <!--子栏目 开始-->
+<div class="wrap950 header_site_sub">
+	{foreach from="$_G.site_brother_list" item="var" }
+	<a href="/{$var.nid}/index.html">{$var.name}</a>
+	{/foreach}
+</div>
+<!--子栏目 结束-->
+
+{if $_G.site_result.nid != "" }
+<div class="wrap950 mar10">
+<strong>您的位置：</strong><a href="/">{$_G.system.con_webname}</a> {if $_G.site_presult.nid!="" &&  $_G.site_presult.nid!="index" && $_G.site_result.site_id != "63"} -> <a href="/{$_G.site_presult.nid}/index.html">{$_G.site_presult.name}</a>{/if} -> <a href="index.html">{$_G.site_result.name}</a> 
+</div>
+{/if}
+
+
+<div class="wrap950 mar10">
+	<div class="main_left">
+		<div class="list_content_main_0">
+			<!--标题开始-->
+			<div class="title">
+				<img src="{$tpldir}/images/ico_3.gif" /> {$_G.site_result.name} 
+			</div>
+			<!--标题结束-->
+			
+			<div class="content">
+				<div style="padding-left:10px; overflow:hidden; height:auto; width:98%">
+				{loop module="user" function="GetList" limit="20" type_id=7}
+					<div style="width:250px; float:left; margin:0 28px 0 20px ">
+						<div class="floatl" style="width:120px">
+							<img src="{$var.user_id|avatar}" width="100" />
+							
+						</div>
+						<div>
+							<ul class="kefu_li">
+								<li><strong style="font-size:15px;">{$var.username}</strong></li>
+								<li>{$var.realname}</li>
+								<li><strong>电话:{$var.phone}</strong></li>
+								<li><A 
+	style="FLOAT: left; TEXT-DECORATION: none" 
+	href="tencent://message/?uin={$var.qq}&amp;Menu=yes"><IMG height=17 
+	src="{$tpldir}/images/qq1.jpg" width=25> </A></li>
+								<li>{$var.content}</li>
+							</ul>
+						</div>
+					</div>
+				{/loop}
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="main_right">
+		<div class="list_news ">
+			<div><span><a href="/gonggao/index.html">+ more</a></span><h3>网站公告</h3></div>
+			<ul>
+				{loop module="article" function="GetList" limit="6" site_id="22"}
+				<li><a href="/{$var.site_nid}/a{$var.id}.html" title="{$var.name}">{$var.name|truncate:17}</a></li>
+				{/loop}
+			</ul>
+		</div>
+		{include file="zixun_right.html"}
+		<div class="list_news ">
+			<div><span><a href="/new/index.html">+ more</a></span><h3>新手指南</h3></div>
+			<ul>
+				{loop module="article" function="GetList" limit="6" site_id="10"}
+				<li><a href="/{$var.site_nid}/a{$var.id}.html" title="{$var.name}">{$var.name|truncate:17}</a></li>
+				{/loop}
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+{include file="footer.html"}

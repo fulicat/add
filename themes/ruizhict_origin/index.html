@@ -1,0 +1,265 @@
+{include file="header.html"}
+<div class="wrap950 index_log" style="padding-top:10px;"><!--广告位--></div>
+<div class="wrap950 index_log">
+		{site site_id="22" }
+		<div class="list_content_main_4" >
+		<div class="title">
+			<div class="titles">
+				<span><a href="{$var.nid}/index.html" target="_blank">更多..</a></span><img src="{$tpldir}/images/ico_4.gif"  /> 网站公告
+			</div>
+		</div>		
+		<div class="content">
+			<ul>
+			{loop module="article" function="GetList" limit="7" site_var="var"  status=1}
+			<li><img src="{$tpldir}/images/arror_1.gif" /> <a href="{$var.site_nid}/a{$var.id}.html" target="_blank" title="{$var.name}">{$var.name|truncate:15}</a></li>
+			{/loop}
+			</ul>
+		</div>
+		{/site}
+	</div>
+		
+		
+	<div class="list_content_main_5 floatl">
+	 <script type=text/javascript>
+		var pic_width=425; //图片宽度
+		var pic_height=200; //图片高度
+		var button_pos=4; //按扭位置 1左 2右 3上 4下
+		var stop_time=4000; //图片停留时间(1000为1秒钟)
+		var show_text=0; //是否显示文字标签 1显示 0不显示
+		var txtcolor="000000"; //文字色
+		var bgcolor=""; //背景色
+		var imag=new Array();
+		var link=new Array();
+		var text=new Array();
+		{loop module="scrollpic" function="GetList" type_id=1 limit=6 }
+		imag[{$key+1}]="{$var.pic}";
+		link[{$key+1}]="{$var.pic}";
+		text[{$key+1}]="{$var.title}";
+		{/loop}
+		{literal}
+		//可编辑内容结束
+		var swf_height=show_text==1?pic_height+20:pic_height;
+		var pics="", links="", texts="";
+		for(var i=1; i<imag.length; i++){
+		pics=pics+("|"+imag[i]);
+		links=links+("|"+link[i]);
+		texts=texts+("|"+text[i]);
+		}
+		{/literal}
+		pics=pics.substring(1);
+		links=links.substring(1);
+		texts=texts.substring(1);
+		document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cabversion=6,0,0,0" width="'+ pic_width +'" height="'+ swf_height +'">');
+		document.write('<param name="movie" value="{$tpldir}/images/focus.swf">');
+		document.write('<param name="quality" value="high"><param name="wmode" value="opaque">');
+		document.write('<param name="FlashVars" value="pics='+pics+'&links='+links+'&texts='+texts+'&pic_width='+pic_width+'&pic_height='+pic_height+'&show_text='+show_text+'&txtcolor='+txtcolor+'&bgcolor='+bgcolor+'&button_pos='+button_pos+'&stop_time='+stop_time+'">');
+		document.write('<embed src="{$tpldir}/images/focus.swf" FlashVars="pics='+pics+'&links='+links+'&texts='+texts+'&pic_width='+pic_width+'&pic_height='+pic_height+'&show_text='+show_text+'&txtcolor='+txtcolor+'&bgcolor='+bgcolor+'&button_pos='+button_pos+'&stop_time='+stop_time+'" quality="high" width="'+ pic_width +'" height="'+ swf_height +'" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />');
+		document.write('</object>');
+		</script>
+		{/literal}	
+	</div>
+	
+		
+	<div class="index_log_bg">
+		{if $_G.user_id==""}
+		<ul class="index_log_ul">
+		<form name="login" method="post" action="/index.php?user&q=action/login"  >
+		<li style="height:10px;"></li>
+		{literal}<li><span>账 号 ：</span>
+		<input class="user_aciton_input" type="text" id="keywords" name="keywords" maxlength="64" value="用户名/邮箱进行登录" onFocus="if(value==defaultValue){value='';this.style.color='#000'}" onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999999; padding-top:4px; height:16px; width:170px;"></li>{/literal}
+		<li><span>密 码 ：</span> <input class="user_aciton_input" type="password" name="password" id="password" maxlength="16" style="; padding-top:4px; height:16px; width:170px;"/></li>
+		<li><span>验证码：</span> 
+		<input  class="user_aciton_input"  name="valicode" type="text" size="8" maxlength="4" style=" padding-top:4px; height:16px; width:70px;"/>&nbsp;<img src="/plugins/index.php?q=imgcode" alt="点击刷新" onClick="this.src='/plugins/index.php?q=imgcode&t=' + Math.random();" align="absmiddle" style="cursor:pointer" /></li>
+		<li><span>COOKIE：</span><select name="cookietime"  class="user_aciton_input" ><option value="15">保存15分钟</option>
+		<option value="30" selected="selected">保存30分钟</option>
+		<option value="60">保存1小时</option>
+		<option value="180">保存3小时</option>
+		<option value="360">保存6小时</option>
+		<option value="1440">保存1天</option>
+		<option value="4320">保存3天</option>
+		<option value="7200">保存5天</option>
+		</select> 
+		<a href="/index.php?user&q=action/getpwd" target="_blank">找回密码</a></li>
+		<li style="padding-left:50px;"><input type="image" src="{$tpldir}/images/log_button.gif"  /> 
+		<a href="/index.php?user&q=action/reg" target="_blank"><img src="{$tpldir}/images/index_reg.gif" /></a></li>
+		</form>
+		</ul>
+		{else}
+		<ul class="index_log_ul1">
+			<li style="text-align:center; padding-top:30px;">
+				
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="120"><img src="{$_G.user_id|avatar}" width="80" height="80" class="picborder" /></td>
+                    <td align="left"><span style="font-family:'微软雅黑';">欢迎你：{$_G.user_result.username}</span><br /><a href="/index.php?user"><font color="#0000FF">[用户中心]</font></a><a href="/index.php?user&q=action/logout"><font color="#FF0000">[退出]</font></a></td>
+                  </tr>
+                </table>
+
+			</li>
+
+			<li class="index_log_li1" style="line-height:15px">
+				<a href="/index.php?user&q=code/account/log">资金记录</a>&nbsp;&nbsp;&nbsp;
+				<a href="/index.php?user&q=code/account">帐户详情</a>&nbsp;&nbsp;&nbsp;
+				<a href="/index.php?user&q=code/borrow/succes">我要收款</a><br />
+				<a href="/index.php?user&q=code/account/account/recharge_new">我要充值</a>&nbsp;&nbsp;&nbsp;
+				<a href="/index.php?user&q=code/account/cash_new">我要提现</a>&nbsp;&nbsp;&nbsp;
+				<a href="/index.php?user&q=code/borrow/repayment">我要还款</a>
+			</li>
+		</ul>
+		{/if}
+	</div>
+	
+</div>
+
+
+
+<!--<借款流程 开始-->
+<div class="wrap950 list_1">
+<div class="con_box t10">
+<img border="0" usemap="#Map" src="{$tempdir}/images/liucheng.jpg">
+<map id="Map" name="Map"><area alt="注册" href="/?user&amp;q=action/reg" coords="129,13,175,42" shape="rect">
+<area alt="填写个人详细资料" href="/?user&amp;q=code/userinfo" coords="218,13,319,44" shape="rect">
+<area alt="上传资料" href="/?user&amp;q=code/attestation" coords="365,13,466,42" shape="rect">
+<area alt="发布借款标需求" href="/publish/index.html?type=month" coords="509,13,641,41" shape="rect">
+<area alt="标满，审核" href="/?user&amp;q=code/borrow/publish" coords="683,12,815,41" shape="rect">
+<area alt="成功借款" href="/?user&amp;q=code/borrow/repayment" coords="859,13,911,42" shape="rect">
+</map>
+</div></div>
+<!--借款流程 结束>-->
+
+<div class="wrap950 mar10">
+	<div class="index_main_left">
+		<div class="list_2">
+                {site site_id="10" }
+			<div class="title">				
+				<div class="titles"><span><a href="{$var.nid}/index.html" target="_blank">更多..</a></span><img src="{$tpldir}/images/ico_4.gif"  /> {$var.name}</div>				
+			</div>
+			<div class="content">
+				<ul>			
+				{loop module="article" function="GetList" limit="10"  site_var="var" var="item" status=1}				
+				<li style="line-height:25px;"><img src="{$tpldir}/images/arror_2.gif" />&nbsp;<a href="{$item.site_nid}/a{$item.id}.html" target="_blank">{$item.name|truncate:14}</a>
+				</li>				
+				{/loop}</ul>			
+			</div>
+                {/site}	
+		</div>		
+		
+		<div class="list_2">
+			<div class="title"><span><a href="/invest/index.html?type=success">更多..</a></span><img src="{$tpldir}/images/ico_4.gif"  /> 成功贷款项目
+                        </div>
+			<div class="content">
+				{loop module="borrow" function="GetList" var="var" limit="3" status="3"}
+				<div class="index_list1">
+					<div class="pic">
+					<a href="invest/a{$var.id}.html" target="_blank">
+					<img src="{$var.user_id|avatar}" width="60" height="65px" class="picborder" title="{$var.name}" /></a>
+					</div>
+					<div class="text">
+						<ul>
+							<li><strong><a href="invest/a{$var.id}.html" target="_blank" title="{$var.name}">{$var.name}</a></strong></li>
+							<li>借款金额：￥{$var.account}</li>
+							<li>借款期限：{$var.time_limit|linkage:"borrow_time_limit"}</li>
+						</ul>
+					</div>
+				</div>
+				{/loop}
+			</div>
+		</div>
+		
+		
+		<div class="list_2">
+			<div class="title"><span><a href="/invest/index.html?type=late">更多..</a></span><img src="{$tpldir}/images/ico_4.gif"  /> 逾期贷款
+                        </div>
+			<div class="content">
+				{loop module="borrow" function="GetLateList" var="var" limit="3" late_day="15" order="addtime" }
+				<div class="index_list1">
+					<div class="pic"><a href="/u/{$var.user_id}" target="_blank"><img src="{$var.user_id|avatar}" width="60" height="62px" class="picborder" title="{$var.name}" /></a></div>
+					<div class="text">
+						<ul>
+							<li><strong><a href="/u/{$var.user_id}" target="_blank" title="{$var.realname}">{$var.realname}</a></strong></li>
+							<li>逾期金额：￥{$var.late_account}</li>
+							<li>手机：{$var.phone}</li>
+						</ul>
+					</div>
+				</div>
+				{/loop}
+			</div>
+		</div>
+	</div>
+	
+	<div class="index_main_right">
+	<!--按钮开始-->
+		<div class="index_button">
+		{article module="borrow" function="GetAll"}
+			<div class="yes"><div class="l"></div><div class="r"><span><img src="{$tpldir}/images/ico_4.gif" /> <a href="/invest/index.html">正在招标的借款</a></span></div></div>
+			<div style=" padding-top:10px; font-size:12px; color:#333;">申请贷款总额：<font color="#900;">￥<strong>{$var.borrow_all}</strong></font> 贷款总笔数：<font color="#900;"><strong>{$var.borrow_times}</strong></font>笔  已放款总额：<font color="#900;">￥<strong>{$var.borrow_yesall}</strong></font> 已放款数：<font color="#900;"><strong>{$var.borrow_yestimes}</strong></font>笔 </div>
+		{/article}
+		</div>
+		<!--按钮结束-->
+	
+		<div class="index_main_content">
+			{loop module="borrow" function="GetList" var="var" limit="10" status="1" order="flag"}
+				<div class="index_list" >
+					<div class="pic" style="width:85px; height:90px; margin-top:13px">
+					<a href="invest/a{$var.id}.html" target="_blank" title="{$var.name}"><img src="{$var.user_id|avatar|litpic:"85,90"}" width="85px" height="90px" /></a>
+					</div>
+					<div class="text">
+						<ul>
+							<li style="height:20px; width:150px; overflow:hidden">
+							{if $var.is_vouch==1}<img src="{$tpldir}/images/danbao.gif"  />{/if}{if $var.flag==1} 
+							<img src="{$tpldir}/images/tuijian.gif" align="absmiddle" />{elseif  $var.flag==2} 
+							<img src="{$tpldir}/images/danbao.gif" />{elseif  $var.flag==3} 
+							<img src="{$tpldir}/images/diya.gif" />{/if}{if  $var.award==1} 
+							<img src="{$tpldir}/images/jiangli.gif" />{elseif  $var.award==2} 
+							<img src="{$tpldir}/images/jiangli.gif" />{/if} 
+							<strong><a href="invest/a{$var.id}.html" target="_blank" title="{$var.name}">
+							<font color="#026CCF" >{$var.name|truncate:20}</font></a></strong></li>
+							<li><font color="#333333">借款金额:<strong>￥{$var.account}</strong></font> </li>
+							<li>年利率:{$var.apr}% 期限:{$var.time_limit}个月</li>
+							<li><div class="rate_bg" title="已完成{$var.scale}%"><div class="rate_tiao" style="width:{$var.scale_width|default:0}px"></div></div>
+							</li>	
+							<li>已完成:{$var.scale}% {$var.tender_times}笔投标</li>											
+						</ul>
+					</div>
+				</div>
+			{/loop}
+		</div>
+		<div class="mar10">{ad nid="index_ad1" litpic="yes"}</div>
+		
+			<div class="list_content_main_3 mar10">
+				<div class="title"><span><a href="/bbs/index.html?fid=1" style="color:#900;">新手指南>></a></span>
+				<img src="{$tpldir}/images/ico_4.gif"  /> 论坛精华</div>
+				<div class="content">
+					<ul style="margin-bottom:5px">
+					{loop module="dwbbs" function="GetTopicsList" var="var" limit="14" status="1"}
+					<li><span>{$var.addtime|date_format:"Y-m-d"}</span>
+					<a href="/bbs/index/html?q=view&tid={$var.id}" title="{$var.name}" target="_blank">&nbsp;{$var.name|truncate:12}</a>
+					</li>
+					{/loop}					
+					</ul>
+				</div>
+			</div>
+		
+	</div>
+</div>
+
+<div class="wrap950 mar10">
+	<div class="link_top">
+	<ul>
+	{loop module="links" function="GetList" limit="10" logo="true"}
+	<li><a href="{$var.url}" target="_blank"><img src="{$var.logoimg}" title="{$var.webname}" width="100" height="30" /></a>
+	</li>
+	{/loop}
+	</div>
+
+	<div class="link_content">
+	<ul>
+	{loop module="links" function="GetList" limit="30" logo="false"}
+	<li>
+	<a href="{$var.url}" target="_blank">{$var.webname}</a>
+	</li>
+	{/loop}  
+	</ul>
+	</div>
+</div>
+{include file="footer.html"}
