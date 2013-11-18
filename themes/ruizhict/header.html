@@ -48,18 +48,19 @@
                 <ul id="Menu_Ul">
                     <li>
                         <a href="/about/index.html"{if $var.nid==$_G.site_result.nid} class="current"{/if}>关于我们</a>
+                        <!--
                         <div class="c">
                             <div class="c_sub">
                                 {site pid=1 status=1}
                                 <a href="/{$var.nid}/index.html">{$var.name}</a>
                                 {/site}
                             </div>
-                        </div>
+                        </div>-->
                     </li>
                     {site lgnore="1,24,28,40,46" status=1}
                     <li{if $var.nid=="invest"} class="wytz_li"{/if}>
                         <a href="/{$var.nid}/index.html"{if $var.nid==$_G.site_result.nid} class="current"{/if}>{$var.name}</a>
-                        <div class="c"{if $var.nid=="invest"} style="width: 120px;"{/if}>
+                      <!--  <div class="c"{if $var.nid=="invest"}{/if}>
                             <div class="c_sub">
                                 {if $var.nid=="invest"}
                                 <a href="invest/index.html">正在投标中的借款</a>
@@ -90,7 +91,7 @@
                                 {/if}
                             </div>
 
-                        </div>
+                        </div>-->
                     </li>
                     {/site}
                 </ul>
@@ -149,6 +150,52 @@
                 </ul>
             </div> -->
         </div>
+        <!--header-bottom Start--> 
+     
+        <div class="w h_b_menuWrap">
+            <div class="h_b_menu">
+                <ul>
+                    <li> {site pid=1 status=1}<a href="/{$var.nid}/index.html">{$var.name}</a>{/site}</li>
+                        {site lgnore="1,24,28,40,46" status=1}
+                        <li{if $var.nid=="invest"} class="wytz_li"{/if}>
+                                    {if $var.nid=="invest"}
+                                    <a href="invest/index.html">正在投标中的借款</a>
+                                    <a href="invest/index.html?type=vouch">正在担保的借款 </a>
+                                    <a href="invest/index.html?type=reviews">等待复审的借款 </a>
+                                    <a href="invest/index.html?type=success">成功的借款 </a>
+                                    <a href="invest/index.html?type=late">逾期的借款 </a>
+                                    {/if}
+                                    {if $var.nid=="borrow"}
+                                        {site pid=8 status=1 var="subvar"}
+                                        <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
+                                        {/site}
+                                    {/if}
+                                    {if $var.nid=="user"}
+                                        {site pid=41 status=1 var="subvar"}
+                                        <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
+                                        {/site}
+                                    {/if}
+                                    {if $var.nid=="tools"}
+                                        {site pid=16 status=1 var="subvar"}
+                                        <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
+                                        {/site}
+                                    {/if}
+                                    {if $var.nid=="kefu"}
+                                        {site pid=21 status=1 var="subvar"}
+                                        <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
+                                        {/site}
+                                    {/if}
+                               
+
+                           
+                        </li>
+                        {/site}                
+                    
+                </ul>
+            </div>
+
+        </div>
+        <!--header-bottom End--> 
     </div>
     <!--顶部菜单 Middle End-->
 </div>
