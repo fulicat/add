@@ -1,19 +1,10 @@
 {include file="header.html"}
-
-
-<!--子栏目 开始-->
-<div class="wrap950 header_site_sub">
-	{foreach from="$_G.site_brother_list" item="var"}
-	<a href="/{$var.nid}/index.html">{$var.name}</a>
-	{/foreach}
-</div>
-<!--子栏目 结束-->
-
-
-
-<div class="wrap950 list_li_3">
-	<div class="title">{$_G.site_result.name}</div>
-	{literal}<?php
+<div id="MiddleWrap">
+  <div class="w padding_middify">
+    <div class="list_li_3">
+      <div class="title">{$_G.site_result.name}</div>
+      {literal}
+      <?php
 	
 	function _url($Date){
 	$ch = curl_init();
@@ -43,17 +34,20 @@ if($nums>0){
 	}
 }
 
-?> 
-	<div class="content">
-		<br />
-		<font color="#FF0000">在下面输入框中输入您要查询的手机号码,点击查询按钮即可查询该手机号所在地区。</font> 
-		<br /><br />
-		<div>
-		<form action="" method="get" onsubmit="return chk()">	手机号码：<input type="text" name="phone"  id="phone" size="20" value="<? echo $_REQUEST['phone'];?>" />   <input type="submit" value="查 询" /></form>
-		</div>
-	</div>
-</div>
-<script>
+?>
+      <div class="content"> <br />
+        <font color="#FF0000">在下面输入框中输入您要查询的手机号码,点击查询按钮即可查询该手机号所在地区。</font> <br />
+        <br />
+        <div>
+          <form action="" method="get" onsubmit="return chk()">
+            手机号码：
+            <input type="text" name="phone"  id="phone" size="20" value="<? echo $_REQUEST['phone'];?>" />
+            <input type="submit" value="查 询" class="reset" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
 function chk()
 {
 var tel = document.all("phone").value;
@@ -68,19 +62,13 @@ else
 		   return false;
          }
 }
-</script>
-
-</script>
-{/literal}
-<div class="wrap950 list_1">
-	<div class="title"><img src="{$tpldir}/images/ico_4.gif"  />   查询结果</div>
-	<div class="content">
-		归属地：{literal}<? echo $address;?>{/literal}
-	</div>
-	<div class="foot"></div>
+</script> 
+    </script> 
+    {/literal}
+    <div class="list_1">
+      <div class="title">查询结果</div>
+      <div class="content"> 归属地：{literal}<? echo $address;?>{/literal} </div>
+    </div>
+  </div>
 </div>
-
-
-
-
 {include file="footer.html"}
