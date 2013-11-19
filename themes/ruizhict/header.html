@@ -59,7 +59,7 @@
                     </li>
                     {site lgnore="1,24,28,40,46" status=1}
                     <li{if $var.nid=="invest"} class="wytz_li"{/if}>
-                        <a href="/{$var.nid}/index.html"{if $var.nid==$_G.site_result.nid} class="current"{/if}>{$var.name}</a>
+                        <a href="{$var.siteurl}"{if $var.nid==$_G.site_result.nid} class="current"{/if}>{$var.name}</a>
                       <!--  <div class="c"{if $var.nid=="invest"}{/if}>
                             <div class="c_sub">
                                 {if $var.nid=="invest"}
