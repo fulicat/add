@@ -1,47 +1,54 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>用户注册_校际前程</title>
-<link href="{$tpldir}/css.css" type="text/css" rel="stylesheet" />
-<script type="text/javascript" src="{$tpldir}/js/jquery.js"></script>
-<script type="text/javascript" src="{$tpldir}/js/user.js"></script>
-<script type="text/javascript" src="{$tpldir}/js/utils.js"></script>
-<script type="text/javascript" src="{$tpldir}/js/tipswindown.js"></script>
-<link href="{$tpldir}/tipswindown.css" rel="stylesheet" type="text/css" />
+{include file="meta.html" template_dir="themes/ruizhict"}
 </head>
-
 <body>
-
-<div class="login_main mtop20">
-	<div class="login_logo"><a href="/"><img src="{$tpldir}/images/logo.gif" /></a></div>
-	<div class="login_bar"> <a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.daxuejob.cn');" href="#">设为首页</a> | <span style="CURSOR: hand" onClick="window.external.addFavorite('http://www.daxuejob.cn','校际前程')" title="校际前程"><a >收藏本站</a></span> |  <a href="/about/about_us.html" target="_blank">关于我们</a> |   <a href="/help/index.html" target="_blank">帮助中心</a> </div>
+<!--头部开始--> 
+{include file="header.html" template_dir="themes/ruizhict"} 
+<!--头部结束--> 
+<!--中间部分 Start-->
+<div id="MiddleWrap">
+  <div class="w"> 
+    <!-- 面包屑 -->
+    <div class="crumb">
+      <dl>
+        <dt>您的位置：</dt>
+        <dd><a href="/" title="">{$_G.system.con_webname}</a>&ensp;&gt;&ensp;<em>会员注册</em></dd>
+      </dl>
+    </div>
+    <!-- 注册进度 -->
+    <div class="reg_progress reg_step_two">
+      <ul>
+        <li>1、填写注册信息</li>
+        <li>2、邮箱认证</li>
+        <li>3、上传头像</li>
+        <li class="cur_step">4、注册完成</li>
+      </ul>
+    </div>
+    <div class="reg_box"> 
+      <!-- 注册信息 -->
+      <div class="user_info reg_info">
+        <div class="login_content" align="center"> 用户注册成功<br />
+          点击进入： <a href="index.php?user">用户中心</a> | <a href="/">返回首页</a> </div>
+      </div>
+      <!-- 右侧 -->
+      <div class="sidebar">
+        <p>已经是安德贷会员</p>
+        <p><a href="/?user&amp;q=action/login" title="立即登录" class="submit_btn regist">立即登录</a></p>
+        <dl>
+          <dt class="finan">我要理财</dt>
+          <dd>理财优势：低门槛、快乐理财、月收本金利息、享受10%以上的投资收益。</dd>
+        </dl>
+        <dl>
+          <dt class="loan">我要借款</dt>
+          <dd>借款优势：便捷、低费率、服务全国、贷前0费用、全新网络借款体验。</dd>
+        </dl>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
 </div>
-
-<div class="login_main mtop10">
-	<div class="login_reg">
-		<div class="login_reg_top"></div>
-		
-		<div class="login_reg_bg">
-			<div class="login_reg_a4"></div>
-			<div class="login_content" align="center">
-				用户注册成功<br />
-				点击进入： <a href="index.php?user">用户中心</a> | <a href="/">返回首页</a>
-			</div>
-		</div>
-		<div class="login_reg_foot"></div>
-	</div>
-	<div class="login_reg_right">
-		<div class="user_button_r"><div class="floatl"><img src="{$tpldir}/images/huodong_button.gif"  /></div><span class="floatl"><strong>我要赚钱</strong><br />
-周末课余，兼职赚钱</span></div>
-<div class="user_button_r"><div class="floatl"><img src="{$tpldir}/images/jianzhi_button.gif"  /></div><span class="floatl"><strong>我要省钱</strong><br />
-联盟折扣，省钱到底</span></div>
-<div class="user_button_r"><div class="floatl"><img src="{$tpldir}/images/peixun_button.gif"  /></div><span class="floatl"><strong>我要快乐</strong><br />
-交友互动，不亦乐乎</span></div>
-		
-	</div>
-</div>
-
-{include file="user_news.html"}
-
-{include file="footer.html"}
+{include file="footer.html" template_dir="themes/ruizhict"}
+</body>
+</html>

@@ -74,6 +74,6 @@ table.zc_tab td{ font-size:14px; height:40px;}
 
 
 
-.user_action_error { float:right; text-align:left; width:160px; }
+.user_action_error { float:left; text-align:left; }
 
 .reg_button { background:url(../images/agree.gif); width:170px; height:29px; border:none}

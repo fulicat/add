@@ -17,29 +17,29 @@
 <body>
 
 <div id="header">
-    <!--¶¥²¿²Ëµ¥ ¿ªÊ¼-->
+    <!--ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ ï¿½ï¿½Ê¼-->
     <div class="h_topwrap">
         <div class="w h_top">
-            <div class="h_t_left"><span  class="whiteColor">»¶Ó­À´µ½{$_G.system.con_webname}</span></div>
+            <div class="h_t_left"><span  class="whiteColor">ï¿½ï¿½Ó­ï¿½ï¿½ï¿½ï¿½{$_G.system.con_webname}</span></div>
             <div class="h_t_right">
                 <ul>
                     {if $_G.user_id==""}
-                    <li><a href="/index.php?user&q=action/login">µÇÂ¼</a></li>
-                    <li><a href="/index.php?user&q=action/reg">×¢²á</a></li>
+                    <li><a href="/index.php?user&q=action/login">ï¿½ï¿½Â¼</a></li>
+                    <li><a href="/index.php?user&q=action/reg">×¢ï¿½ï¿½</a></li>
                     {else}
                     <li>
-                    <a>»¶Ó­Äã£¬{$_G.user_result.username}¡£</a><a href="/?user&q=action/logout">[ÍË³ö]</a>
+                    <a>ï¿½ï¿½Ó­ï¿½ã£¬{$_G.user_result.username}ï¿½ï¿½</a><a href="/?user&q=action/logout">[ï¿½Ë³ï¿½]</a>
                     </li>
                     {/if}
-                    <li><a href="/lianxi/index.html">ÁªÏµÎÒÃÇ</a></li>
-                    <li><a href="/bbs/index.html">ÂÛÌ³</a></li>
+                    <li><a href="/lianxi/index.html">ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½</a></li>
+                    <li><a href="/bbs/index.html">ï¿½ï¿½Ì³</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <!--¶¥²¿²Ëµ¥ ½áÊø-->
+    <!--ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ ï¿½ï¿½ï¿½ï¿½-->
     <div class="clear1"></div>
-    <!--¶¥²¿²Ëµ¥ Middle Start-->
+    <!--ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ Middle Start-->
     <div class="h_top_MenuWrap">
         <div class="w h_t_menu">
             <div class="logo"><a href="/"><img src="{$tempdir}/images_flat/logo.gif" /></a> </div>
@@ -47,7 +47,7 @@
 
                 <ul id="Menu_Ul">
                     <li>
-                        <a href="/about/index.html"{if $var.nid==$_G.site_result.nid} class="current"{/if}>¹ØÓÚÎÒÃÇ</a>
+                        <a href="/about/index.html"{if $var.nid==$_G.site_result.nid} class="current"{/if}>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
                         <!--
                         <div class="c">
                             <div class="c_sub">
@@ -63,11 +63,11 @@
                       <!--  <div class="c"{if $var.nid=="invest"}{/if}>
                             <div class="c_sub">
                                 {if $var.nid=="invest"}
-                                <a href="invest/index.html">ÕýÔÚÍ¶±êÖÐµÄ½è¿î</a>
-                                <a href="invest/index.html?type=vouch">ÕýÔÚµ£±£µÄ½è¿î </a>
-                                <a href="invest/index.html?type=reviews">µÈ´ý¸´ÉóµÄ½è¿î </a>
-                                <a href="invest/index.html?type=success">³É¹¦µÄ½è¿î </a>
-                                <a href="invest/index.html?type=late">ÓâÆÚµÄ½è¿î </a>
+                                <a href="invest/index.html">ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ÐµÄ½ï¿½ï¿½</a>
+                                <a href="invest/index.html?type=vouch">ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ </a>
+                                <a href="invest/index.html?type=reviews">ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ </a>
+                                <a href="invest/index.html?type=success">ï¿½É¹ï¿½ï¿½Ä½ï¿½ï¿½ </a>
+                                <a href="invest/index.html?type=late">ï¿½ï¿½ï¿½ÚµÄ½ï¿½ï¿½ </a>
                                 {/if}
                                 {if $var.nid=="borrow"}
                                     {site pid=8 status=1 var="subvar"}
@@ -99,50 +99,50 @@
             <!-- <div class="menu">
                 <ul id="Menu_Ul">
                     <li>
-                        <a href="#" class="current" >¹ØÓÚÎÒÃÇ</a>
+                        <a href="#" class="current" >ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
                         <div class="c">
                             <div class="c_sub">
-                                <a href="#">¹ØÓÚÎÒÃÇ</a>
-                                <a href="#">·¨ÂÉÕþ²ß</a>
-                                <a href="#">ÁªÏµÎÒÃÇ</a>
-                                <a href="#">ÈË²ÅÕÐÆ¸</a>
-                                <a href="#">·ÑÓÃ</a>
-                                <a href="#">ÐÂÎÅ¶¯Ì¬</a>
+                                <a href="#">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
+                                <a href="#">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
+                                <a href="#">ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½</a>
+                                <a href="#">ï¿½Ë²ï¿½ï¿½ï¿½Æ¸</a>
+                                <a href="#">ï¿½ï¿½ï¿½ï¿½</a>
+                                <a href="#">ï¿½ï¿½ï¿½Å¶ï¿½Ì¬</a>
                             </div>
 
                         </div>
                     </li>
                     <li>
-                        <a href="#" >ÎÒ´û¿î</a>
+                        <a href="#" >ï¿½Ò´ï¿½ï¿½ï¿½</a>
                         <div class="c">
                             <div class="c_sub">
-                                <a href="#">½è¿î¹ÜÀí</a>
-                                <a href="#">ÒÑÂú¶î</a>
-                                <a href="#">¶î¶È¹ÜÀí</a>
+                                <a href="#">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
+                                <a href="#">ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
+                                <a href="#">ï¿½ï¿½È¹ï¿½ï¿½ï¿½</a>
                             </div>
                         </div>
                     </li>
                     <li class="wytz_li">
-                        <a href="#" >ÎÒÒªÍ¶×Ê</a>
+                        <a href="#" >ï¿½ï¿½ÒªÍ¶ï¿½ï¿½</a>
                         <div class="c" style="width:120px;">
                             <div class="c_sub">
-                                <a href="index.html" {if $magic.request.type=="" } class="strong"{/if}>ÕýÔÚÍ¶±êÖÐµÄ½è¿î</a> |
-                                <a href="?type=vouch" {if $magic.request.type=="vouch"} class="strong"{/if}>ÕýÔÚµ£±£µÄ½è¿î </a>  |
-                                <a href="?type=reviews" {if $magic.request.type=="reviews"} class="strong"{/if}>µÈ´ý¸´ÉóµÄ½è¿î </a> |
-                                <a href="?type=success" {if $magic.request.type=="success"} class="strong"{/if}>³É¹¦µÄ½è¿î </a> |
-                                <a href="?type=late" {if $magic.request.type=="late"} class="strong"{/if}>ÓâÆÚµÄ½è¿î </a>
+                                <a href="index.html" {if $magic.request.type=="" } class="strong"{/if}>ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ÐµÄ½ï¿½ï¿½</a> |
+                                <a href="?type=vouch" {if $magic.request.type=="vouch"} class="strong"{/if}>ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ </a>  |
+                                <a href="?type=reviews" {if $magic.request.type=="reviews"} class="strong"{/if}>ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ </a> |
+                                <a href="?type=success" {if $magic.request.type=="success"} class="strong"{/if}>ï¿½É¹ï¿½ï¿½Ä½ï¿½ï¿½ </a> |
+                                <a href="?type=late" {if $magic.request.type=="late"} class="strong"{/if}>ï¿½ï¿½ï¿½ÚµÄ½ï¿½ï¿½ </a>
                             </div>
                         </div>
                     </li>
-                    <li><a href="#" >ÎÒµÄÕËºÅ</a></li>
-                    <li><a href="#" >°²È«ÖÐÐÄ</a></li>
+                    <li><a href="#" >ï¿½Òµï¿½ï¿½Ëºï¿½</a></li>
+                    <li><a href="#" >ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½</a></li>
                     <li>
-                        <a href="#" >¹¤¾ßÏä</a>
+                        <a href="#" >ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</a>
                         <div class="c">
                             <div class="c_sub">
-                                <a href="#">ÀûÏ¢¼ÆËã</a>
-                                <a href="#">ÊÖ»úºÅÂë²éÑ¯</a>
-                                <a href="#">ipµØÖ·²éÑ¯</a>
+                                <a href="#">ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½</a>
+                                <a href="#">ï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¯</a>
+                                <a href="#">ipï¿½ï¿½Ö·ï¿½ï¿½Ñ¯</a>
                             </div>
                         </div>
                     </li>
@@ -159,11 +159,11 @@
                         {site lgnore="1,24,28,40,46" status=1}
                         <li{if $var.nid=="invest"} class="wytz_li"{/if}>
                                     {if $var.nid=="invest"}
-                                    <a href="invest/index.html">ÕýÔÚÍ¶±êÖÐµÄ½è¿î</a>
-                                    <a href="invest/index.html?type=vouch">ÕýÔÚµ£±£µÄ½è¿î </a>
-                                    <a href="invest/index.html?type=reviews">µÈ´ý¸´ÉóµÄ½è¿î </a>
-                                    <a href="invest/index.html?type=success">³É¹¦µÄ½è¿î </a>
-                                    <a href="invest/index.html?type=late">ÓâÆÚµÄ½è¿î </a>
+                                    <a href="invest/index.html">ï¿½ï¿½ï¿½ï¿½Í¶ï¿½ï¿½ï¿½ÐµÄ½ï¿½ï¿½</a>
+                                    <a href="invest/index.html?type=vouch">ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ </a>
+                                    <a href="invest/index.html?type=reviews">ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½Ä½ï¿½ï¿½ </a>
+                                    <a href="invest/index.html?type=success">ï¿½É¹ï¿½ï¿½Ä½ï¿½ï¿½ </a>
+                                    <a href="invest/index.html?type=late">ï¿½ï¿½ï¿½ÚµÄ½ï¿½ï¿½ </a>
                                     {/if}
                                     {if $var.nid=="borrow"}
                                         {site pid=8 status=1 var="subvar"}
@@ -197,6 +197,6 @@
         </div>
         <!--header-bottom End--> 
     </div>
-    <!--¶¥²¿²Ëµ¥ Middle End-->
+    <!--ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½ Middle End-->
 </div>
 <div class="clear1"></div>

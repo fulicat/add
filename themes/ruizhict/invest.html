@@ -151,19 +151,21 @@ $this->magic_vars['_G']['epurl'] = url_format($this->magic_vars['_G']['nowurl'],
                     <li class="w_6">
                         {if $var.status==3}
                             {if $var.repayment_account == $var.repayment_yesaccount  }
-                            <img src="{$tempdir}/images_flat/tender_achieve.jpg" />
+                            <img style="margin-top:40px;" src="{$tempdir}/images_flat/tender_achieve.jpg" />
                             {else}
-                            <img src="{$tempdir}/images_flat/loan_repayment.jpg" />
+                            <img style="margin-top:40px;" src="{$tempdir}/images_flat/loan_repayment.jpg" />
                             {/if}
                         {elseif $var.status==5}
+                        <span>
                         用户取消
+                        </span>
                         {elseif $var.status==4}
                         {elseif $var.account>$var.account_yes}
                         <a href="/invest/a{$var.id}.html?detail=true">
                             立即投标
                         </a>
                         {else}
-                        <img src="{$tempdir}/images_flat/tender_wait.jpg" />
+                        <img style="margin-top:40px;" src="{$tempdir}/images_flat/tender_wait.jpg" />
                         {/if}
                     </li>
                 </ul>

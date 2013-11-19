@@ -1,0 +1,14 @@
+/*ex_userright*/
+.ex_user_right{width: 800px;background: #fff;}
+.user_right_l{margin-top: 0px;padding-left: 10px;}
+.ex_user_right_lmain{border: 0px;background: none;}
+.ex_user_right_lmain{border-bottom:1px solid #efefef;}
+.ex_user_btn_wrap{overflow: hidden;}
+a.ex_user_cz_btn,a.ex_user_de_btn,a.ex_user_db_btn{width: 80px;height: 24px;background: #f15f00;line-height: 24px;text-align: center;margin: 0px 2px;display: block;float: left;}
+a.ex_user_de_btn{background: #0091d5;width: 90px;}
+a.ex_user_db_btn{background: #2a9e39;width: 90px;}
+a.ex_user_cz_btn:link,a.ex_user_cz_btn:visited,a.ex_user_de_btn:link,a.ex_user_de_btn:visited,a.ex_user_db_btn:link,a.ex_user_db_btn:visited{color: #fff;}
+.user_right_txt{padding-top: 5px;}
+
+/**/
+.user_right_li .title{margin:0px;background:none;line-height:26px;padding-left:10px;font-weight:bold;color: #555;font-size: 14px;}
