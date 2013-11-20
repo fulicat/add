@@ -1,3 +1,4 @@
+.Mt{margin-top: 10px;overflow: hidden;width: 100%;height: 0px;}
 /*ex_userright*/
 .ex_user_right{width: 800px;background: #fff;}
 .user_right_l{margin-top: 0px;padding-left: 10px;}
@@ -11,4 +12,43 @@ a.ex_user_cz_btn:link,a.ex_user_cz_btn:visited,a.ex_user_de_btn:link,a.ex_user_d
 .user_right_txt{padding-top: 5px;}
 
 /**/
-.user_right_li .title{margin:0px;background:none;line-height:26px;padding-left:10px;font-weight:bold;color: #555;font-size: 14px;}
+.user_right_l{width: 570px;}
+.user_right_li{border:0px;}
+.user_right_li .title{overflow: hidden; margin:0px;background:none;line-height:26px;padding-left:10px;font-weight:bold;color: #555;font-size: 14px;}
+.user_right_li .title dl dd{color: #555;}
+.user_right_li .title dl dd font{font-size: 12px;}
+.user_right_li .title dl dd.tip_font{color: #9f9f9f;}
+.user_right_li ul li{border-bottom: 1px dotted #e8e8e8;}
+.user_right_li .content ul li .left,.user_right_li .content ul li .right{float: left;}
+
+.user_right_li .content ul li .right{padding-left: 25px; }
+.user_right_li .content ul li .right span{font-size: 12px;}
+/*右边借入流程 Start*/
+.ex_user_member_program{float: left;overflow: hidden;width: 800px;padding-top: 20px;}
+.ex_user_m_p_wrap{overflow: hidden;background: #fff;padding:10px;}
+.ex_u_m_p_subC01,.ex_u_m_p_subC01 .c{overflow: hidden;}
+.ex_u_m_p_subC01 .t,.user_right_li .t1{border-bottom:1px solid #f6f6f6;height: 38px;line-height: 38px;}
+.ex_u_m_p_subC01 .t h4,.user_right_li .t1 h4{font-size: 18px;color: #555;font-family: "Microsoft Yahei";padding-left: 10px;}
+.ex_u_m_p_subC01 .c{padding:10px;}
+.ex_u_m_p_subC01 .c ul li{float: left;}
+.ex_u_m_p_subC01 .c ul li a{background: url(../images/ex_btn_icon01.png) no-repeat;display: block;width: 143px;height: 34px;line-height: 34px;text-align:center;font-size:18px;}
+.ex_u_m_p_subC01 .c ul li a:link,.ex_u_m_p_subC01 .c ul li a:visited{background-position:-160px 0px;}
+.ex_u_m_p_subC01 .c ul li.first a:link,.ex_u_m_p_subC01 .c ul li.first a:visited{background-position: 0px 0px;}
+.ex_u_m_p_subC01 .c ul li.last a:link,.ex_u_m_p_subC01 .c ul li.last a:visited{background-position: -317px 0px;}
+
+.ex_u_m_p_subC01 .c ul li a:hover,.ex_u_m_p_subC01 .c ul li a.on:link,.ex_u_m_p_subC01 .c ul li a.on:visited{background-position:-160px -44px; color: #fff;text-decoration: none;}
+.ex_u_m_p_subC01 .c ul li.first a:hover,.ex_u_m_p_subC01 .c ul li.first a.on:link,.ex_u_m_p_subC01 .c ul li.first a.on:visited{background-position:0px -44px; color: #fff;text-decoration: none;}
+.ex_u_m_p_subC01 .c ul li.last a:hover,.ex_u_m_p_subC01 .c ul li.last a.on:link,.ex_u_m_p_subC01 .c ul li.last a.on:visited{background-position:-317px -44px; color: #fff;text-decoration: none;}
+/*投资者上路*/
+.ex_u_m_p_subC01 .c.c1 ul li a:hover,.ex_u_m_p_subC01 .c.c1 ul li a.on:link,.ex_u_m_p_subC01 .c.c1 ul li a.on:visited{background-position:-160px -88px; color: #fff;text-decoration: none;}
+.ex_u_m_p_subC01 .c.c1 ul li.first a:hover,.ex_u_m_p_subC01 .c.c1 ul li.first a.on:link,.ex_u_m_p_subC01 .c.c1 ul li.first a.on:visited{background-position:0px -88px; color: #fff;text-decoration: none;}
+.ex_u_m_p_subC01 .c.c1 ul li.last a:hover,.ex_u_m_p_subC01 .c.c1 ul li.last a.on:link,.ex_u_m_p_subC01 .c.c1 ul li.last a.on:visited{background-position:-317px -88px; color: #fff;text-decoration: none;}
+
+/*好友动态*/
+/*个人资料完成率*/
+.user_right_info{border:0px;background: none;}
+.user_right_r{margin-top: 0px;}
+.user_right_info .title,.user_right_li .title{border-bottom:1px solid #efefef;}
+.user_right_info .title strong,.user_right_li .title{font-size: 15px;font-family: "Microsoft yahei";font-weight: normal;color:#555;font-weight: bold;}
+.user_right_info ul li{border-bottom:1px dotted #efefef;}
+.user_right_li .content{padding-top: 10px;}
