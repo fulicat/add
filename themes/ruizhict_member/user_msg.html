@@ -6,16 +6,21 @@
 <meta name="description" content="" />
 <meta name="keywords" content="" />
 <link href="{$tpldir}/main1.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
 {include file="header.html" template_dir="themes/ruizhict"}
-
-<div class="wrap950 mar10" style=" border:1px solid #CCCCCC">
-	<div style=" background-color:#E8E8E8; margin:1px; line-height:25px; padding-left:10px; font-size:13px;"><strong>系统信息</strong></div>
-	<div style="text-align:center"><br />
-{ $_U.showmsg.msg }<br /><br  /> <div id="msg_content"><a href="{ $_U.showmsg.url }">{$_U.showmsg.content}</a></div><br />
-	</div>
+<div id="MiddleWrap">
+  <div class="w padding_middify">
+    <div class="mar10" style=" border:1px solid #CCCCCC; background-color:#FFF;">
+      <div style=" background-color:#E8E8E8; margin:1px; line-height:25px; padding-left:10px; font-size:13px;"><strong>系统信息</strong></div>
+      <div style="text-align:center"><br />
+        { $_U.showmsg.msg }<br />
+        <br  />
+        <div id="msg_content"><a href="{ $_U.showmsg.url }">{$_U.showmsg.content}</a></div>
+        <br />
+      </div>
+    </div>
+  </div>
 </div>
 <script> 
 

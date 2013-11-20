@@ -1,6 +1,8 @@
 {include file="header.html" template_dir="themes/ruizhict"}
 <!--用户中心的主栏目 开始-->
-<div class="wrap950 mar10">
+<div id="MiddleWrap">
+  <div class="w padding_middify">
+<div class="mar10">
 	<!--左边的导航 开始-->
 	<div class="user_left">
 		{include file="user_menu.html"}
@@ -27,7 +29,7 @@
 		{if $_U.query_type=="log"}
 		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
 		记录时间：<input type="text" name="dotime1" id="dotime1" value="{$magic.request.dotime1|default:"$day7"|date_format:"Y-m-d"}" size="15" onclick="change_picktime()"/> 到 <input type="text"  name="dotime2" value="{$magic.request.dotime2|default:"$nowtime"|date_format:"Y-m-d"}" id="dotime2" size="15" onclick="change_picktime()"/>   
-		{linkages nid="account_type" value="$magic.request.type" name="type" type="value" default="全部" } <input value="搜索" type="submit" onclick="sousuo('{$_U.query_url}/publish')" /> 总计：￥{$_U.account_num|default:0}
+		{linkages nid="account_type" value="$magic.request.type" name="type" type="value" default="全部" } <input value="搜索" class="reset" type="submit" onclick="sousuo('{$_U.query_url}/publish')" /> 总计：￥{$_U.account_num|default:0}
 		</div>	
 			<table  border="0"  cellspacing="1" class="user_list_table">
 			  <form action="" method="post">
@@ -209,7 +211,7 @@
 		<div class="user_right_border">
 			<div class="l"></div>
 			<div class="c">
-				<input type="submit" name="name"  value="确认提交" size="30" /> 
+				<input type="submit" name="name" class="reset"  value="确认提交" size="30" /> 
 			</div>
 		</div>
 		</form>
@@ -346,24 +348,24 @@
 		<div class="user_right_border">
 			<div class="l">开户行支行名称：</div>
 			<div class="c">
-				<input type="text" name="branch" value="{$_U.account_bank_result.branch}" /><br />
-<span>**分行**支行**分理处或营业部(如：上海分行杨浦支行控江路分理处),如果您无法确定,建议您致电您的开户银行客服进行询问。 </span>
+				<input type="text" name="branch" value="{$_U.account_bank_result.branch}" />
 			</div>
+            <p style="color:#999; float:left; width:450px; padding-left:10px;">**分行**支行**分理处或营业部(如：上海分行杨浦支行控江路分理处),如果您无法确定,建议您致电您的开户银行客服进行询问。 </p>
 		</div>
 		
 		<div class="user_right_border">
 			<div class="l">银行账号：</div>
 			<div class="c">
-				<input type="text" name="account" value="{$_U.account_bank_result.account}" /><br />
-<span>特别提醒：上述银行卡号的开户人姓名必须为“{$_U.account_bank_result.realname}”, 个人银行账号必须填写正确,否则你的提现资金将存在风险。 如果要修改的话必须要补全, 可以任何时候修改以您的姓名开户的银行卡号。</span>
+				<input type="text" name="account" value="{$_U.account_bank_result.account}" />
 			</div>
+            <p style="color:#999; float:left; width:450px; padding-left:10px;">特别提醒：上述银行卡号的开户人姓名必须为“{$_U.account_bank_result.realname}”, 个人银行账号必须填写正确,否则你的提现资金将存在风险。 如果要修改的话必须要补全, 可以任何时候修改以您的姓名开户的银行卡号。</p>
 		</div>
 		
 		<div class="user_right_border">
 			<div class="l"></div>
 			<div class="c">
 				<input type="hidden" name="user_id" value="{$_G.user_id}" />
-				<input type="submit" name="name"  value="确认提交" size="30" /> 
+				<input type="submit" name="name" class="reset"  value="确认提交" size="30" /> 
 			</div>
 		</div>
 		</form>
@@ -442,7 +444,7 @@
 			<div class="l"></div>
 			<div class="c">
 				<input type="hidden" name="user_id" value="{$_G.user_id}" />
-				<input type="submit" name="name"  value="确认提交" size="30" /> 
+				<input type="submit" name="name" class="reset"  value="确认提交" size="30" /> 
 			</div>
 		</div>
 		</form>
@@ -487,7 +489,7 @@ function check_form(){
 				{/literal}
 		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
 		发布时间：<input type="text" name="dotime1" id="dotime1" value="{$magic.request.dotime1|default:"$day7"|date_format:"Y-m-d"}" size="15" onclick="change_picktime()"/> 到 <input type="text"  name="dotime2" value="{$magic.request.dotime2|default:"$nowtime"|date_format:"Y-m-d"}" id="dotime2" size="15" onclick="change_picktime()"/>   
-		<input value="搜索" type="submit" onclick="sousuo('{$_U.query_url}/publish')" />
+		<input value="搜索" type="submit" onclick="sousuo('{$_U.query_url}/publish')" class="reset" />
 		</div>	
 		{article module="borrow" function="GetUserLog" user_id="0"}
 				<div style="line-height:30px; font-size:15px; font-weight:bold">个人资金详情</div>
@@ -612,6 +614,10 @@ function check_form(){
 			{/if}
 	</div>
 	<!--右边的内容 结束-->
+</div>
+<div style="clear:both;"></div>
+</div>
+</div>
 </div>
 <!--用户中心的主栏目 结束-->
 	<script>

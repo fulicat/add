@@ -1,6 +1,8 @@
 {include file="header.html" template_dir="themes/ruizhict"}
 <!--用户中心的主栏目 开始-->
-<div class="wrap950 mar10">
+<div id="MiddleWrap">
+  <div class="w padding_middify">
+<div class="mar10">
 	<!--左边的导航 开始-->
 	<div class="user_left">
 		{include file="user_menu.html"}
@@ -136,9 +138,8 @@
 			</div>
 		</div>
 			<div class="user_right_border">
-				<div class="e"></div>
-				<div class="c">
-					<input type="submit"  value="确认提交" size="30" /> 
+				<div class="c" style="margin-left:125px;">
+					<input type="submit" class="reset"  value="确认提交" size="30" /> 
 				</div>
 			</div>
 			</form>
@@ -179,9 +180,8 @@
 </object>
 			
 			<div class="user_right_border">
-				<div class="e"></div>
-				<div class="c">
-					<input type="submit"  value="确认提交" size="30" /> 
+				<div class="c" style="margin-left:70px;">
+					<input type="submit" class="reset"  value="确认提交" size="30" /> 
 				</div>
 			</div>
 			</form>
@@ -190,6 +190,8 @@
 	
 	
 		{/if}
+</div>
+</div>
 </div>
 <!--用户中心的主栏目 结束-->
 {include file="user_footer.html"}

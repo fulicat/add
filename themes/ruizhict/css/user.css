@@ -66,7 +66,7 @@
 
 .user_left{ float:left; width:200px; }
 
-.user_right { float:right; width:740px; overflow: hidden }
+.user_right { float:right; width:800px; overflow: hidden }
 
 .user_right_l { float:left; width:500px; margin-top:15px; }
 
@@ -286,7 +286,7 @@
 
 .user_left{ float:left; width:200px; }
 
-.user_right { float:right; width:770px; overflow: hidden }
+.user_right { float:right; width:800px; overflow: hidden }
 
 .user_right_l { float:left; width:550px; margin-top:15px; }
 
@@ -392,15 +392,16 @@
 
 /*用户管理右边菜单 */
 
-.user_right_menu { width:100%; height:auto;margin-top:15px; line-height:26px; border-bottom:1px solid #CCCCCC; overflow:hidden; margin-bottom:10px;}
+.user_right_menu { width:100%; height:auto; line-height:26px; overflow:hidden; margin-bottom:-1px; }
 
-.user_right_menu li { float:left; padding: 0 8px 0 8px; border:1px solid #CCCCCC; margin-right:10px; border-bottom:none; }
+.user_right_menu li { float:left; padding: 0 8px 0 8px; background-color:#35B172; color:#FFF; border:1px solid #35B172; margin-right:10px; border-bottom:none; }
 
-.user_right_menu  .current { background:url(../images/user_right_menu_bg.jpg);  }
+.user_right_menu  .current { background-color:#FFF; border:1px solid #CCC;border-bottom:none;  }
+.user_right_menu  .current a{ color:#35B172; }
 
 .user_right_menu  a{
 
-	color:#900
+	color:#FFF;
 
 }
 
@@ -420,11 +421,12 @@
 
 	;
 
-	color: #900;
+	color: #444;
 
 }
+.user_right_menu .title a { color:#444; }
 
-.user_right_main { border:1px solid #CCCCCC; height:auto; text-align:center ; overflow:hidden }
+.user_right_main { border:1px solid #CCCCCC; background-color:#FFF; height:auto; text-align:center ; overflow:hidden }
 
 
 

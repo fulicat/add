@@ -1,6 +1,7 @@
 {include file="header.html" template_dir="themes/ruizhict"}
 <!--用户中心的主栏目 开始-->
-<div class="wrap950 ">
+<div id="MiddleWrap">
+<div class="w padding_middify">
 	<!--左边的导航 开始-->
 	<div class="user_left">
 		{include file="user_menu.html"}
@@ -12,7 +13,7 @@
 		<div class="user_right_menu">
 			{if $_U.query_type=="userpwd" || $_U.query_type=="paypwd" || $_U.query_type=="protection" || $_U.query_type=="getpaypwd"}
 			<ul>
-				<li class="title" ><a href="{$_U.query_url}">安全信息</a></li>
+				<li class="title" >安全信息</li>
 				<li {if $_U.query_type=="userpwd"} class="current"{/if}><a href="{$_U.query_url}/userpwd">登录密码</a></li>
 				<li {if $_U.query_type=="paypwd" || $_U.query_type=="getpaypwd"} class="current"{/if}><a href="{$_U.query_url}/paypwd">交易密码</a></li>
 				<li {if $_U.query_type=="protection"} class="current"{/if}><a href="{$_U.query_url}/protection">密码保护</a></li>
@@ -38,7 +39,7 @@
 			</ul>
 			{else}
 			<ul>
-				<li class="title" ><a href="{$_U.query_url}">修改个人信息 </a></li>
+				<li class="title" >修改个人信息</li>
 				<li {if $_U.query_type=="realname"} class="current"{/if}><a href="{$_U.query_url}/realname">实名认证</a></li>
 				<li {if $_U.query_type=="email_status"} class="current"{/if}><a href="{$_U.query_url}/email_status">邮箱认证</a></li>
 				<li {if $_U.query_type=="phone_status"} class="current"{/if}><a href="{$_U.query_url}/phone_status">手机认证</a></li>
@@ -140,7 +141,7 @@
 		<div class="user_right_border">
 			<div class="e"></div>
 			<div class="c">
-				<input type="submit" name="name"  value="确认提交" size="30" /> 
+				<input type="submit" name="name" class="reset"  value="确认提交" size="30" /> 
 			</div>
 		</div>
 		</form>
@@ -177,7 +178,7 @@
 		<div class="user_right_border">
 			<div class="e"></div>
 			<div class="c">
-				<input type="submit" name="name"  value="确认提交" size="30" /> 
+				<input type="submit" class="reset" name="name"  value="确认提交" size="30" /> 
 			</div>
 		</div>
 		</form>
@@ -245,7 +246,7 @@
 		<div class="user_right_border">
 			<div class="l"></div>
 			<div class="c">
-				<input type="submit" name="name"  value="确认提交" size="30" /> <a href="/index.php?user&q=code/user/getpaypwd">忘记交易密码？</a>
+				<input type="submit" class="reset" name="name"  value="确认提交" size="30" /> <a href="/index.php?user&q=code/user/getpaypwd">忘记交易密码？</a>
 			</div>
 		</div>
 		</form>
@@ -308,7 +309,7 @@
 		<div class="user_right_border">
 			<div class="l"></div>
 			<div class="c">
-				<input type="submit" name="name"  value="确认提交" size="30" /> 
+				<input type="submit" class="reset" name="name"  value="确认提交" size="30" /> 
 			</div>
 		</div>
 		</form>
@@ -404,7 +405,7 @@
 		<div class="user_right_border">
 			<div class="l"></div>
 			<div class="c">
-				<input type="submit" name="name"  value="确认提交" size="30" /> 
+				<input type="submit" class="reset" name="name"  value="确认提交" size="30" /> 
 			</div>
 		</div>
 		<div class="user_right_foot">
@@ -426,10 +427,10 @@
 		<div class="user_right_border">
 			<div class="l">邀请链接：</div>
 			<div class="c">
-				<textarea cols="40" rows="3" id="invite">http://{$magic.server.SERVER_NAME}/index.php?user&q=action/reginvite&u={$_U.user_inviteid}</textarea> <input type="button" onclick="doCopy('invite')" value="复制" />
+				<textarea cols="40" rows="3" id="invite">http://{$magic.server.SERVER_NAME}/index.php?user&q=action/reginvite&u={$_U.user_inviteid}</textarea> <p>&ensp;</p><p><input type="button" onclick="doCopy('invite')" class="reset" value="复制" /></p>
 			</div>
 		</div><br /><br />
-		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+		<table  border="0"  cellspacing="1" class="user_list_table">
 			  <form action="" method="post">
 				<tr class="head" >
 					<td  >下线用户名 </td>
@@ -475,7 +476,7 @@
 		
 		<!--好友请求 开始-->
 		{elseif $_U.query_type=="request"}
-		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+		<table  border="0"  cellspacing="1" class="user_list_table">
 			  <form action="" method="post">
 				<tr class="head" >
 					<td  >对方名称</td>
@@ -507,10 +508,10 @@
 		
 		<div class="user_main_title" style="height:30px; padding-top:7px;"> 
 		
-		&nbsp; &nbsp; &nbsp; 用户名：<input type="text" name="username" id="username" value="{$magic.request.username}" /> <input value="搜索" type="button" onclick="sousuo('{$_U.query_url}/publish')"  />
+		&nbsp; &nbsp; &nbsp; 用户名：<input type="text" name="username" id="username" value="{$magic.request.username}" /> <input class="reset" value="搜索" type="button" onclick="sousuo('{$_U.query_url}/publish')"  />
 		</div>
 		
-		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+		<table  border="0"  cellspacing="1" class="user_list_table">
 			  <form action="" method="post">
 				<tr class="head" >
 					<td  >对方名称</td>
@@ -571,7 +572,7 @@ function sousuo(){
 		&nbsp; &nbsp; &nbsp; 用户名：<input type="text" name="" /> <input value="搜索" type="submit" />
 		</div>
 		-->
-		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+		<table  border="0"  cellspacing="1" class="user_list_table">
 			  <form action="" method="post">
 				<tr class="head" >
 					<td  >对方名称</td>
@@ -737,9 +738,8 @@ function sousuo(){
 		
 		
 		<div class="user_right_border">
-			<div class="e"></div>
-			<div class="c">
-				{if $_G.user_result.use_money>=0}<input type="submit" name="name"  value="确认提交" size="30" /> {else} 您的余额为{$_G.user_result.use_money},请先 <a href="/index.php?user&q=code/account/recharge_new"><font color="#FF0000">充值</font></a>。{/if}
+			<div class="c" style="margin-left:125px;">
+				{if $_G.user_result.use_money>=0}<input type="submit" name="name" class="reset"  value="确认提交" size="30" /> {else} 您的余额为{$_G.user_result.use_money},请先 <a href="/index.php?user&q=code/account/recharge_new"><font color="#FF0000">充值</font></a>。{/if}
 			</div>
 		</div>
 		</form>{/if}
@@ -787,7 +787,7 @@ function sousuo(){
 		<div class="user_right_border">
 			<div class="c">
 				<form action="" method="post" onsubmit="this.elements['submit'].disabled='disabled';return true;">
-				重设邮箱：<input type="text" name="email" value="{$_G.user_result.email}" />  <input type="submit" name="submit" value="重新激活"  />
+				重设邮箱：<input type="text" name="email" value="{$_G.user_result.email}" />  <input type="submit" class="reset" name="submit" value="重新激活"  />
 				</form>
 			</div>
 		</div>
@@ -805,7 +805,7 @@ function sousuo(){
 		{/if}
 		<div class="user_right_border">
 			<div class="c">
-				<form action="" method="post">手机号码：<input type="text" name="phone" value="{if $_G.user_result.phone_status==0 ||  $_G.user_result.phone_status==1}{$_G.user_result.phone}{else}{$_G.user_result.phone_status}{/if}" /> <input type="submit" value="确认提交" /><br /><br /></form>
+				<form action="" method="post">手机号码：<input type="text" name="phone" value="{if $_G.user_result.phone_status==0 ||  $_G.user_result.phone_status==1}{$_G.user_result.phone}{else}{$_G.user_result.phone_status}{/if}" /> <input type="submit" class="reset" value="确认提交" /><br /><br /></form>
 
 			</div>
 		</div>
@@ -817,7 +817,7 @@ function sousuo(){
 		{if $_G.user_result.vip_status!=1}
 		<div class="user_help">你还不是VIP会员不能做视频认证。</a>
 		<div class="c">
-			如要申请成为VIP会员，请点按钮提交到VIP申请页。<input type="button" onclick="javacript:location.href='/vip/index.html'" value="申请VIP会员"  /><br /><br /></form>
+			如要申请成为VIP会员，请点按钮提交到VIP申请页。<input type="button" onclick="javacript:location.href='/vip/index.html'" class="reset" value="申请VIP会员"  /><br /><br /></form>
 
 			</div>
 		</div>
@@ -830,7 +830,7 @@ function sousuo(){
 			<div class="c">
 				<form action="" method="post">
 				
-				{if $_G.user_result.use_money >0}如果你需要视频认证，请点按钮提交。<input type="submit" value="提交申请" name="submit" /><br /><br />{else}<a href="/index.php?user&q=code/account/recharge_new"><font color="#FF0000">请先充值</font></a>{/if}</form>
+				{if $_G.user_result.use_money >0}如果你需要视频认证，请点按钮提交。<input type="submit" class="reset" value="提交申请" name="submit" /><br /><br />{else}<a href="/index.php?user&q=code/account/recharge_new"><font color="#FF0000">请先充值</font></a>{/if}</form>
 
 			</div>
 		</div>{/if}</div>
@@ -861,7 +861,7 @@ function sousuo(){
 		<div class="user_help" > 
 		<strong>信用总得分：</strong> <font size="3" color="#FF0000"><strong>{$_U.user_cache.credit}</strong></font>  {$_U.user_cache.credit|credit}
 		</div>
-		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+		<table  border="0"  cellspacing="1" class="user_list_table">
 			  <form action="" method="post">
 				<tr class="head" >
 					<td  >积分类型</td>
@@ -891,7 +891,7 @@ function sousuo(){
 			
 		<strong>总客户：</strong> {$loop.total} 个
 		</div>
-		<table  border="0"  cellspacing="1" class="user_list_table" style="width:98%">
+		<table  border="0"  cellspacing="1" class="user_list_table">
 			  <form action="" method="post">
 				<tr class="head" >
 					<td  >用户名</td>
@@ -926,6 +926,10 @@ function sousuo(){
 		<!--信用积分 结束-->
 		
 		{/if}
+</div>
+</div>
+<div style="clear:both;"></div>
+</div>
 </div>
 <!--用户中心的主栏目 结束-->
 {include file="user_footer.html"}
