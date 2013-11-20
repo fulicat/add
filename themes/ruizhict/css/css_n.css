@@ -29,11 +29,11 @@ dl,dd,dt{ margin:0; padding:0}
 
 .main_left{ width:240px; float:left; }
 .title{}
-.title h1{ line-height:30px; background:url(..\images\icon.gif) no-repeat 0 center; height:30px; padding-left:25px; font-size:14px; font-weight:bold; color:#015CA7; float:left}
+.title h1{ line-height:30px; background:url(..\images\icon.gif) no-repeat 0 center; height:30px; font-size:14px; font-weight:bold; color:#444; float:left}
 .title h1.dd{ font-size:12px}
 .title span{ float:right; line-height:30px}
 .title span a{ color:#333333}
-.m_l_bor{ border:#B2DBFF solid 1px; border-top:none; padding:5px;}
+.m_l_bor{ border:#D7D7D7 solid 1px; border-top:none; padding:5px; background-color:#FFF;}
 .news_list{ padding:5px 10px; height:170px; overflow:hidden}
 .news_list li{ line-height:24px; color:#333333}
 .news_list li a{color:#333333}

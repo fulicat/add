@@ -2,6 +2,9 @@
 <link href="{$tempdir}/css/css_n.css" rel="stylesheet" type="text/css" />
 <link href="{$tempdir}/css/style_n.css" rel="stylesheet" type="text/css" />
 {article module="borrow" function="GetU" article_id="0"}
+
+<div id="MiddleWrap">
+  <div class="w padding_middify">
 <div class="con_box t10">
   <div class="user_choic">
     <div class="user_choic1">
@@ -135,10 +138,10 @@ href="javascript:void(0)">加为好友</A> </li>
             {loop module="borrow" function="GetTenderList" var="_var" limit='0,6' user_id="$GU_uid"}
             <tr>
               <td><a href="/invest/a{$_var.borrow_id}.html" title="{$_var.borrow_name}" target="_blank">{$_var.borrow_name|truncate:10}</a></td>
-              <td>{$_var.tender_money }元</td>
-              <td>{$_var.tender_account}元</td>
-              <td>{$_var.addtime|date_format:"Y-m-d"}</td>
-              <td>{if $_var.status==1}成功{else}失败{/if}</td>
+              <td align="center">{$_var.tender_money }元</td>
+              <td align="center">{$_var.tender_account}元</td>
+              <td align="center">{$_var.addtime|date_format:"Y-m-d"}</td>
+              <td align="center">{if $_var.status==1}成功{else}失败{/if}</td>
             </tr>
             {/loop}
           </table>
@@ -161,6 +164,9 @@ href="javascript:void(0)">加为好友</A> </li>
       </div>
     </div>
   </div>
+<div style="clear:both;"></div>
+</div>
+</div>
 </div>
 </div>
 </div>

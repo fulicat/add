@@ -21,6 +21,7 @@
             <li {if $_U.query_type=="sent"} class="current"{/if}><a href="{$_U.query_url}/sent">发信息</a></li>
           </ul>
         </div>
+        <div class="user_right_main">
         <!--收件箱 开始--> 
         {if $_U.query_type=="list"}
         <div class="user_main_title1" >
@@ -63,7 +64,7 @@
         <!--发件箱 开始--> 
         {elseif $_U.query_type=="sented"}
         <div class="user_main_title1" >
-          <input type="button"  value="删除" onclick="on_submit('{$_G.query_url}/sented',1)" />
+          <input type="button"  value="删除" onclick="on_submit('{$_G.query_url}/sented',1)" class="reset" />
         </div>
         <form action="" method="post" id="form1">
           <div class="user_right_main">
@@ -130,7 +131,7 @@
         <div class="user_right_border">
           <div class="l"></div>
           <div class="c">
-            <input type="submit"   value="确认提交" size="30" />
+            <input type="submit"   value="确认提交" class="reset" size="30" />
           </div>
         </div>
       </form>
@@ -139,8 +140,8 @@
       <!--查看 开始--> 
       {elseif $_U.query_type=="view"}
       <div class="user_main_title1" >
-        <input type="button" onclick="javascript:location.href='{$_U.query_url}'" value="返回" />
-        <input type="button" value="删除" onclick="javascript:location.href='{$_U.query_url}/del&id={$_U.message_result.id}'"/>
+        <input type="button" onclick="javascript:location.href='{$_U.query_url}'" value="返回" class="reset" />
+        <input type="button" class="reset" value="删除" onclick="javascript:location.href='{$_U.query_url}/del&id={$_U.message_result.id}'"/>
       </div>
       <form method="post" action="" >
         <div class="user_right_border">
@@ -169,7 +170,7 @@
           <div class="l"></div>
           <div class="c">
             <input type="hidden" name="id" value="{$_U.message_result.id}" />
-            <input type="submit"  value="回复"  />
+            <input type="submit"  value="回复" class="reset"  />
           </div>
         </div>
       </form>
@@ -178,8 +179,8 @@
       <!--查看 开始--> 
       {elseif $_U.query_type=="viewed"}
       <div class="user_main_title1" >
-        <input type="button" onclick="javascript:location.href='{$_U.query_url}/sented'" value="返回" />
-        <input type="button" value="删除" onclick="javascript:location.href='{$_U.query_url}/deled&id={$_U.message_result.id}'"/>
+        <input type="button" onclick="javascript:location.href='{$_U.query_url}/sented'" value="返回" class="reset" />
+        <input type="button" value="删除" class="reset" onclick="javascript:location.href='{$_U.query_url}/deled&id={$_U.message_result.id}'"/>
       </div>
       <div class="user_right_border">
         <div class="l">标题：</div>
@@ -200,7 +201,7 @@
       
       <!--查看 结束--> 
       
-      {/if} </div>
+      {/if} </div> </div>
   </div>
 </div>
 </div>

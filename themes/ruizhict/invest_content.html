@@ -20,18 +20,19 @@
 {/if}
 <div id="MiddleWrap">
   <div class="w padding_middify">
+  <div style="border:1px solid #d4d4d4; background-color:#FFF; padding:10px; width:978px;">
     <div class="invest_left">
       <div class="list_invest">
         <div class="title">
-          <div class="title_bg"><img src="{$tempdir}/images/ico_4.gif"  /> 确认借款信息</div>
+          <div class="title_bg">确认借款信息</div>
         </div>
         <div class="content">
           <div class="content_left"  >
             <ul>
               <li><img src="{$var.user.user_id|avatar|imgurl_format}" border="0" class="picborder"/></li>
               <li>用 户 名：{$var.user.username}</li>
-              <li>真实姓名<img src="{$_G.system.con_credit_picurl}{ $var.user.credit_pic}" title="{$var.user.credit_jifen}分"  />：{$var.user.realname}</li>
-              <li>信用积分：</li>
+              <li>真实姓名：{$var.user.realname}</li>
+              <li>信用积分：<img src="{$_G.system.con_credit_picurl}{ $var.user.credit_pic}" title="{$var.user.credit_jifen}分"  /></li>
               <li>居住城市: {$var.userinfo.area|area}</li>
             </ul>
           </div>
@@ -58,7 +59,7 @@
     <div class="invest_right">
       <div class="list_invest">
         <div class="title">
-          <div class="title_bg"><img src="{$tempdir}/images/ico_4.gif"  /> 确认投标金额</div>
+          <div class="title_bg">确认投标金额</div>
         </div>
         <div class="content">
           <form action="/index.php?user&q=code/borrow/tender" name="form1" onsubmit="return check_form({$var.borrow.lowest_account|default:0},{$var.borrow.most_account|default:0},{$var.user_account.use_money|default:0})" method="post">
@@ -84,6 +85,8 @@
           </form>
         </div>
       </div>
+    </div>
+    <div style="clear:both;"></div>
     </div>
   </div>
 </div>
