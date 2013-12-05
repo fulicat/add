@@ -1,22 +1,22 @@
 {include file="header.html"}
-{if $_G.user_id==""} 
-<script>alert("你还没有登录，请先登录再查看");location.href='/index.php?user';</script> 
+{if $_G.user_id==""}
+<script>alert("你还没有登录，请先登录再查看");location.href='/index.php?user';</script>
 {/if}
 {article module="borrow" function="GetInvest" article_id="0"}
 
-{if $var.user.user_id==""} 
-<script>alert("您的操作有误");location.href='/index.php?user';</script> 
+{if $var.user.user_id==""}
+<script>alert("您的操作有误");location.href='/index.php?user';</script>
 {/if}
 
 {if $magic.request.detail=="true"}
-{if $var.user.user_id==$_G.user_id} 
-<script>alert("不能投自己的标");location.href='/invest/a{$var.borrow.id}.html';</script> 
-{elseif $var.borrow.is_vouch==1 && $var.borrow.account != $var.borrow.vouch_account} 
-<script>alert("此标为担保标，担保额度还没满");location.href='/invest/a{$var.borrow.id}.html';</script> 
-{elseif $var.borrow.account<=$var.borrow.account_yes} 
-<script>alert("此标已满标，不能再进行投标");location.href='/invest/a{$var.borrow.id}.html';</script> 
-{elseif $var.borrow.status<=0} 
-<script>alert("此标正在审核中，或申请失败，不能投标");location.href='/invest/a{$var.borrow.id}.html';</script> 
+{if $var.user.user_id==$_G.user_id}
+<script>alert("不能投自己的标");location.href='/invest/a{$var.borrow.id}.html';</script>
+{elseif $var.borrow.is_vouch==1 && $var.borrow.account != $var.borrow.vouch_account}
+<script>alert("此标为担保标，担保额度还没满");location.href='/invest/a{$var.borrow.id}.html';</script>
+{elseif $var.borrow.account<=$var.borrow.account_yes}
+<script>alert("此标已满标，不能再进行投标");location.href='/invest/a{$var.borrow.id}.html';</script>
+{elseif $var.borrow.status<=0}
+<script>alert("此标正在审核中，或申请失败，不能投标");location.href='/invest/a{$var.borrow.id}.html';</script>
 {/if}
 <div id="MiddleWrap">
   <div class="w padding_middify">
@@ -90,7 +90,7 @@
     </div>
   </div>
 </div>
-{literal} 
+{literal}
 <script>
 	function check_form(lowest,most,use_money){
 		 var frm = document.forms['form1'];
@@ -118,20 +118,20 @@
 		}else{
 			return false;
 		}
-		 
+
 	}
-</script> 
+</script>
 {/literal}
 
 
 
 {elseif $magic.request.detail=="vouch"}
-{if $var.user.user_id==$_G.user_id} 
-<script>alert("不能担保自己的标");location.href='/invest/a{$var.borrow.id}.html';</script> 
-{elseif $var.borrow.account<=$var.borrow.account_yes} 
-<script>alert("此标已满标，不能再进行投标");location.href='/invest/a{$var.borrow.id}.html';</script> 
-{elseif $var.borrow.status<=0} 
-<script>alert("此标正在审核中，或申请失败，不能投标");location.href='/invest/a{$var.borrow.id}.html';</script> 
+{if $var.user.user_id==$_G.user_id}
+<script>alert("不能担保自己的标");location.href='/invest/a{$var.borrow.id}.html';</script>
+{elseif $var.borrow.account<=$var.borrow.account_yes}
+<script>alert("此标已满标，不能再进行投标");location.href='/invest/a{$var.borrow.id}.html';</script>
+{elseif $var.borrow.status<=0}
+<script>alert("此标正在审核中，或申请失败，不能投标");location.href='/invest/a{$var.borrow.id}.html';</script>
 {/if}
 <div id="MiddleWrap">
   <div class="w">
@@ -204,7 +204,7 @@
     </div>
   </div>
 </div>
-{literal} 
+{literal}
 <script>
 	function check_form(lowest,most,use_money){
 		 var frm = document.forms['form1'];
@@ -232,11 +232,11 @@
 		}else{
 			return false;
 		}
-		 
+
 	}
-</script> 
+</script>
 {/literal}
-{else} 
+{else}
 
 <!--借款内容页 开始-->
 <div id="MiddleWrap">
@@ -329,7 +329,7 @@
           <ul>
             <li>QQ：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$var.user.qq}&Site=揭阳市金兰芬投资有限公司&Menu=yes" ><img border="0" src="http://wpa.qq.com/pa?p=2:{$var.user.qq}:44" alt="点击这里给我发消息" title="点击这里给我发消息" /></a></li>
             <li>旺旺：<a target="_blank" href="http://amos.im.alisoft.com/msg.aw?v=2&uid={$var.user.wangwang}&site=cnalichn&s=4" ><img border="0" src="http://amos.im.alisoft.com/online.aw?v=2&uid={$var.user.wangwang}&site=cnalichn&s=4" alt="旺旺联系我" /></a></li>
-            <li>邮箱：<a target="_blank" href="mailto:{$var.user.email}">{$var.user.email}</a></li>
+            <li>邮箱：<a target="_blank" href="mailto:{$var.user.email}">{$var.user.email|truncate:"19"}</a></li>
             <li class="line">客服：<a href="/index.php?user&q=code/message/sent&receive={$var.user_cache.kefu_username}" target="_blank">{$var.user_cache.kefu_username}</a></li>
             <li style="padding-top:8px;"><a href="/index.php?user&q=code/message/sent&receive={$var.user.username}" target="_blank"><img src="{$tempdir}/images/ico_xin.gif" align="absmiddle" /></a></li>
             <li><a href="javascript:void(0)" onclick='tipsWindown("加为好友","url:get?/index.php?user&q=code/user/addfriend&username={$var.user.username}",400,230,"true","","true","text");'><img src="{$tempdir}/images/ico_you.gif" align="absmiddle"  /></a></li>
@@ -342,8 +342,8 @@
     </div>
   </div>
 </div>
-<!--借款内容页 结束--> 
-{literal} 
+<!--借款内容页 结束-->
+{literal}
 <script type="text/javascript">
 var CID = "endtime";
 if(window.CID != null){
@@ -359,12 +359,12 @@ var sDay="",sTime="";
         iHour = parseInt((iTime/3600)%24);
         iMinute = parseInt((iTime/60)%60);
         iSecond = parseInt(iTime%60);
-  
-   if (iDay > 0){ 
-    sDay = iDay + "天"; 
+
+   if (iDay > 0){
+    sDay = iDay + "天";
    }
    sTime =sDay + iHour + "小时" + iMinute + "分钟" + iSecond + "秒";
-  
+
         if(iTime==0){
            clearTimeout(Account);
            sTime="<span style='color:green'>时间到了！</span>";
@@ -377,8 +377,8 @@ var sDay="",sTime="";
     }
 document.getElementById(CID).innerHTML = sTime;
 }
-</script> 
-{/literal} 
+</script>
+{/literal}
 <!--还款信用 开始-->
 <div id="MiddleWrap">
   <div class="w">
@@ -406,7 +406,7 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--还款信用 结束--> 
+<!--还款信用 结束-->
 
 <!--个人资料 开始-->
 <div id="MiddleWrap">
@@ -435,7 +435,7 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--个人资料 结束--> 
+<!--个人资料 结束-->
 
 <!--个人资料 开始-->
 <div id="MiddleWrap">
@@ -452,7 +452,7 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--个人资料 结束--> 
+<!--个人资料 结束-->
 <!--投标奖励 开始-->
 <div id="MiddleWrap">
   <div class="w">
@@ -478,9 +478,9 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--投标奖励 结束--> 
+<!--投标奖励 结束-->
 
-{if $var.borrow.is_vouch==1} 
+{if $var.borrow.is_vouch==1}
 <!--担保奖励 开始-->
 <div id="MiddleWrap">
   <div class="w">
@@ -498,9 +498,9 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--担保奖励 结束--> 
+<!--担保奖励 结束-->
 
-<!--担保记录 开始--> 
+<!--担保记录 开始-->
 <a name="vouch_user" ></a>
 <div id="MiddleWrap">
   <div class="w">
@@ -529,8 +529,8 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--担保记录 结束--> 
-{/if} 
+<!--担保记录 结束-->
+{/if}
 
 <!--账户详情 开始-->
 <div id="MiddleWrap">
@@ -571,7 +571,7 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--账户详情 结束--> 
+<!--账户详情 结束-->
 
 <!--资料审核 开始-->
 <div id="MiddleWrap">
@@ -603,7 +603,7 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--资料审核 结束--> 
+<!--资料审核 结束-->
 
 <!--还款记录 开始-->
 
@@ -632,7 +632,7 @@ document.getElementById(CID).innerHTML = sTime;
     </div>
   </div>
 </div>
-<!--还款记录 结束--> 
+<!--还款记录 结束-->
 
 <!--投标记录 开始-->
 <div id="MiddleWrap">
@@ -666,13 +666,13 @@ document.getElementById(CID).innerHTML = sTime;
 </div>
 <!--投标记录 结束-->
 <div id="MiddleWrap">
-  <div class="w"> 
-    <!--评论开始--> 
+  <div class="w">
+    <!--评论开始-->
     <script src="/index.php?comment&type=list&code={$_G.site_result.code}&id={$_G.article_id}&page=1&epage=3"></script>
     <div class="content_title mar10"> <span class="floatr">总评论数：<font color="#FF0000"><script>document.write(result['total'])</script></font> 个 <a href="/index.php?comment&type=lists&code=borrow&id={$_G.article_id}&page=1" target="_blank">查看所有评论</a></span><img src="{$tempdir}/images/pinglun.gif" align="absmiddle"/>&nbsp; 评论 </div>
     <div class="article_content " align="left">
       <ul class="pinglun_co" >
-        {literal} 
+        {literal}
         <script>
 					var list = result['list'];
 					var display = "";
@@ -680,7 +680,7 @@ document.getElementById(CID).innerHTML = sTime;
 						display += '<li><div class="pinglun_co_left"><div class="pinglun_co_pic"><img src="'+list[i]['litpic']+'" width="73" height="73" /></div><a href="/u/'+list[i]['user_id']+'" target=_blank>'+list[i]['username']+'</a></div><div class="floatr"><div class="pinglun_co_content">'+list[i]['comment']+'<br><font style=" font-size:12px; float:right">'+list[i]['time']+'</font></div>	</div></li>';
 					}
 					document.write(display);
-				</script> 
+				</script>
         {/literal}
       </ul>
       <div class="comment_page"></div>
@@ -697,9 +697,9 @@ document.getElementById(CID).innerHTML = sTime;
       </div>
     </div>
     {literal}<script type="text/javascript">
-			function nl2br(value) 
-{ 
-  return value.replace("\n","<br />"); 
+			function nl2br(value)
+{
+  return value.replace("\n","<br />");
 }
 				function pinglun(code,id) {
 						var comment =nl2br($("#comment_content").val());
@@ -714,10 +714,10 @@ document.getElementById(CID).innerHTML = sTime;
 					$("#windownbg").remove();
 					$("#windown-box").fadeOut("slow",function(){$(this).remove();});
 				};
-			 	
-		 </script> 
-    {/literal} 
-    <!--评论结束--> 
+
+		 </script>
+    {/literal}
+    <!--评论结束-->
   </div>
 </div>
 {/if}

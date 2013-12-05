@@ -33,7 +33,7 @@
                                         <span>请输入6到16位密码</span>
                                     </li>
                                     <li class="clearfix">
-                                        <label for="code"><em>*</em>验证码：</label><input name="valicode" type="text" size="8" maxlength="4" class="text short" /><span><img src="/plugins/index.php?q=imgcode" alt="点击刷新" onclick="this.src='/plugins/index.php?q=imgcode&amp;t=' + Math.random();" align="absmiddle" style="cursor:pointer"></span>
+                                        <label for="code"><em>*</em>验证码：</label><input name="valicode" type="text" size="8" maxlength="4" class="text short" /><span><img src="/plugins/index.php?q=imgcode&{$_G.pageHash}" alt="点击刷新" onclick="this.src='/plugins/index.php?q=imgcode&amp;t=' + Math.random();" align="absmiddle" style="cursor:pointer"></span>
                                     </li>
                                     <li class="clearfix dark">
                                         <label>&ensp;</label><input name="cookietime" type="checkbox" checked="checked" class="checkbox" value="7200"><span>记住我</span><span><a href="/?user&amp;q=action/getpwd" class="blue" title="忘记密码">忘记密码?</a></span>

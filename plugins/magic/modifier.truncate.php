@@ -2,7 +2,7 @@
 
 function magic_modifier_truncate($string, $length = '20'){
   if ($length == 0) {    return '';}
-   
+
     $pa = "/[\x01-\x7f]|[\xa1-\xff][\xa1-\xff]/";
 
 
@@ -10,7 +10,7 @@ function magic_modifier_truncate($string, $length = '20'){
 
     if (count($t_string[0]) > $length)
 
-        return join('', array_slice($t_string[0], 0, $length));
+        return join('', array_slice($t_string[0], 0, $length)) . '..';
 
     return join('', array_slice($t_string[0], 0, $length));
 
@@ -24,8 +24,8 @@ function magic_modifier_truncate($string, $length = '20'){
         } else
             $tmpstr .= substr($string, $i, 1);
     }
-    return $tmpstr;
-	
+    return $tmpstr . '..';
+
 
 }
 ?>

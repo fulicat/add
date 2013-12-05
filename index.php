@@ -10,6 +10,10 @@ if(!is_file(dirname(__FILE__)."/core/common.inc.php")){
 session_cache_limiter('private,must-revalidate');
 
 $_G = array();
+
+// 页面请求hash
+$_G['pageHash'] = md5(uniqid(mt_rand(), true));
+
 //基本配置文件
 include ("core/config.inc.php");
 
@@ -447,6 +451,8 @@ else{
 			$_G['msg'] = $msg;
 			$template = "error.html";
 		}
+
+
 		$magic->assign("_G",$_G);
 		if (isset($_G['site_result']['code']) && $_G['site_result']['code']!=""){
 			$magic->display(format_tpl($template,array("code"=>$_G['site_result']['code'])));

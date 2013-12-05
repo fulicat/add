@@ -4,19 +4,19 @@
  * $Description: 数据库处理文件
  * $Author: QQ134716
  * $Time:2012-03-09
- * $Update:None 
- * $UpdateDate:None 
+ * $Update:None
+ * $UpdateDate:None
 ******************************/
 class dwbbsClass{
-	
+
 	const ERROR = '操作有误，请不要乱操作';
 	const MODULE_CODE_NO_EMPTY = '模型名称不能为空';
 	const USERLOGIN_USERNAME_NO_EMPTY = '用户名不能为空';
 	const USERLOGIN_PASSWORD_NO_EMPTY = '密码不能为空';
 	const TOPICS_IS_LOCK = '帖子已经锁定';
 	const FORUM_SUB_EXISTS = '版块存在子版块';
-	
-	
+
+
 	/**
 	 * 获得论坛参数设置列表
 	 * @param Array $data(name,type，style)
@@ -32,12 +32,12 @@ class dwbbsClass{
 			$_sql .= " and id='{$data['id']}'";
 		}
 		$action = isset($data["action"])?$data["action"]:"list";
-		
+
 		if ($action == "list"){
 			$sql = "select * from `{bbs_settings}` {$_sql}";
 			return $mysql->db_fetch_arrays($sql);
 		}
-		
+
 		elseif ($action == "lists"){
 			$sql = "select * from `{bbs_settings}` {$_sql}";
 			$result =  $mysql->db_fetch_arrays($sql);
@@ -47,12 +47,12 @@ class dwbbsClass{
 			}
 			return $_result;
 		}
-		
+
 		elseif ($action == "view"){
 			$sql = "select * from `{bbs_settings}` {$_sql}";
 			return $mysql->db_fetch_array($sql);
 		}
-		
+
 		elseif ($action == "add"){
 			unset($data['action']);
 			$_sql = "";
@@ -67,13 +67,13 @@ class dwbbsClass{
 			if ($result == false) return self::ERROR;
 			return true;
 		}
-		
+
 		elseif ($action == "update"){
 			unset($data['action']);
 			$sql = "select * from `{bbs_settings}` where nid = '".$data['nid']."' and id !=".$data['id'];
 			$result = $mysql -> db_fetch_array($sql);
 			if ($result!=false) return  self::SYSTEM_NID_IS_EXIST;
-			
+
 			$_sql = "";
 			$sql = "update `{bbs_settings}` set ";
 			foreach($data as $key => $value){
@@ -81,9 +81,9 @@ class dwbbsClass{
 			}
 			$result =  $mysql->db_query($sql.join(",",$_sql)." where id = '".$data['id']."'");
 			if ($result == false) return self::ERROR;else return true;
-			
+
 		}
-		
+
 		elseif ($action == "updates"){
 			foreach ($data['value'] as $key =>$val){
 				$val = nl2br($val);
@@ -93,7 +93,7 @@ class dwbbsClass{
 			return self::ERROR;
 		}
 	}
-	
+
 	/**
 	 * 论坛积分设置
 	 * @param Array $data(name,type，style)
@@ -102,18 +102,18 @@ class dwbbsClass{
 	function ActionCredits($data = array()){
 		global $mysql;
 		$_sql = " where 1=1 ";
-		
+
 		if (isset($data['id']) && $data['id']!=""){
 			$_sql .= " and id='{$data['id']}'";
 		}
-		
+
 		$action = isset($data["action"])?$data["action"]:"list";
-		
+
 		if ($action == "list"){
 			$sql = "select * from `{bbs_credits}` {$_sql}";
 			return $mysql->db_fetch_arrays($sql);
 		}
-		
+
 		elseif ($action == "updates"){
 			foreach ($data['credit'] as $key =>$val){
 				$sql  = "update `{bbs_credits}` set `creditscode` = '{$key}'";
@@ -129,7 +129,7 @@ class dwbbsClass{
 			return self::ERROR;
 		}
 	}
-	
+
 	/**
 	 * 论坛模块管理
 	 * @param Array $data(name,type，style)
@@ -138,13 +138,13 @@ class dwbbsClass{
 	function ActionForum($data = array()){
 		global $mysql;
 		$_sql = " where 1=1 ";
-		
+
 		if (isset($data['id']) && $data['id']!=""){
 			$_sql .= " and id='{$data['id']}'";
 		}
 		$action = isset($data["action"])?$data["action"]:"list";
 		unset($data['action']);
-		
+
 		if ($action == "list"){
 			$sql = "select * from `{bbs_forums}` {$_sql} order by `order` desc";
 			$result = $mysql->db_fetch_arrays($sql);
@@ -192,7 +192,7 @@ class dwbbsClass{
 			}
 			return $_result;
 		}
-		
+
 		//查看列表
 		elseif ($action == "menu"){
 			$sql = "select * from `{bbs_forums}` ";
@@ -217,14 +217,14 @@ class dwbbsClass{
 			}
 			return $control_menu;
 		}
-		
+
 		//查看单条信息
 		elseif ($action == "view"){
 			$sql = "select * from `{bbs_forums}` where id='{$data['id']}'";
 			return $mysql->db_fetch_array($sql);
 		}
-		
-		
+
+
 		//添加板块
 		elseif ($action == "add"){
 			$_sql = array();
@@ -243,7 +243,7 @@ class dwbbsClass{
 			 }
 			return true;
 		}
-		
+
 		//更新版块
 		elseif ($action == "update"){
 			$_sql = "";
@@ -259,7 +259,7 @@ class dwbbsClass{
 			if ($result == false) return self::ERROR;
 			return true;
 		}
-		
+
 		//更新版块的名称和排序
 		elseif ($action == "updates"){
 			foreach ($data['id'] as $key =>$val){
@@ -268,7 +268,7 @@ class dwbbsClass{
 			}
 			return self::ERROR;
 		}
-		
+
 		//删除版块
 		elseif ($action == "del"){
 			$fid = isset($data['fid'])?$data['fid']:"";
@@ -277,17 +277,17 @@ class dwbbsClass{
 			if ($result!=false) return false;
 			$sql = "delete from `{bbs_forums}` where id = '{$fid}' ";
 			$mysql->db_query($sql);
-			
+
 			$sql = "delete from `{bbs_topics}` where fid = '{$fid}' ";
 			$mysql->db_query($sql);
-			
+
 			$sql = "delete from `{bbs_posts}` where fid = '{$fid}' ";
 			$mysql->db_query($sql);
-			
+
 			return true;
-		
+
 		}
-		
+
 		//合并版块
 		elseif ($action == "merge"){
 			$fid = isset($data['fromfid'])?$data['fromfid']:"";
@@ -298,7 +298,7 @@ class dwbbsClass{
 			$mysql->db_query($sql);
 			$sql = "update `{bbs_posts}` set fid='{$data['tofid']}' where fid='{$fid}'";
 			$mysql->db_query($sql);
-			
+
 			$_data['fid'] = $fid;
 			$_data['action'] = "del";
 			self::ActionForum($_data);;
@@ -311,7 +311,7 @@ class dwbbsClass{
 			$sql = "select admins,pid from `{bbs_forums}` where id = '{$fid}'";
 			$result = $mysql -> db_fetch_array($sql);
 			if ($result== false)  return self::ERROR;
-			
+
 			$display = explode("|",$result['admins']);
 			array_shift ($display);
 			$_display = array();
@@ -319,14 +319,14 @@ class dwbbsClass{
 				$_display[$key]['name'] = $value;
 				$_display[$key]['isup'] = 0;
 			}
-			
+
 			$pid = $result['pid'];
 			$presult = "";
 			if ($pid!="0"){
 				$sql = "select admins,pid from `{bbs_forums}` where id = '{$pid}'";
 				$presult = $mysql -> db_fetch_array($sql);
 			}
-			
+
 			$_pdisplay = array();
 			$mresult = false;
 			if ($presult!=false){
@@ -340,7 +340,7 @@ class dwbbsClass{
 				$sql = "select admins,pid from `{bbs_forums}` where id = '{$pid}'";
 				$mresult = $mysql -> db_fetch_array($sql);
 			}
-			
+
 			$_mdisplay = array();
 			if ($mresult!=false){
 				$mdisplay = explode("|",$mresult['admins']);
@@ -356,9 +356,9 @@ class dwbbsClass{
 				$result = array_merge($_mdisplay,$_pdisplay,$_display);
 			}
 			return $result;
-			
+
 		}
-		
+
 		//添加版主
 		elseif ($action == "admins_add"){
 			$fid = isset($data['fid'])?$data['fid']:"";
@@ -367,7 +367,7 @@ class dwbbsClass{
 			$admins_list = array();
 			$_admins_list = self::ActionForum(array("fid"=>$fid,"type"=>"up","action"=>"admins_list"));
 			foreach ($_admins_list as $key => $value){
-				$admins_list[] = $value['name']; 
+				$admins_list[] = $value['name'];
 			}
 			$no_exist_user = "";
 			$yes_admins = array("0"=>"");
@@ -395,11 +395,11 @@ class dwbbsClass{
 			}
 			$sql = "update `{bbs_forums}` set admins='{$yes_admins}' where id='{$fid}'";
 			$mysql->db_query($sql);
-	
+
 			return $no_exist_user;
 		}
-		
-		
+
+
  		else{
 			return self::ERROR;
 		}
@@ -420,21 +420,25 @@ class dwbbsClass{
 		$result = $mysql->db_fetch_arrays($sql);
 		return $result;
 	}
-	
-	
+
+
 	/**
 	 * 获得列表
 	 *
 	 * @return Array
 	 */
-	function GetTopicsList($data = array()){
-		global $mysql;
+	function GetTopicsList($data = array()){//print_r($data);exit;
+		global $mysql,$_G;
 		$page = empty($data['page'])?1:$data['page'];
 		$epage = empty($data['epage'])?10:$data['epage'];
-		
+
 		$_sql = "where 1=1";
 		if (isset($data['name']) && $data['name']!=""){
 			$_sql .= " and p1.name like '%{$data['name']}%'";
+		}
+		if (isset($data['mytopic']) && $data['mytopic'] == 1) {
+			# code...$_G['user_id']
+			$_sql .= " and p1.user_id = '{$_G['user_id']}'";
 		}
 		if (isset($data['site_id']) && $data['site_id']!=""){
 			$_sql .= " and p1.site_id = {$data['site_id']}";
@@ -442,7 +446,7 @@ class dwbbsClass{
 		if (isset($data['fid']) && $data['fid']!=""){
 			$_sql .= " and p1.fid = {$data['fid']}";
 		}
-		
+
 		if (isset($data['status']) && $data['status']!=""){
 			$_sql .= " and p1.status = {$data['status']}";
 		}
@@ -455,14 +459,13 @@ class dwbbsClass{
 				$_sql .= " and p1.`name` like '%".urldecode($_REQUEST['keywords'])."%'";
 			}
 		}
-		
 		$_select = "p1.*,p2.name as forum_name";
-		$sql = "select SELECT from `{bbs_topics}` as p1 
+		$sql = "select SELECT from `{bbs_topics}` as p1
 				left join {bbs_forums} as p2 on p2.id = p1.fid
-				
+
 				{$_sql}   ORDER LIMIT";
-		
-		$_order = "order by p1.id desc";		
+
+		$_order = "order by p1.id desc";
 		if (isset($data['order'])){
 			if ($data['order']=="hits")
 			$_order = " order by p1.hits desc";
@@ -474,16 +477,16 @@ class dwbbsClass{
 				$_limit = "  limit ".$data['limit'];
 			}
 			return $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select, $_order, $_limit), $sql));
-		}			
-				
+		}
+
 		$row = $mysql->db_fetch_array(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array('count(1) as num', '', ''), $sql));
-		
+
 		$total = $row['num'];
 		$total_page = ceil($total / $epage);
 		$index = $epage * ($page - 1);
 		$limit = " limit {$index}, {$epage}";
-		
-		$list = $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select,$_order, $limit), $sql));		
+
+		$list = $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select,$_order, $limit), $sql));
 		$list = $list?$list:array();
 		return array(
             'list' => $list,
@@ -492,9 +495,9 @@ class dwbbsClass{
             'epage' => $epage,
             'total_page' => $total_page
         );
-		
+
 	}
-	
+
 	/**
 	 * 查看单条帖子
 	 *
@@ -510,14 +513,14 @@ class dwbbsClass{
 			$sql = "update  {bbs_topics} set hits=hits+1 where id=$id";
 			$mysql->db_query($sql);
 		}
-		$sql = "select p1.* from `{bbs_topics}` as p1 
+		$sql = "select p1.* from `{bbs_topics}` as p1
 			left join {bbs_forums} as p2 on p2.id = p1.fid
 			left join {bbs_posts} as p3 on p3.tid = p1.id
 			where p1.id={$id}";
 		return $mysql->db_fetch_array($sql);
 	}
-	
-	
+
+
 	/**
 	 * 添加帖子
 	 * @param Array $data(name,type，style)
@@ -528,7 +531,7 @@ class dwbbsClass{
 		$date = date("Y-m-d",time());
 		$user_id = $data['last_replyuser'];
 		if (!isset($data['fid']) || $data['fid']=="") return self::ERROR;
-		
+
 		//将帖子插入在帖子表去
 		$sqlc="select isverify from `{bbs_forums}` where id='".$data['fid']."'";
 		$showdirect = $mysql->db_fetch_array($sqlc);
@@ -550,20 +553,20 @@ class dwbbsClass{
 			$sql = "insert into `{bbs_posts}` set `tid` = '{$tid}',`istopic`=1,`fid` = '{$data['fid']}',`user_id`='{$user_id }',`username`='{$data['username']}',`name`='{$data['name']}',`content`='{$data['content']}',`addtime` = '".time()."',`addip` = '".ip_address()."'";
 			$mysql->db_query($sql);
 			$pid = $mysql -> db_insert_id();
-			
+
 			//更新相应版块的信息
 			$sql = "update `{bbs_forums}` set `today_num`=today_num+1,`topics_num`=topics_num +1,`last_postuser`='{$user_id }',`last_postname` ='{$data['name']}',`last_posttime` ='".time()."',last_postid='{$pid}' where id='{$data['fid']}'";
 			$mysql->db_query($sql);
-			
+
 			//更新网站缓存
 			$sql = "update `{cache}` set `bbs_topics_num` =bbs_topics_num+1 , `bbs_today_topics` =bbs_today_topics+1  where date='{$date}'";
 			$mysql->db_query($sql);
-			
+
 			//更新用户的积分
 			if (isset($data['status']) && $data['status']==1){
 				self::UpdateCredit(array("user_id"=>$result['user_id'],"op_user"=>$_G['user_id'],"id"=>$data['id']));
 			}
-			
+
 			//更新用户的缓存
 			$sql = "select 1 from {user_cache} where user_id='{$user_id }'";
 			$result = $mysql->db_fetch_array($sql);
@@ -578,9 +581,9 @@ class dwbbsClass{
 		}else{
 			return self::ERROR;
 		}
-		
+
 	}
-	
+
 	/**
 	 * 修改主题
 	 * @param Array $data(name,type，style)
@@ -608,7 +611,7 @@ class dwbbsClass{
 		$sql .= " where tid='$tid' and istopic=1;";
         return $mysql->db_query($sql);
 	}
-	
+
 	/**
 	 * 修改主题
 	 * @param Array $data(name,type，style)
@@ -616,7 +619,7 @@ class dwbbsClass{
 	 */
 	public static function UpdateTopicsStatus($data = array()){
 		global $mysql,$_G;
-		
+
 		foreach($data['status'] as $key => $value){
 			$id = $data['tid'][$key];
 			$sql = "update `{bbs_topics}` set `status` = $value where id='{$id}'";
@@ -627,11 +630,11 @@ class dwbbsClass{
 				self::UpdateCredit(array("user_id"=>$result['user_id'],"op_user"=>$_G['user_id'],"id"=>$id));
 			}
 		}
-		
-		
+
+
         return $mysql->db_query($sql);
 	}
-	
+
 	/**
 	 * 删除回帖
 	 *
@@ -650,12 +653,12 @@ class dwbbsClass{
 		if (date("Y-m-d",$result['addtime'])==date("Y-m-d",time())){
 			$sql = "update `{bbs_forums}` set `today_num`=today_num-1,`topics_num`=topics_num -1 where id='{$fid}'";
 			$mysql->db_query($sql);
-			
+
 			//更新网站缓存
 			$date =date("Y-m-d",time());
 			$sql = "update `{cache}` set `bbs_topics_num` =bbs_topics_num-1 , `bbs_today_topics` =bbs_today_topics-1  where date='{$date}'";
 			$mysql->db_query($sql);
-			
+
 			//更新用户的缓存
 			$sql = "update `{user_cache}` set bbs_topics_num=bbs_topics_num-1  where user_id='{$user_id}'";
 			$mysql->db_query($sql);
@@ -664,14 +667,14 @@ class dwbbsClass{
 		if ($data['status']==1){
 			self::UpdateCredit(array("user_id"=>$result['user_id'],"op_user"=>$_G['user_id'],"id"=>$data['id']));
 		}
-		
+
 		$sql = "delete from `{bbs_topics}` where id = '{$id}'";
 		$mysql->db_query($sql);
-		 
+
 		$sql = "delete from `{bbs_posts}` where tid = '{$id}'";
 		return $mysql->db_query($sql);
 	}
-	
+
 	function UpdateCredit($data = array()){
 		global $mysql;
 		$sql = "update `{bbs_topics}` set credit = 1 where id='{$data['id']}'";
@@ -693,7 +696,7 @@ class dwbbsClass{
 		$postid = isset($data["postid"])?$data["postid"]:"";
 		$value = isset($data["value"])?$data["value"]:0;
 		$remark = isset($data["remark"])?$data["remark"]:"";
-		
+
 		switch($action){
 			case "delPost":
 				if(empty($postid)){
@@ -713,12 +716,12 @@ class dwbbsClass{
 							$db->row_delete("attachments","id={$row['id']}");
 						}
 						*/
-					}else{				
+					}else{
 						//如果是主题，就先进入回收站
 						$sql = "update `{bbs_topics}` set isrecycle=1 where id={$tid} and fid={$fid}";
-						$mysql->db_query($sql);				
+						$mysql->db_query($sql);
 					}
-					
+
 					/*
 					if($cache_settings['isadminlog']=='1'){
 						saveLog('delPost', $lg['username'], $lg['username'], $tid, $postid, '', '', $reason);
@@ -727,34 +730,34 @@ class dwbbsClass{
 					return true;
 				}
 			break;
-			
+
 			case "movePost":
 				if(empty($tid)){
 					return "没有选择帖子。";
 				}
 				else{
 					$sql = "update `{bbs_topics}` set fid='{$value}' where id={$tid} and fid={$fid}";
-					$mysql->db_query($sql);	
-					
+					$mysql->db_query($sql);
+
 					$sql = "update `{bbs_posts}` set fid='{$value}' where tid={$tid} and fid={$fid}";
-					$mysql->db_query($sql);	
-					
+					$mysql->db_query($sql);
+
 					return true;
-				}	
-			break;	
-			
+				}
+			break;
+
 			case "coverPost":
 				if(empty($postid)){
 					return "没有选择帖子。";
 				}
 				else{
 					$sql = "update `{bbs_posts}` set iscover='{$value}' where id={$postid} and fid={$fid}";
-					$mysql->db_query($sql);	
-					
+					$mysql->db_query($sql);
+
 					return true;
 				}
 			break;
-			
+
 			case "lockPost":
 				if(empty($tid)){
 					return "没有选择帖子。";
@@ -762,40 +765,40 @@ class dwbbsClass{
 				else{
 					$sql = "update `{bbs_topics}` set islock='{$value}' where id={$tid} and fid={$fid}";
 					$mysql->db_query($sql);
-						
+
 					return true;
 				}
 			break;
-		
+
 			case "topPost":
-				
+
 				if(empty($tid)){
 					return "没有选择帖子。";
 				}
 				else{
 					$sql = "update `{bbs_topics}` set istop='{$value}' where id={$tid} and fid={$fid}";
 					$mysql->db_query($sql);
-					
+
 					return true;
 				}
 			break;
-		
+
 			case "alltopPost":
-				
+
 				if(empty($tid)){
 					return "没有选择帖子。";
 				}
 				else{
 					$sql = "update `{bbs_topics}` set isalltop='{$value}' where id={$tid} and fid={$fid}";
-					
+
 					$mysql->db_query($sql);
-					
+
 					return true;
 				}
 			break;
-		
+
 			case "goodPost":
-				
+
 				if(empty($tid)){
 					return "没有选择帖子。";
 				}else{
@@ -804,22 +807,22 @@ class dwbbsClass{
 					//updateCredits($topic_row['userid'], 'goodvar');
 					return true;
 				}
-					
+
 			break;
-		
+
 			case "upPost":
-				
+
 				if(empty($tid)){
 					return "没有选择帖子。";
 				}
 				else{
 					$sql = "update `{bbs_topics}` set ordertime='".time()."' where id={$tid} and fid={$fid}";
 					$mysql->db_query($sql);
-					
+
 					return true;
 				}
 			break;
-		
+
 			case "stampPost":
 				if(empty($tid)){
 					return "没有选择帖子。";
@@ -827,18 +830,18 @@ class dwbbsClass{
 				else{
 					$sql = "update `{bbs_topics}` set stamp='{$value}' where id={$tid} and fid={$fid}";
 					$mysql->db_query($sql);
-					
+
 					return true;
 				}
-				
+
 			break;
-		
+
 			case "highlightPost":
 				$color=$data['highlight']['fontC'];
 				$isb = $data['highlight']['fontB'];
 				$isi=  $data['highlight']['fontI'];
 				$isu = $data['highlight']['fontU'];
-				
+
 				$hlstr='';
 				if(!empty($color) || $isb || $isi || $isu){
 					$hlstr="{$color},{$isb},{$isi},{$isu}";
@@ -849,18 +852,18 @@ class dwbbsClass{
 				else{
 					$sql = "update `{bbs_topics}` set highlight='{$hlstr}' where id={$tid} and fid={$fid}";
 					$mysql->db_query($sql);
-					
+
 					return true;
 				}
 			break;
-			
-			
+
+
 			case "verify":
 					$sql = "update `{bbs_topics}` set highlight='{$hlstr}' where id={$tid} and fid={$fid}";
 					$mysql->db_query($sql);
-					
+
 					return true;
-		
+
 		/*
 			case "saveforumdetails":
 				try{
@@ -874,7 +877,7 @@ class dwbbsClass{
 				}
 			break;
 		*/
-		
+
 			case "dotopics":
 				try{
 					$postaction=$_POST['postaction'];
@@ -886,13 +889,13 @@ class dwbbsClass{
 					if(is_array($tids)) {
 						$tidstr=implode(",",$tids);
 						switch($postaction){
-							
+
 							case "delPost":
 								$db->row_delete("posts","tid in ({$tidstr}) and fid={$fid}");
 								$db->row_delete("topics","id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-							
+
 							case "movePost":
 								$movetofid=numFilter($_POST['movetofid']);
 								$post['fid']=$movetofid;
@@ -900,8 +903,8 @@ class dwbbsClass{
 								$topic['fid']=$movetofid;
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
-							break;	
-							
+							break;
+
 							case "coverPost":
 							case "coverPost_":
 								$v=($postaction=='coverPost'?1:0);
@@ -909,7 +912,7 @@ class dwbbsClass{
 								$db->row_update("posts",$post,"tid in ({$tidstr}) and istopic=1 and fid={$fid}");
 								succeedFlag();
 							break;
-							
+
 							case "lockPost":
 							case "lockPost_":
 								$v=($postaction=='lockPost'?1:0);
@@ -917,7 +920,7 @@ class dwbbsClass{
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
+
 							case "topPost":
 							case "topPost_":
 								$v=($postaction=='topPost'?1:0);
@@ -925,7 +928,7 @@ class dwbbsClass{
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
+
 							case "alltopPost":
 							case "alltopPost_":
 								$v=($postaction=='alltopPost'?1:0);
@@ -933,7 +936,7 @@ class dwbbsClass{
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
+
 							case "goodPost":
 							case "goodPost_":
 								$v=($postaction=='goodPost'?1:0);
@@ -941,20 +944,20 @@ class dwbbsClass{
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
+
 							case "upPost":
 								$topic['ordertime']=time();
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
+
 							case "stampPost":
 								$v=numFilter($_POST['stampid']);
 								$topic['stamp']=$v;
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-							
+
 							case "highlightPost":
 								$color=$_POST['highlightfontC'];
 								$isb=intval($_POST['highlightfontB']);
@@ -968,27 +971,27 @@ class dwbbsClass{
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
-		
+
+
 							case "restorePost":
 								$topic['isrecycle']=0;
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
+
 							case "delPost":
 								$db->row_delete("posts","tid in ({$tidstr}) and fid={$fid}");
 								$db->row_delete("topics","id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-							
+
 							case "restorePost":
 								$topic['isrecycle']=0;
 								$db->row_update("topics",$topic,"id in ({$tidstr}) and fid={$fid}");
 								succeedFlag();
 							break;
-		
-		
+
+
 							default:
 								echo"No Such Action";
 							break;
@@ -998,7 +1001,7 @@ class dwbbsClass{
 					echo($e);
 				}
 			break;
-		
+
 			case "verifytopic":
 				try{
 					$postaction=numFilter($_POST['postaction']);
@@ -1028,8 +1031,8 @@ class dwbbsClass{
 					echo($e);
 				}
 			break;
-		
-		
+
+
 			case "verifypost":
 				try{
 					$postaction=numFilter($_POST['postaction']);
@@ -1056,7 +1059,7 @@ class dwbbsClass{
 					echo($e);
 				}
 			break;
-		
+
 			case "postannounces":
 				try{
 					$anc=$_POST['anc'];
@@ -1078,31 +1081,31 @@ class dwbbsClass{
 					}
 					writeAnnouncesCache();
 					succeedFlag();
-		
+
 				}catch(Exception $e){
 					echo($e);
 				}
 			break;
-		
+
 			case "clean":
 				$sql = "delete from {bbs_posts} where tid in (select id from `{bbs_topics}` where isrecycle=1 and fid={$fid})";
 				$mysql->db_query($sql);
-				
+
 				$sql = "delete from {bbs_topics} where isrecycle=1 and fid={$fid}";
 				$mysql->db_query($sql);
-				
+
 				return true;
 			break;
-		
+
 			case "doannounces":
 				$ids=$_POST['ids'];
 				$ordernum=$_POST['ordernum'];
-		
+
 				if(!empty($ids) && is_array($ids)){
 					$idstr = implode(",", $ids);
 					$db->row_delete("announces","id in ($idstr) and fid={$fid}");
 				}
-		
+
 				if(is_array($ordernum)){
 					foreach($ordernum as $key=>$order){
 						$anc['ordernum']=$order;
@@ -1112,21 +1115,21 @@ class dwbbsClass{
 				writeAnnouncesCache();
 				succeedFlag();
 			break;
-		
-			
-		
+
+
+
 			default:
 				return "No Such Action";
 			break;
 		}
 
 
-	
-	
+
+
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 获得列表
 	 *
@@ -1136,7 +1139,7 @@ class dwbbsClass{
 		global $mysql;
 		$page = empty($data['page'])?1:$data['page'];
 		$epage = empty($data['epage'])?10:$data['epage'];
-		
+
 		$_sql = "where 1=1";
 		if (isset($data['name']) && $data['name']!=""){
 			$_sql .= " and p1.name like '%{$data['name']}%'";
@@ -1146,7 +1149,7 @@ class dwbbsClass{
 		}elseif (isset($data['tid']) && $data['tid']!=""){
 			$_sql .= " and p1.tid = '{$data['tid']}'";
 		}
-	
+
 		if (isset($data['fid']) && $data['fid']!=""){
 			$_sql .= " and p1.fid = {$data['fid']}";
 		}
@@ -1159,12 +1162,12 @@ class dwbbsClass{
 				$_sql .= " and p1.`name` like '%".urldecode($_REQUEST['keywords'])."%'";
 			}
 		}
-	
+
 		$_select = "p1.*";
-		$sql = "select SELECT from `{bbs_posts}` as p1 
+		$sql = "select SELECT from `{bbs_posts}` as p1
 				{$_sql}   ORDER LIMIT";
-			
-		$_order = "order by p1.istopic desc,p1.id asc";		
+
+		$_order = "order by p1.istopic desc,p1.id asc";
 		if (isset($data['order'])){
 			if ($data['order']=="hits"){
 				$_order = " order by p1.hits desc";
@@ -1177,16 +1180,16 @@ class dwbbsClass{
 				$_limit = "  limit ".$data['limit'];
 			}
 			return $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select, $_order, $_limit), $sql));
-		}			
-				
+		}
+
 		$row = $mysql->db_fetch_array(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array('count(1) as num', '', ''), $sql));
-		
+
 		$total = $row['num'];
 		$total_page = ceil($total / $epage);
 		$index = $epage * ($page - 1);
 		$limit = " limit {$index}, {$epage}";
-		
-		$list = $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select,$_order, $limit), $sql));		
+
+		$list = $mysql->db_fetch_arrays(str_replace(array('SELECT', 'ORDER', 'LIMIT'), array($_select,$_order, $limit), $sql));
 		$list = $list?$list:array();
 		foreach ($list as $key => $value){
 			$list[$key]['floor'] = $epage*($page-1)+$key+1;
@@ -1198,9 +1201,9 @@ class dwbbsClass{
             'epage' => $epage,
             'total_page' => $total_page
         );
-		
+
 	}
-	
+
 	/**
 	 * 查看单条回复
 	 *
@@ -1211,11 +1214,11 @@ class dwbbsClass{
 		global $mysql;
 		$id = $data['id'];
 		if($id == "") return self::ERROR;
-		$sql = "select p1.* from `{bbs_posts}` as p1 
+		$sql = "select p1.* from `{bbs_posts}` as p1
 			where p1.id={$id}";
 		return $mysql->db_fetch_array($sql);
 	}
-	
+
 	/**
 	 * 添加回复
 	 *
@@ -1232,7 +1235,7 @@ class dwbbsClass{
 		}
 		$sql = "select islock from `{bbs_topics}` where id = '{$tid}'";
 		$topics_result = $mysql->db_fetch_array($sql);
-		
+
 		if($topics_result['islock']==1 && !isForumAdmin($fid)){
 			return self::TOPICS_IS_LOCK;
 		}
@@ -1247,32 +1250,32 @@ class dwbbsClass{
 			$showd=0;
 		}
 
-		
+
 		foreach($data as $key => $value){
 			$sql .= ",`$key` = '$value'";
 		}
-		
+
 		//$sql .=",`status` ='".$showd."' ";
 
         $mysql->db_query($sql);
     	$postid = $mysql->db_insert_id();
-		
+
 		//更新缓存
 		$sql = "update `{bbs_topics}` set `last_replytime`='".time()."',`last_replyuser`='{$data['user_id']}',`last_replyusername`='{$data['username']}',posts_num =posts_num +1 where id='{$tid}'";
 		$mysql->db_query($sql);
-		
+
 		//更新主题最后回复
 		$sql = "update `{cache}` set `bbs_posts_num`=bbs_posts_num+1,`bbs_today_posts`=bbs_today_posts+1 where date = '".date("Y-m-d",time())."'";
 		$mysql->db_query($sql);
-		
-		//更新版块信息 
+
+		//更新版块信息
 		$sql = "update `{bbs_forums}` set today_num=today_num+1,posts_num=posts_num+1,last_postname='{$data['name']}',last_postid='{$postid}',last_postuser='{$data['user_id']}',last_postusername='{$data['username']}',last_posttime='".time()."' where id={$fid}";
-		
+
 		$mysql->db_query($sql);
 		return true;
 	}
-	 
-	 
+
+
 	/**
 	 * 修改主题
 	 * @param Array $data(name,type，style)
@@ -1286,10 +1289,10 @@ class dwbbsClass{
 		}
 		$sql .= " where id='{$data['id']}'";
 		$mysql->db_query($sql);
-		
+
         return $mysql->db_query($sql);
 	}
-	 
+
 	 /**
 	 * 删除回帖
 	 *
@@ -1303,9 +1306,9 @@ class dwbbsClass{
 		$sql = "delete from `{bbs_posts}` where id = '{$id}' and fid='{$fid}'";
 		return $mysql->db_query($sql);
 	}
-	
-	 
-	
+
+
+
 	public static function GetOne($data = array()){
 		global $mysql;
 		$code = empty($data['code'])?"zixun":$data['code'];
@@ -1318,15 +1321,15 @@ class dwbbsClass{
 		}
 		$fields_table = $code."_fields";
 		$id = $data['id'];
-		$sql = "select p1.*,p2.*,p3.name as site_name,p4.username from {zixun} as p1 
-				left join {".$fields_table."} as p2 on p1.id=p2.aid 
-				left join {site} as p3 on p1.site_id=p3.site_id 
-				left join {user} as p4 on p4.user_id=p1.user_id 
+		$sql = "select p1.*,p2.*,p3.name as site_name,p4.username from {zixun} as p1
+				left join {".$fields_table."} as p2 on p1.id=p2.aid
+				left join {site} as p3 on p1.site_id=p3.site_id
+				left join {user} as p4 on p4.user_id=p1.user_id
 				where p1.id=$id
 				";
 		return $mysql->db_fetch_array($sql);
 	}
-	
+
 	/**
 	 * 添加
 	 *
@@ -1341,16 +1344,16 @@ class dwbbsClass{
         if ($data['name'] == "" || $data['code'] == "") {
             return self::ERROR;
         }
-		
+
 		unset($data['code']);
 		$sql = "insert into `{zixun}` set `addtime` = '".time()."',`addip` = '".ip_address()."'";
-		
+
 		foreach($data as $key => $value){
 			$sql .= ",`$key` = '$value'";
 		}
         $mysql->db_query($sql);
     	$id = $mysql->db_insert_id();
-		
+
 		$_sql = array();
 		if (count($fields)>0){
 			$sql = "insert into `{zixun_fields}` set ";
@@ -1366,8 +1369,8 @@ class dwbbsClass{
 		}
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * 修改
 	 *
@@ -1383,7 +1386,7 @@ class dwbbsClass{
         if ($data['name'] == "" || $data['code'] == "" || $data['id'] == "") {
             return self::ERROR;
         }
-		
+
 		unset($data['code']);
 		$sql = "update `{zixun}` set ";
 		$_sql = "";
@@ -1392,7 +1395,7 @@ class dwbbsClass{
 		}
 		$sql .= join(",",$_sql)." where id = '$id'";
         $mysql->db_query($sql);
-		
+
 		$_sql = array();
 		if (count($fields)>0){
 			$sql = "update `{zixun_fields}` set ";
@@ -1408,9 +1411,9 @@ class dwbbsClass{
 		}
 		return true;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * 删除
 	 *
@@ -1425,14 +1428,14 @@ class dwbbsClass{
 		}
 		$code = $data['code'];//用户的类型，是管理员还是普通用户
 		if ($code == "")	return self::ERROR;
-		
+
 		$sql = "delete from {zixun}  where id in (".join(",",$id).")";
 		$mysql->db_query($sql);
 		$sql = "delete from {zixun_fields}  where aid in (".join(",",$id).")";
 		$mysql->db_query($sql);
 		return true;
 	}
-	
+
 	public static function GetBbsCache($data=array()){
 		global $mysql;
 		if (isset($data['date'])){
@@ -1447,35 +1450,35 @@ class dwbbsClass{
 			$sql = "select bbs_today_topics from `{cache}` order by bbs_today_topics desc";
 			$result = $mysql->db_fetch_array($sql);
 			$bbs_most_topics =  ($result!=false  && $result['bbs_today_topics']!="")?$result['bbs_today_topics']:0;
-			
+
 			//获取最高的帖子回复数
 			$sql = "select bbs_today_posts from `{cache}` order by bbs_today_posts desc";
 			$result = $mysql->db_fetch_array($sql);
 			$bbs_most_posts =  ($result!=false  && $result['bbs_today_posts']!="")?$result['bbs_today_posts']:0;
-			
+
 			//获取帖子总数
 			$sql = "select count(*) as num from `{bbs_topics}` ";
 			$result = $mysql->db_fetch_array($sql);
 			$bbs_topics_num =  ($result!=false  && $result['num']!="")?$result['num']:0;
-			
+
 			//获取回复总数
 			$sql = "select count(*) as num from `{bbs_posts}` ";
 			$result = $mysql->db_fetch_array($sql);
 			$bbs_posts_num =  ($result!=false  && $result['num']!="")?$result['num']:0;
-			
-			
+
+
 			//获取昨天的帖子数和回复数
 			$ydate = date("Y-m-d",time() - 60*60*24);
 			$sql = "select * from `{cache}` where date ='{$ydate}'";
 			$result = $mysql->db_fetch_array($sql);
 			$bbs_yesterday_topics =  ($result!=false && $result['bbs_today_topics']!="")?$result['bbs_today_topics']:0;
 			$bbs_yesterday_posts =  ($result!=false  && $result['bbs_today_posts']!="")?$result['bbs_today_posts']:0;
-			
+
 			//更新网站的论坛基本缓存
 			$sql = "update `{cache}` set  `bbs_first_visit`='".time()."',`bbs_topics_num` = '{$bbs_topics_num}', `bbs_posts_num` = '{$bbs_posts_num}', `bbs_today_topics` = 0, `bbs_today_posts` = 0, `bbs_yesterday_topics` = {$bbs_yesterday_topics}, `bbs_yesterday_posts` = {$bbs_yesterday_posts}, `bbs_most_topics` = {$bbs_most_topics}, `bbs_most_posts` = {$bbs_most_posts} where `date` = '{$date}' ";
 			$mysql->db_query($sql);
-			
-			//更新所有版块的帖子信息todaynum  topicsnum  postsnum  
+
+			//更新所有版块的帖子信息todaynum  topicsnum  postsnum
 			$sql = "select id from `{bbs_forums}` ";
 			$result = $mysql -> db_fetch_arrays($sql);
 			foreach ($result as $key => $value){
@@ -1483,22 +1486,22 @@ class dwbbsClass{
 				$_sql = "select count(*) as num from {bbs_topics} where fid = '{$value['id']}'";
 				$_result = $mysql ->  db_fetch_array($_sql);
 				$topicsnum = $_result['num'];
-				
+
 				//获得回复总的条数
 				$_sql = "select count(*) as num from {bbs_posts} where fid = '{$value['id']}' and istopic=0";
 				$_result = $mysql ->  db_fetch_array($_sql);
 				$postsnum = $_result['num'];
-				
+
 				$sql = "update `{bbs_forums}` set  `today_num`=0,`topics_num` = '{$topicsnum}', `posts_num` = '{$postsnum}' where `id` = '{$value['id']}' ";
 				$mysql->db_query($sql);
 			}
-			
+
 			$sql = "select * from `{cache}` where date ='{$date}'";
 			$result = $mysql->db_fetch_array($sql);
 		}
 		return $result;
 	}
-	
+
 	//是否版块管理员
 	function IsForumAdmin($fid){
 		global $_G;
@@ -1511,7 +1514,7 @@ class dwbbsClass{
 		}
 		return false;
 	}
-	
+
 	function GetAdmins($admins){
 		if(empty($admins)){
 			return "设置版主";
