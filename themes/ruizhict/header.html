@@ -150,8 +150,8 @@
                 </ul>
             </div> -->
         </div>
-        <!--header-bottom Start--> 
-     
+        <!--header-bottom Start-->
+
         <div class="w h_b_menuWrap">
             <div class="h_b_menu">
                 <ul>
@@ -170,8 +170,13 @@
                                         <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
                                         {/site}
                                     {/if}
-                                    {if $var.nid=="user"}
+                                    {if $var.nid=="safe"}
                                         {site pid=41 status=1 var="subvar"}
+                                        <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
+                                        {/site}
+                                    {/if}
+                                    {if $var.nid=="user"}
+                                        {site pid=39 status=1 var="subvar"}
                                         <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
                                         {/site}
                                     {/if}
@@ -185,17 +190,17 @@
                                         <a href="/{$subvar.nid}/index.html">{$subvar.name}</a>
                                         {/site}
                                     {/if}
-                               
 
-                           
+
+
                         </li>
-                        {/site}                
-                    
+                        {/site}
+
                 </ul>
             </div>
 
         </div>
-        <!--header-bottom End--> 
+        <!--header-bottom End-->
     </div>
     <!--¶¥²¿²Ëµ¥ Middle End-->
 </div>
